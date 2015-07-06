@@ -1,29 +1,57 @@
-\documentstyle[cuthesis]{report}
+\documentclass[11pt,a4paper, cuthesis]{report}
+% \documentstyle{}
+
+
+\usepackage{pgfgantt}
+
+\usepackage{cuthesis}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}%
+\usepackage{multirow}
+\usepackage{algorithm2e}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage{xcolor}  % Coloured text etc.
+\usepackage{hyperref}
+
+
+\usepackage{todonotes}
 
 \author{Mathieu Nayrolles}
-\title{My Title}
+\title{ON THE AMELIORATION OF SOFTWARE ENGINEERING MAINTENANCE AND EVOLUTION PROCESSES}
 \titleOfPhDAuthor{Mr.}          % or Ms., Mrs., Miss, etc. (only for PhD's)
 \PhD                            % Masters by default
 \dept{Electrical \& Computer Engineering}        %   default is Comp.Sci.
-\cosupervisor                   % if you also have a co-supervisor
+%\cosupervisor                   % if you also have a co-supervisor
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \begin{document}
 
+
 \begin{abstract}
-  Text of abstract.  
+  \todo{Write the abstract}
 \end{abstract}
 
-\begin{acknowledgments}
-  Text of acknowledgments.
-  acknowledgments
-
-\end{acknowledgments}
+\todototoc
+\listoftodos 
+\tableofcontents
+\listoffigures
+\listoftables
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Body of Thesis goes here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{introduction}
+\include{relworks}
+\include{thesis}
+\include{methodology/methodology}
+\include{plan}
+\include{conclusion}
+
+
 
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{library}  %place your .bib files here
