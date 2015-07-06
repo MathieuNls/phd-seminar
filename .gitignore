@@ -115,9 +115,6 @@ _minted*
 *.sympy
 sympy-plots-for-*.tex/
 
-# todonotes
-*.tdo
-
 # xindy
 *.xdy
 
