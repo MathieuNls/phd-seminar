@@ -1,0 +1,124 @@
+%!TEX root = research_proposal.tex
+
+\chapter{Research Plan\label{chap:plan}}
+
+In this chapter, we present the current state of research in section \ref{sec:current-state}, our current contributions in section \ref{sec:current-state}. Section \ref{sec:publication-plan} present our publication plan.
+
+\section{Current State of Research\label{sec:current-state}}
+
+Chapter \ref{chap:methodology} represents the current state of our research. The parts that are already complete are :
+
+\begin{itemize}
+	\item To create a taxonomy of bug (section \ref{sec:taxo}).
+	\item To make software artifacts such as source code, issues, tasks, comments and more searchable using natural language and not structured query language (section \ref{sec:BUMPER}).
+	\item To efficiently reproduce field crashes in lab environment without raising any privacy concerns (section \ref{sec:JCHARMING}).
+	\item To sequentially mine co-changes (section \ref{sec:RESEMBLE}).
+	\item To normalize source code (sections \ref{sec:RESEMBLE} and \ref{sec:BIANCA}).
+	\item To efficiently compare normalized source code (sections \ref{sec:RESEMBLE} and \ref{sec:BIANCA}).
+	\item To raise warning when a normalized source code matches another normalized source code known to have introduce a defect in an application (section \ref{sec:BIANCA}).
+\end{itemize}
+
+\section{Current Contribution\label{sec:current-state}}
+
+We already have one contribution referred in an international conference \cite{Nayrolles2015}:
+\\ 
+
+\noindent Mathieu Nayrolles, Abdelwahab Hamou-Lhadj, Tahar Sofiene, and Alf Larsson. JCHARMING : A Bug Reproduction Approach Using Crash Traces and Directed Model Checking. In SANER’15, pages 101-110, 2015. (Best Paper Award).
+\\ 
+
+This paper was published in (International Conference on Software Analysis, Evolution, and Reengineering). SANER is a merge of WCRE (Working Conference on Reverse Engineering) and CSMR (European Conference on Software Maintenance and Reengineering). 
+
+\todo{Is bumper-app.com a contribution w/out its paper ?}
+
+\section{Plan for short term work\label{sec:planning}}
+
+As short term work, we want to complete the following parts:
+
+\begin{itemize}
+	\item Recommend code in order to improve a sub-optimum code.
+	\item Recommend code in order to complete an incomplete piece of code.
+	\item Develop IDE plugins
+	\item Develop new parsers (Github, Sourceforge) in order to improve:
+	\begin{itemize}
+		\item The coverage of {\tt BUMPER}.
+		\item The precision of {\tt RESEMBLE} and {\tt BIANCA}.
+		\item The accuracy of our Bug Taxonomy.
+	\end{itemize}
+\end{itemize}
+
+\section{Publication Plan\label{sec:publication-plan}}
+
+This section presents our planned publications over the course of the next years. 
+Figure \ref{fig:planning} shows how publications relate to each other and an attempt planning. 
+Depending on time constraints and possible invitations to journal extension, publication can be removed or added during the next years.
+
+\begin{itemize}
+	\item {\bf Publication 2}. {\tt BUMPER} presented in section \ref{sec:BUMPER} will be submitted  as a tool paper to {\tt Automated Software Engineering, ASE 2015}.
+	\item {\bf Publication 3}. Being awarded the Best Paper Award at SANER'15 \cite{Nayrolles2015}, we were invited to extend our work to a journal version. Accordingly, we intend to perform more extensive experiments and to describe in depth our directed model checking engine and our junit test case generation algorithm. ({\tt Journal of Software: Evolution and Process 2016}).
+	\item {\bf Publication 4}. {\tt BIANCA} will be submitted to {\tt International Conference on Software Engineering, ICSE 2016}.
+	\item {\bf Publication 5}. A joint work with McGill university that predict co-changes by mining execution traces produced by instrumented software will be submitted to {\tt International Conference on Software Engineering, ICSE 2016}.
+	\item {\bf Publication 6}. A derivate of {\tt BIANCA} that detect clones at commit time will be submitted to {\tt International Conference on Software Analysis, Evolution, and Reengineering, SANER 2016}
+	\item {\bf Publication 7}. {\tt RESEMBLE} will be submitted to {\tt International Conference Software Maintenance and Evolution, ICSME 2017}
+	\item {\bf Publication 8}. Our proposed bug taxonomy will be submitted to {\tt Transaction of Software Engineering, TSE 2017}
+	\item {\bf Publication 9}. Our ecosystem as a whole, {\tt BUMPER}, {\tt JCHARMING}, {\tt RESEMBLE} and {\tt BIANCA} will be submitted to {\tt Transaction of Software Engineering, TSE 2017}.
+	\item {\bf Thesis}. In parallel to publication 8 and 9, I plan to write my Ph.D thesis.
+\end{itemize}
+
+\begin{figure}[h!]
+
+\centering 
+
+\begin{ganttchart}[
+hgrid,
+vgrid,
+inline]{1}{27}
+\gantttitle{2014}{9} 
+\gantttitle{2015}{9} 
+\gantttitle{2016}{9} \\
+\gantttitle{T1}{3}
+\gantttitle{T2}{3}
+\gantttitle{T3}{3}
+\gantttitle{T1}{3}
+\gantttitle{T2}{3}
+\gantttitle{T3}{3}
+\gantttitle{T1}{3}
+\gantttitle{T2}{3}
+\gantttitle{T3}{3} \\
+
+
+\ganttbar{$Taxonomy$}{7}{11}
+\ganttbar{$Taxonomy$}{19}{23} \\
+\ganttbar{$Bumper$}{11}{13}
+\ganttbar{$Resemb$}{17}{19} \\
+\ganttbar{$Bianca$}{10}{14}
+\ganttbar{$Bianca_2$}{16}{18}
+\ganttbar{$Thesis$}{22}{27}\\
+\ganttbar{$Courses$}{1}{6}
+\ganttbar{$McGill$}{11}{14}
+\ganttbar{$Eco$}{20}{22} \\
+\ganttbar{$JChar$}{5}{7}
+\ganttbar{$JChar_2$}{12}{14}
+
+
+\ganttlink{elem0}{elem2}
+\ganttlink{elem0}{elem1}
+\ganttlink{elem2}{elem3}
+\ganttlink{elem2}{elem4}
+\ganttlink{elem4}{elem5}
+\ganttlink{elem5}{elem9}
+\ganttlink{elem9}{elem6}
+\ganttlink{elem1}{elem6}
+\ganttlink{elem3}{elem9}
+\ganttlink{elem4}{elem8}
+\ganttlink{elem10}{elem11}
+\ganttlink{elem11}{elem9}
+\ganttlink{elem7}{elem10}
+\ganttlink{elem10}{elem0}
+
+\end{ganttchart}
+
+
+\caption{Provisional Publication Planning\label{fig:planning}}
+\end{figure}
+\todo{This is a very high level planning. Is it enough ?}
+
