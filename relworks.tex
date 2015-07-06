@@ -1,0 +1,71 @@
+%!TEX root = research_proposal.tex
+
+\chapter{Related Works\label{chap:relwork}}
+
+\section{Crash reproduction}
+
+In his Ph.D thesis \cite{Chen2013}, Chen proposed an approach named STAR (Stack Trace based Automatic crash Reproduction). 
+Using only the crash stack, STAR starts from the crash point and goes backward towards the entry point of the program. 
+During the backward process, STAR computes the required condition to reach the crash point using an SMT (Satisfiability Modulo Theories) solver named Yices \cite{Dutertre2006}. 
+The objects that satisfy the required conditions are generated and orchestrated inside a JUnit test case. The test is run and the resulting crash stack is compared to the original one. If both match, the bug is said to be reproduced. When applied to different systems, STAR achieved 60\% accuracy. \\
+
+Jaygarl et al. \cite{Jaygarl} created OCAT (Object Capture based Automated Testing). 
+The authors’ approach starts by capturing objects created by the program when it runs on-field in order to provide them in an automated test process. Indeed the coverage of automated tests is often low due to the lack of correctly constructed objects. 
+Also, the objects can be mutated by means of evolutionary algorithms. These mutations target primitive fields in order to create even more objects and therefore improve the code coverage once more. 
+While not targeting the reproduction of a bug, OCAT is a well-known approach and was used as the main mechanism for bug reproduction. \\
+
+Narayanasamy et al. \cite{Narayanasamy2005} proposed BugNet, a tool that continuously records program execution for deterministic replay debugging. According to the authors, the size of the recorded data needed to reproduce a bug with high accuracy is around 10MB. This recording is then sent to the developers and allows the deterministic replay of a bug. The authors argued that, with nowadays Internet bandwidth, the size of the recording is not an issue during the transmission of the recorded data, however, the instrumentation of the system is problematic since it slows down considerably the execution.\\
+
+Jin et al. \cite{Jin2012} proposed BugRedux for reproducing field failures for in-house debugging. The tool aims to synthesize in-house executions that mimic field failures. To do so, the authors use several types of data collected in the field such as stack traces, crash stacks, and points of failure. 
+The data that successfully reproduced the field crash is sent to software developers to fix the bug. \\
+
+Based on the success of BugRedux, the authors built F3 (Fault localization for Field Failures) \cite{Jin2013}. 
+F3 performs many executions of a program on top of BugRedux in order to cover different paths leading to the fault. It then generates many ‘pass’ and ‘fail’ paths which can lead to a better understanding of the bug. They also use grouping, profiling and filtering, to improve the fault localization process.\\
+
+While being close to our approach, BugRedux and F3 may require the call sequence and/or the complete execution trace in order to achieve bug reproduction. When using only the crash traces (referred to as call stack at crash time in their paper), the success rate of BugRedux significantly drops to 37.5\% (6/16). The call sequence and the complete execution trace required to reach 100\% of bug reproduction can only be obtained through instrumentation and with an overhead ranging from 1\% to 1066\%.\\
+
+Clause et al. \cite{Clause2007} proposed a technique for enabling and supporting debugging of field failures. 
+They record the execution of the program on the client side and propose to compress the generated data to the minimal required size to ensure that the reproduction is feasible. 
+This compression is also performed on the client side. Moreover, the authors keep traces of all accessed documents in the operating system and also compress/reduce them to the minimal. 
+Overall, they are able to reproduce on-field bug using a file weighting ≈70Kb. The minimal execution paths triggering the failure are then sent to the developers who can replay the execution on a sandbox, simulating the client’s environment. While efficient, this approach suffers from severe security and privacy issues. \\
+
+RECORE (REconstructing CORE dumps) is a tool proposed by Rossler et al. \cite{Rossler2013}.
+It instruments Java bytecode to wrap every method in a try and catch block while keeping a quasi-null overhead. 
+The tool starts from the core dump and tries (with evolutionary algorithms) to reproduce the same dump by executing the programs many times. 
+The set of inputs responsible for the failure is generated when the generated dump matches the collected one.
+ReCrash \cite{Artzi2008} is a tool that aims to make software failures reproducible by preserving object states. 
+It uses an in-memory stack, which contains every argument and object clone of the real execution in order to reproduce a crash via the automatic generation of unit test cases. 
+Unit test cases are used to provide hints to the developers on the buggy code. This approach suffers from overhead when they record everything (between 13\% to 64\% in some cases). 
+The authors also propose an alternative in which they record only the methods surrounding the crash.
+For this to work, the crash has to occur at least once so they could use the information causing the crash to identify the methods surrounding it when (and if) it appears. \\
+
+JRapture \cite{Steven2000} is a capture/replay tool for observation-based testing. 
+The tool captures execution of Java programs to replay it in-house.  To capture the execution of a Java program, the authors used their own version of the Java Virtual Machine (JVM) and employ a lightweight, transparent capture process. Using their own JVM allows one to capture any interactions between a Java program and the system, including GUI, file, and console inputs, and on replay, it presents each thread with exactly the same input sequence it saw during capture. 
+Unfortunately, they have to make their customer use their own JVM in order to support their approach, which limits the generalization of the approach to mass-market software.\\
+
+Finally, Zamfir et al. \cite{Parnin2011} proposed ESD, an execution synthesis approach which automatically synthesizes failure execution using only the stack trace information. However, this stack trace is extracted from the core dump and may not always contain the components that caused the crash.\\
+
+Except for STAR, approaches targeting the reproduction of field crashes require the instrumentation of the code or the running platform in order to save the stack call or the objects to successfully reproduce bugs. As we discussed earlier, instrumentation can cause a massive overhead (1\% to 1066\%) while running the system. In addition, data generated at run-time using instrumentation may contain sensitive information.
+
+\section{Issue and source code relationships\label{rel:issue-rela}}
+
+Researchers have been studying the relationships between issues and source code repositories since more than two decades now. 
+To the best of our knowledge the first ones who conduct this type of study on a significant scale were Perry and Stieg \cite{PerryDewayneE.1993}. 
+In these two decades, many aspects of these relationships have been studied in length.
+For example, researchers  interested themselves in ameliorating the issues report itself by specified guidelines to make good report \cite{Bettenburg2008} and try to further simplify the existing models \cite{Herraiz2008}. 
+
+Then, we can find approaches on how long it will take for a issues to get fixed \cite{Bhattacharya2011,Zhang2013,Saha2014} and where it should be fixed \cite{Zhou2012,Kim2013a}.
+With the rapidly increasing number of issues, the community also interested itself in prioritizing the issues report compared to one another \cite{Kim2011c} and partially do so by predicting the severity of a issues \cite{Lamkanfi2010}.
+
+Finally, researchers proposed approaches to predict which issues will get reopened \cite{Zimmermann2012,Lo2013} which issues report is a duplicate of which other one \cite{Jalbert2008,Bettenburg2008a,Tian2012a}.
+
+Another field of study consist in assigning these issues reports, if possible automatically to the right developers through triaging  \cite{Anvik2006,Jeong2009,Tamrawi2011a,Bortis2013} 
+and which locations are likely to yield new bugs \cite{Kim2006,Kim2007}.
+
+\section{Crash pediction}
+
+\todo{Write this section}
+
+\section{Change patterns}
+
+\todo{Waiting for ICSE paper w/ Latifa}
