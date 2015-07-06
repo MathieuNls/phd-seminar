@@ -1,0 +1,26 @@
+%!TEX root = research_proposal.tex
+
+\chapter{Conclusion\label{chap:conclusion}}
+
+The maintenance and evolution processes of system represent more than 70\% of the effort practioniers invest in them.
+Hundreds of papers have been published with the aim to improve our knowledge of these processes in terms of issue triaging, issue prediction, duplicate issue detection, issue reproduction and co-changes prediction. 
+All these publications gave meaning to the millions of issues that can be found in open source issue \& project and revision management systems. 
+Context-aware IDE and think tank in open source architecure (\cite{chansler2011architecture}) open the path to approaches that support developpers during their programming sessions by levergaging past indexed knowledge and past architectures. 
+
+In this research proposal, we first presented what are the most influencial papers in the different field our work lies on in Chapter \ref{chap:relwork}. 
+Then, in chapter \ref{chap:thesis}, we identified current problems in the literature and our proposed solution to overcome them. 
+Chapter \ref{chap:methodology} presented our proposal in details while chapter \ref{chap:plan} detailled our attempt planning.
+
+More specifically, in Chapter \ref{chap:methodology}, we presented four approaches : {\tt BUMPER}, {\tt JCHARMING}, {\tt RESEMBLE}, {\tt BIANCA} we proposed a taxonomy of bugs. When combined into {\tt pErICOPE} \todo{Not sure yet about this name because of the Periscope app} (Ecosystem Improve source COde during Programming session with real-time mining of common knowlEdge), these tools (i) provide the possibility to search related software artifacts using natural language, (ii) accurately reproduce field-crash in lab environment, (iii) recommend improvement or completion of current block of code and (iv) prevent the introduction of clones / issues at commit time. 
+
+
+{\tt BUMPER} has been designed to handle heavy traffic while {\tt JCHARMING} can reproduce 85\% of real-world issues we submitted to it. On its side {\tt BIANCA} is able to flag 41.5\% and 48.89\% of commit introducing bug as dangerous with 13.4\% and 21\% of false positive, respectively. 
+
+Our future works, according to our publication plan described in section \ref{sec:publication-plan}, are as follows. First, we want to improve the performances of {\tt BIANCA} in terms of false positives. 
+Then, create the IDE plugin that will support {\tt RESEMBLE}. Finally, we want to refined our taxonomy by including as many as datasets as possible.
+
+
+
+
+
+
