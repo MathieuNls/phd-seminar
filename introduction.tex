@@ -142,7 +142,7 @@ What we concretely propose is an open-source, free, automatable tool suite that 
 \section{Thesis Contributions}
 
 
-In this section we present the problems in the literature (Section \ref{sec:pb-litterature}), the research challenges we face in our work (Section \ref{sec:challenges}). Sections \ref{sec:scope} and \ref{sec:objective-thesis} present the scope and the objectives of this research. Finally, section \ref{sec:solution} outlines our proposed solution.
+In this section we present the problems in the literature (Section \ref{sec:pb-litterature}), the research challenges we face in our work (Section \ref{sec:challenges}). Sections \ref{sec:scope} and \ref{sec:objective-thesis} present the scope and the contributions of this research.
 
 \subsection{Problems in the Literature\label{sec:pb-litterature}}
 
@@ -175,29 +175,10 @@ In this section we present the problems in the literature (Section \ref{sec:pb-l
 
 The area of this research is to improve the processes of software engineering by providing contextual informations, in order to improve the quality, the performance, the reliability of a given code during a programming session. These contextual informations will come from mining issue \& project and revision systems. Hence, we will not define what are the good or bad practices to improve the quality, the performance, the reliability of a given code but rely on the mined data.
 
-\subsection{Objectives of the thesis\label{sec:objective-thesis}}
-
-This thesis have five main objectives:
-
-\begin{itemize}
-	\item To provide a taxonomy of software issues to classify the research.
-	\item To propose approaches to aggregate as many issues and revisions systems as possible.
-	\item To propose approaches to reproduce field crashes in lab environment using the issue content.
-	\item To propose approaches to create a NLP search engine for issues, tasks, commits, patches, fixes.
-	\item To create a comprehensive API to access our data.
-	\item To propose a context-aware IDE that will improve day-to-day programming session with concise and appropriate code samples.
-\end{itemize}
-
-\subsection{Proposed Contributions \label{sec:solution}}
+\subsection{Thesis contributions\label{sec:objective-thesis}}
 
 Figure \ref{fig:proposal} depicts our proposed solution for fulfilling the objectives we presented in section \ref{sec:objective-thesis}.
 First of all, a end-user (team member) will report an issue (open a task) in one the organization issues \& project management system. This can be done in $Sourceforge$, $Bugzilla$, $JIRA$ or $Github$ which are the system we want to support first as described in section \ref{sec:bug-provider}.
-Issues (tasks) are  mapped with their fixes (implementations) inside {\tt BUMPER} (BUg MetarePository for dEvelopers and Researchers). The source code is fetched from the supported version system: $Git$, $Svn$, $Mercurial$ presented in section \ref{sec:version-control}.
-{\tt BUMPER} is a meta-repository that make issues, tasks and related source code searchable using natural language  (in opposition to structured query language).
-When an issue is reported, {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) will fetch the content of the issue and try to create a scenario to reproduce the on-field crash. In case of success, the developer assigned to this issue will be notified and the scenario stored in {\tt BUMPER}.
-The developer assigned to the task or the issue will modify the code and, in real time, very much like intellisense or auto-completion in modern IDE, {\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) will propose improvements or follow up on the developer's code using the decades of history of {\tt BUMPER}. Once s/he is done, s/he submit a commit, patch or diff to the version system.
-However, before s/he allowed to do so, {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at commit time) will kicks in and query {\tt BUMPER} looking for similar modifications in other projects and even other programming languages that led to the insertion of a defect in order to warn the user about potential hazardous code.
-
 
 \begin{figure}[h!]
 	\centering
@@ -205,6 +186,14 @@ However, before s/he allowed to do so, {\tt BIANCA} (Bug Insertion ANticipation 
 	\caption{Proposed Architecture}
 	\label{fig:proposal}
 \end{figure}
+
+
+Issues (tasks) are  mapped with their fixes (implementations) inside {\tt BUMPER} (BUg MetarePository for dEvelopers and Researchers). The source code is fetched from the supported version system: $Git$, $Svn$, $Mercurial$ presented in section \ref{sec:version-control}.
+{\tt BUMPER} is a meta-repository that make issues, tasks and related source code searchable using natural language  (in opposition to structured query language).
+When an issue is reported, {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) will fetch the content of the issue and try to create a scenario to reproduce the on-field crash. In case of success, the developer assigned to this issue will be notified and the scenario stored in {\tt BUMPER}.
+The developer assigned to the task or the issue will modify the code and, in real time, very much like intellisense or auto-completion in modern IDE, {\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) will propose improvements or follow up on the developer's code using the decades of history of {\tt BUMPER}. Once s/he is done, s/he submit a commit, patch or diff to the version system.
+However, before s/he allowed to do so, {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at commit time) will kicks in and query {\tt BUMPER} looking for similar modifications in other projects and even other programming languages that led to the insertion of a defect in order to warn the user about potential hazardous code.
+
 
 The bug taxonomy required to build {\tt BUMPER}, {\tt BUMPER} itself, {\tt JCHARMING}, {\tt RESSEMBLE} and {\tt BIANCA} are presented in sections \ref{sec:taxo}, \ref{sec:BUMPER}, \ref{sec:JCHARMING}, \ref{sec:RESEMBLE} and \ref{sec:BIANCA}, respectively. In addition, we list parts that have been published in peer-reviewed conferences in section \ref{sec:current-state} and our publication plan in \ref{sec:publication-plan}.
 
@@ -229,12 +218,20 @@ Finally, when a new issue is submitted, {\tt BUMPER} indexes it and {\tt JCHARMI
 
 We can envision the potential of such a system and the its complexity knowing that it would contain millions of issues, hundreds of thousands projects, dozens of programming languages and will help developers leveraging the knowledge of other developers.
 
-In the next chapter, we discuss the details of the different approaches composing our ecosystem.
+To summarize this thesis have four main contributions:
+
+\begin{itemize}
+	\item To provide a taxonomy of software issues to classify the research.
+	\item To propose approaches to aggregate as many issues and revisions systems as possible.
+	\item To propose approaches to reproduce field crashes in lab environment using the issue content.
+	\item To propose a context-aware IDE that will improve day-to-day programming session with concise and appropriate code samples.
+\end{itemize}
+
+
 
 \section{Outline\label{sec:outline}}
 
 The remainder of this proposal is organized as follows. The following section discuss the problems we propose to solve and their motivations. Chapter \ref{chap:relwork} summarizes the related work.
-We present the thesis, challenges, and our proposed solution in Chapter \ref{chap:thesis}.
 Chapter \ref{chap:methodology} introduces the proposed approach, the framework, and the preliminary experiments along with the results.
 Chapter \ref{chap:plan} presents the current state of the research, and highlights our key current contributions and future research directions along with with a possible publication schedule.
 Finally, Chapter \ref{chap:conclusion} provide some concluding remarks and future works.
