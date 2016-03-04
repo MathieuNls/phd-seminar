@@ -62,10 +62,124 @@ Finally, researchers proposed approaches to predict which issues will get reopen
 Another field of study consist in assigning these issues reports, if possible automatically to the right developers through triaging  \cite{Anvik2006,Jeong2009,Tamrawi2011a,Bortis2013}
 and which locations are likely to yield new bugs \cite{Kim2006,Kim2007}.
 
-\section{Crash pediction}
+\section{Crash Prediction}
 
-\todo{Write this section}
+Predicting crash, fault and bug is very large and popular research area.
+The main goal behind the pletor of papers is to save on manpower---being to more expensive resource to build software---by directing their efforts on locations likely to contain a bug, fault or crash.
 
-\section{Change patterns}
+There are two distinct trends in crash, fault and bug prediction in the papers accepted to major venues such as MSR, ICSE, ICSME and ASE:  analysis and current version analysis.
 
-\todo{Waiting for ICSE paper w/ Latifa}
+In the  analysis, researchers extract and interpret information from  system.
+The idea being that the files or locations that are the most frequently changed are more likely to contain a bug.
+Additionally, some of these approaches also assume that locations linked to a previous bug are likely to be linked to a bug in the future.
+
+On the other hand, approaches using only the current version to predict bugs assume that the current version, i.e. its design, call graph, quality metrics and more, will trigger the appearance of the bug in the future.
+Consequently, they do no require the history and only need the current source-code.
+
+In the remaining of this section, we will describe approaches belonging to the two families.
+
+\subsubsection{Change logs approaches}
+\label{subs:Change logs approaches}
+
+Change logs based approaches rely on mining the historical data of the application and more particularly, the source code \textit{diffs}.
+A source code \textit{diffs} contains two versions of the same code in one file.
+Indeed, it contains the lines of code that have been deleted and the one that have been added.
+It is worth noting that, \textit{diffs} files do not represent the concept of modified line.
+Indeed, a modified line will be represented by a deletion and an addition.
+Researchers mainly use five metrics when dealing with \textit{diffs} files :
+
+\begin{itemize}
+  \item Number of files: The number of modified files in a given commit
+  \item Insertions: The number of added lines
+  \item Deletions: The number of deleted lines
+  \item Churns: The number of deletion lines immediately followed by an insertion which give an approximation of how many lines have been modified
+  \item Hunks: The number of consecutive blocks of lines. This gives an approximation of how many distinct locations have been edited to accomplish a unit of work.
+\end{itemize}
+
+Naggapan \textit{et al.} studied the churns metric and how it can be connected to the apparition of new defect in a complex software system.
+They established that relative churns are, in fact, a better metric than classical churn \cite{Nagappan} while studying Windows Server 2003.
+
+Hassan, interested himself with the entropy of change, i.e. how complex the change is \cite{Hassan2009}.
+Then, the complexity of the change, or entropy, can be used to predict bugs.
+The more complex a change is, the more likely it is to bring the defect with it.
+Hassan used its entropy metric, with success, on six different systems.
+Prior to this work, Hassan, in collaboration with Holt proposed an approach that highlights the top ten most susceptible locations to have a bug using heuristics based on \textit{diffs} file metrics \cite{Hassan2005}.
+Moreover, their heuristics also leverage the data of the bug tracking system.
+Indeed, they use the past defect location to predict new ones.
+The conclusion of these two approaches has been that recently modified and fixed locations where the most defect-prone and comparison with frequently modified.
+
+Similarly to Hassan and Hold,  Ostrand \textit{et al.} predict future crash location by combining the data from change and past defect location \cite{Ostrand2005}.
+The main difference between Hassan and Hold and Ostrand \textit{et al.} is that Ostrand \textit{et al.} validate their approach on industrial systems as they are members of the AT\&T lab while Hassan and Hold validated their approach on open-source system.
+This proved that these metrics are relevant for open-source and industrial system.
+
+
+%
+% he bug cache approach by Kim et al. uses
+% the same properties of recent changes and defects as the
+% top ten list approach, but further assumes that faults occur
+% in bursts [13]. The bug-introducing changes are identified
+% from the SCM logs. Seven open-source systems were used
+% to validate the findings (Apache, PostgreSQL, Subversion,
+% Mozilla, JEdit, Columba, and Eclipse). Bernstein et al. use
+% bug and change information in non-linear prediction models
+% [12]. Six eclipse plugins were used to validate the approach.
+% Single-version approaches assume that the current design
+% and behavior of the program influences the presence of
+% future defects. These approaches do not require the history
+% of the system, but analyze its current state in more detail,
+% using a variety of metrics. One standard set of metrics used
+% is the Chidamber and Kemerer (CK) metrics suite [17].
+% Basili et al. used the CK metrics on eight mediumsized
+% information management systems based on the same
+% requirements [1]. Ohlsson et al. used several graph metrics
+% including McCabe’s cyclomatic complexity on an Ericsson
+% telecom system [2]. El Emam et al. used the CK metrics
+% in conjunction with Briand’s coupling metrics [3] to predict
+% faults on a commercial Java system [4]. Subramanyam et
+% al. used CK metrics on a commercial C++/Java system [5];
+% Gyimothy et al. performed a similar analysis on Mozilla
+% [6]. Nagappan and Ball estimated the pre-release defect
+% density of Windows Server 2003 with a static analysis tool
+% [7]. Nagappan et al. used a catalog of source code metrics
+% to predict post release defects at the module level on five
+% Microsoft systems, and found that it was possible to build
+% predictors for one individual project, but that no predictor
+% would perform well on all the projects [8]. Zimmermann et
+% al. applied a number of code metrics on Eclipse [18].
+% Other Approaches. Zimmermann and Nagappan used
+% dependencies between binaries in Windows server 2003
+% to predict defect [19]. Marcus et al. used a cohesion
+% measurement based on LSI for defect prediction on
+% several C++ systems, including Mozilla [20]. Neuhaus
+% et al. used a variety of features of Mozilla (past bugs,
+% package imports, call structure) to detect vulnerabilities [21].
+% Observations We observe that both case studies and the
+% granularity of approaches vary. Varying case studies make
+% a comparative evaluation of the results difficult. Validations
+% performed on industrial systems are not reproducible, because
+% it is not possible to obtain the data that was used. There
+% is also some variation among open-source case studies, as
+% some approaches have more restrictive requirements than
+% others. With respect to the granularity of the approaches,
+% some of them predict defects at the class level, others
+% consider files, while others consider modules or directories
+% (subsystems), or even binaries. While some approaches
+% predict the presence or absence of bugs for each component,
+% others predict the amount of bugs affecting each component
+% in the future, producing a ranked list of components.
+% These observations explain the lack of comparison between
+% approaches and the occasional diverging results when
+% comparisons are performed. In the following, we present a
+% benchmark to establish a common ground for comparison.
+%
+%
+% —While many bug prediction algorithms have been
+% developed by academia, they’re often only tested and verified
+% in the lab using automated means. We do not have a strong
+% idea about whether such algorithms are useful to guide human
+% developers. We deployed a bug prediction algorithm across
+% Google, and found no identifiable change in developer behavior.
+% Using our experience, we provide several characteristics that bug
+% prediction algorithms need to meet in order to be accepted by
+% human developers and truly change how developers evaluate their
+% code.
