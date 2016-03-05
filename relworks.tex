@@ -112,74 +112,28 @@ Similarly to Hassan and Hold,  Ostrand \textit{et al.} predict future crash loca
 The main difference between Hassan and Hold and Ostrand \textit{et al.} is that Ostrand \textit{et al.} validate their approach on industrial systems as they are members of the AT\&T lab while Hassan and Hold validated their approach on open-source system.
 This proved that these metrics are relevant for open-source and industrial system.
 
+Kim and al applied the same recipe and mined recent changes and defects with their approach named bug cache \cite{Kim2007a}.
+However, they are more accurate than the previous approaches at detecting defect location by taking into account that is more likely for a developer to make a change that introduces a defect when being under pressure.
+Such changes can be pushed to revision-control system when deadlines and releases are approaching.
 
-%
-% he bug cache approach by Kim et al. uses
-% the same properties of recent changes and defects as the
-% top ten list approach, but further assumes that faults occur
-% in bursts [13]. The bug-introducing changes are identified
-% from the SCM logs. Seven open-source systems were used
-% to validate the findings (Apache, PostgreSQL, Subversion,
-% Mozilla, JEdit, Columba, and Eclipse). Bernstein et al. use
-% bug and change information in non-linear prediction models
-% [12]. Six eclipse plugins were used to validate the approach.
-% Single-version approaches assume that the current design
-% and behavior of the program influences the presence of
-% future defects. These approaches do not require the history
-% of the system, but analyze its current state in more detail,
-% using a variety of metrics. One standard set of metrics used
-% is the Chidamber and Kemerer (CK) metrics suite [17].
-% Basili et al. used the CK metrics on eight mediumsized
-% information management systems based on the same
-% requirements [1]. Ohlsson et al. used several graph metrics
-% including McCabe’s cyclomatic complexity on an Ericsson
-% telecom system [2]. El Emam et al. used the CK metrics
-% in conjunction with Briand’s coupling metrics [3] to predict
-% faults on a commercial Java system [4]. Subramanyam et
-% al. used CK metrics on a commercial C++/Java system [5];
-% Gyimothy et al. performed a similar analysis on Mozilla
-% [6]. Nagappan and Ball estimated the pre-release defect
-% density of Windows Server 2003 with a static analysis tool
-% [7]. Nagappan et al. used a catalog of source code metrics
-% to predict post release defects at the module level on five
-% Microsoft systems, and found that it was possible to build
-% predictors for one individual project, but that no predictor
-% would perform well on all the projects [8]. Zimmermann et
-% al. applied a number of code metrics on Eclipse [18].
-% Other Approaches. Zimmermann and Nagappan used
-% dependencies between binaries in Windows server 2003
-% to predict defect [19]. Marcus et al. used a cohesion
-% measurement based on LSI for defect prediction on
-% several C++ systems, including Mozilla [20]. Neuhaus
-% et al. used a variety of features of Mozilla (past bugs,
-% package imports, call structure) to detect vulnerabilities [21].
-% Observations We observe that both case studies and the
-% granularity of approaches vary. Varying case studies make
-% a comparative evaluation of the results difficult. Validations
-% performed on industrial systems are not reproducible, because
-% it is not possible to obtain the data that was used. There
-% is also some variation among open-source case studies, as
-% some approaches have more restrictive requirements than
-% others. With respect to the granularity of the approaches,
-% some of them predict defects at the class level, others
-% consider files, while others consider modules or directories
-% (subsystems), or even binaries. While some approaches
-% predict the presence or absence of bugs for each component,
-% others predict the amount of bugs affecting each component
-% in the future, producing a ranked list of components.
-% These observations explain the lack of comparison between
-% approaches and the occasional diverging results when
-% comparisons are performed. In the following, we present a
-% benchmark to establish a common ground for comparison.
-%
-%
-% —While many bug prediction algorithms have been
-% developed by academia, they’re often only tested and verified
-% in the lab using automated means. We do not have a strong
-% idea about whether such algorithms are useful to guide human
-% developers. We deployed a bug prediction algorithm across
-% Google, and found no identifiable change in developer behavior.
-% Using our experience, we provide several characteristics that bug
-% prediction algorithms need to meet in order to be accepted by
-% human developers and truly change how developers evaluate their
-% code.
+\subsubsection{Single-version approaches}
+
+Approaches belonging to the single-version family will only consider the current version of the software at hand.
+Simply put, they don't leverage the history of changes or bug reports.
+Despite this fact, that one can see as a disadvantage compared to approaches that do leverage history, these approaches yield interesting results using code-based metrics.
+
+Chidamber and Kemerer published the well-known CK metrics suite \cite{Chidamber1994} for object oriented designs and inspired Moha \textit{et al.} to publish similar metrics for service oriented programs \cite{Moha}.
+Another famous metric suite for assessing the quality of a given software design is Briand's coupling metrics \cite{Briand1999a}.
+
+\cite{Briand1999a}
+
+The CK and Briand's metrics suites have been used, for example, by Basili \textit{et al.} \cite{Basili1996}, El Emam \textit{et al.} \cite{ElEmam2001},  Subramanyam \textit{et al.} \cite{Subramanyam2003} and Gyimothy \textit{et al.} \cite{Gyimothy2005} for object oriented designs.
+Service oriented designs have been far less studied than object oriented design as they are relatively new, but, Nayrolles \textit{et al.} \cite{Nayrolles,Nayrolles2013d}, Demange \textit{et al.} \cite{demange2013} and Palma \textit{et al.} \cite{Palma2013} used Moha et \textit{et al.} metric suites to detect software defects.
+
+All these approaches, proved software metrics to be useful at detecting software fault for object oriented and service oriented designs, respectively.
+
+Finally, Nagappan \textit{et al.} \cite{Nagappan2005,Nagappan2006} and Zimmerman \cite{Zimmermann2007,Zimmermann2008} further refined metrics-based detection by using statical analysis and call-graph analysis.
+
+\\ 
+While hundreds of bug prediction papers have been published by academia over the last decade, the developed tools and approaches fail to change developer behavior while deployed in industrial environment\cite{Lewis2013}.
+This is mainly due to the lack of actionable message, i.e. messages that provide concrete steps to resolve the problem at hand.
