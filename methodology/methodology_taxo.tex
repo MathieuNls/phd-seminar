@@ -81,7 +81,6 @@ Apache (Maven and Git).
     \label{fig:bug-taxo-flow}}
 \end{figure}
 
-\todo{Improve graphics}
 
 The extracted data is
 consolidated in one database where we associate each bug
@@ -145,7 +144,7 @@ The objective of the first research question is to analyze
 the proportion of each type of bugs. The remaining two
 questions address the complexity of the bugs and the bug
 fixing duration according to the type of bugs.
-1) 
+1)
 
 \subsubsection{RQ 1: What are the proportions of different types of bugs?}
 
@@ -229,7 +228,7 @@ likely to get reopened than Types 1 and 3.
 hypotheses $H_{02S}$ , $H_{02D}$ , $H_{02R}$ the bug type (if the bug is from
 Types 2 and 4 or if it is from Types 1 and 3). For $H_{02S}$  we use
 the severity as dependent variable to assess the relationship
-between the bug severity and the bug type. For $H_{02D}$ 
+between the bug severity and the bug type. For $H_{02D}$
 (respectively $H_{02R}$) we use a dummy variable duplicated
 (reopened) to assess if a bug has been duplicated (reopened)
 at least once or not. This will be used to assess the
@@ -325,7 +324,6 @@ Netbeans     & 9050               & 17586              & \\ \hline \hline
     \caption{Proportions of different types of bugs
     \label{fig:bug-taxo-rq1}}
 \end{figure}
-\todo{Improve graphics}
 
 Table \ref{tab:bug-taxo-rq1-prop} shows the number of bugs for each type of bugs
 and the percentage of each type of bugs. We can see that
@@ -344,7 +342,7 @@ Datasets                  & T1        & T2       & T3        & T4        & Total
 Apache                    & 1968      & 1248     & 3101      & 7422      & \multirow{2}{*}{13739} \\
                           & (14.32\%) & (9.08\%) & (22.57\%) & (54.02\%) &                        \\ \hline
 \multirow{2}{*}{Total}    & 2744      & 1488     & 11473     & 24788     & \multirow{2}{*}{40493} \\
-                          & (6.78\%)  & (3.74\%) & (28.33\%) & (61.21\%) & \\ \hline \hline                      
+                          & (6.78\%)  & (3.74\%) & (28.33\%) & (61.21\%) & \\ \hline \hline
 \end{tabular}
 \caption{Proportion of bug types in amount and percentage}
 \label{tab:bug-taxo-rq1-prop}
@@ -376,7 +374,6 @@ presented in the previous section).
     \caption{Proportions of Types 1 and 3 versus Types 2 and 4 with respct to their severity in the Apache dataset.
     \label{fig:bug-taxo-rq2-prop-apache}}
 \end{figure}
-\todo{Improve graphics}
 
 \begin{figure}[h!]
   \centering
@@ -384,7 +381,6 @@ presented in the previous section).
     \caption{Proportions of Types 1 and 3 versus Types 2 and 4 with respct to their severity in the Netbeans dataset.
     \label{fig:bug-taxo-rq2-prop-netbeans}}
 \end{figure}
-\todo{Improve graphics}
 
 For the Apache dataset, the severity levels range from
 Blocker to Trivial as shown in Figure \ref{fig:bug-taxo-rq2-prop-apache}. Figure \ref{fig:bug-taxo-rq2-prop-netbeans} shows that
@@ -480,19 +476,19 @@ Type 1 bug marked a source of a duplicate is 2.59\% and
 \begin{tabular}{c|c|c|c|c|c}
 Type                   & T1     & T2     & T3     & T4     & Total  \\ \hline \hline
 \multicolumn{6}{c}{Netbeans}                                      \\ \hline \hline
-\multirow{2}{*}{Dup.}  & 6.06\% & 4.59\% & 5.09\% & 5.87\% & 5.62\% \\ 
+\multirow{2}{*}{Dup.}  & 6.06\% & 4.59\% & 5.09\% & 5.87\% & 5.62\% \\
                        & (47)   & (11)   & (426)  & (1019) & (1503) \\ \hline
-\multirow{2}{*}{Reop.} & 4.38\% & 7.08\% & 4.81\% & 7.09\% & 6.30\% \\ 
+\multirow{2}{*}{Reop.} & 4.38\% & 7.08\% & 4.81\% & 7.09\% & 6.30\% \\
                        & (34)   & (17)   & (403)  & (1231) & (1685) \\ \hline
 \multicolumn{6}{c}{Apache}                                        \\ \hline \hline
 \multirow{2}{*}{Dup}   & 2.59\% & 2.24\% & 1.61\% & 2.91\% & 2.51\% \\ \
                        & (51)   & (28)   & (50)   & (216)  & (345)  \\ \hline
-\multirow{2}{*}{Reop}  & 5.59\% & 6.49\% & 3.10\% & 6.90\% & 5.82\% \\ 
+\multirow{2}{*}{Reop}  & 5.59\% & 6.49\% & 3.10\% & 6.90\% & 5.82\% \\
                        & (110)  & (81)   & (96)   & (512)  & (799)  \\ \hline
 \multicolumn{6}{c}{Total}                                         \\ \hline \hline
-\multirow{2}{*}{Dup}   & 3.57\% & 2.62\% & 4.15\% & 4.98\% & 4.56\% \\ 
+\multirow{2}{*}{Dup}   & 3.57\% & 2.62\% & 4.15\% & 4.98\% & 4.56\% \\
                        & (98)   & (39)   & (476)  & (1235) & (1848) \\ \hline
-\multirow{2}{*}{Reop}  & 5.25\% & 6.59\% & 4.35\% & 7.03\% & 6.13\% \\ 
+\multirow{2}{*}{Reop}  & 5.25\% & 6.59\% & 4.35\% & 7.03\% & 6.13\% \\
                        & (144)  & (98)   & (499)  & (1743) & (2484) \\ \hline
 \end{tabular}
 \caption{Percentage and occurences of bugs duplicated by other bufs and reopenned with respect to their bug type and dataset.}
@@ -542,7 +538,6 @@ Apache, 55.76 and 85.48 days are required to fix Types 1 and
     \caption{Fixing time of Types 1 and 3 versus fixing time of Types 2 and 4.
     \label{fig:bug-taxo-rq3}}
 \end{figure}
-\todo{Improve graphics}
 
 Table \ref{tab:bug-taxo-rq3} shows the average fixing time of bugs with respect
 to their bug type in each dataset.
@@ -682,4 +677,3 @@ one could predict the type of a bug at submission time, all
 these areas could be improved.
 
 In order to ease all these future works we built {\tt BUMPER} that we present in the next section.
-

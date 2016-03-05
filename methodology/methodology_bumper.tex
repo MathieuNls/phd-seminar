@@ -7,7 +7,7 @@ With the goal to support the research towards analyzing relationships between bu
 In what follows, we will present the projects we selected. Then, we present the features related to the bugs and their fixes we integrate in BUMPER (BUg Metarepository for dEvelopers and Researchers) and how we construct our dataset. Then, we present the API, based on Apache Solr \cite{Nayrolles2014b}, which allows the NLP search with practical examples before providing research opportunities based on our dataset.
 
 
-However, to the best of our knowledge, no attempt have been made towards building an unified and online dataset where all the information related to a bug, or a fix can be easily accessed by researchers and engineers. 
+However, to the best of our knowledge, no attempt have been made towards building an unified and online dataset where all the information related to a bug, or a fix can be easily accessed by researchers and engineers.
 
 \subsection{Data collection}
 
@@ -22,15 +22,15 @@ Figure \ref{fig:bumper-approach} illustrates our data collection and analysis pr
 \end{figure}
 
 We used the same datasets presented earlier in Table \ref{table:datasets}.
-We choose to use the same ones as these two datasets because they exposed a great diversity in programming languages, teams, localization, utility and maturity. Moreover, the used different tools, i.e. Bugzilla, JIRA, Git and Mercurial, and therefore, BUMPER is ready to host any other datasets that used any composition of these tools. 
+We choose to use the same ones as these two datasets because they exposed a great diversity in programming languages, teams, localization, utility and maturity. Moreover, the used different tools, i.e. Bugzilla, JIRA, Git and Mercurial, and therefore, BUMPER is ready to host any other datasets that used any composition of these tools.
 
 \subsection{Architecture}
 
 {\tt BUMPER} rely on a highly scalable architecture composed of two distinct servers as depicted in Figure \ref{fig:bumper-arch}. The first server, on the left, handle the web requests and runs three distinct components:
 
 \begin{itemize}
-	\item Pound is a lightweight open source reverse proxy program and application firewall. 
-	It also serve us to decode https to request to http. Translating an https request to http and then, use this http request insteaad of the https one allow us to save the https decryption time required on each step. 
+	\item Pound is a lightweight open source reverse proxy program and application firewall.
+	It also serve us to decode https to request to http. Translating an https request to http and then, use this http request insteaad of the https one allow us to save the https decryption time required on each step.
 	Pound also acts as a load-balancing service for the lower levels.
 	\item Translated requests are then handle to Varnish. Varnish is an http accelerator designed for content-heavy and dynamic websites. What it does is caching request that come in and serve the answer from the cache is the cache is still valid.
 	\item NginX (pronounced engine-x) is a web-server that has been developed with a particular focus on high concurrency, high performances and low memory usage.
@@ -51,8 +51,8 @@ On the second server, that concretely handle our data, we have the following ite
     \label{fig:bumper-arch}}
 \end{figure}
 
-Request from users to the servers and the communication between our servers are going through the CloudFlare network. 
-CloudFlare acts as a content delivery network sitting between the users and the webserver. 
+Request from users to the servers and the communication between our servers are going through the CloudFlare network.
+CloudFlare acts as a content delivery network sitting between the users and the webserver.
 They also provide an extra level of caching and security.
 
 To give the reader a glimpse about the performances that this unusual architecture can yield; we are able to request and display the result of a specific request in less than 100 ms while our two servers are, in fact, two virtual machines sharing an AMD Opteron(tm) Processor 6386 SE (1 core @ 2,000 MHz) and 1 Gb of RAM.
@@ -68,7 +68,6 @@ Figure \ref{fig:bumper-approach} presents the simplified {\tt BUMPER} metamodel 
     \label{fig:bumper-approach} }
 \end{figure}
 
-\todo{Figure \ref{fig:bumper-approach} have to be checked by Wahab}
 
 An {\it issue} ({\it task}) is characterized by a {\it date}, {\it title}, {\it description}, and a {\it fixing time}. They are reported (created) by and assigned to {\it users}.
 Also, {\it issues} ({\it tasks}) belong to {\it project} that are in {\it repository} and might be composed of {\it sub-projects}.
@@ -155,7 +154,7 @@ Hunks are composed of:
 
 BUMPER is available for engineers and researchers at {\bf https://bumper-app.com} and take the form of a regular search engine. Bumper supports (1) natural language query, (2) parent-child relationships query, (3) disjunctions and union between complex queries and (4) a straight forward export of queries results in XML, CSV or JSON format.
 
-Browsing BUMPER, the basic query mode perform the following operation: 
+Browsing BUMPER, the basic query mode perform the following operation:
 
 \begin{equation}
 \begin{split}
@@ -163,11 +162,11 @@ Browsing BUMPER, the basic query mode perform the following operation:
 \end{split}
 \end{equation}
 
-The first part of the query component of the query retrieve all the bugs that contains the $``YOUR~TERMS''$ query in at least one its features by selecting type:BUG and report\_t, which is an index composed of all the features of the bug, set to $``YOUR~TERMS''$. 
-Then, we merge this query with another one that reads \\ 
-$(!parent~which=type``BUG'')fix\_t:~``YOUR~TERMS'')$. 
-In this one, we retrieve the parent documents, i.e the bugs, of fixes that contains $``YOUR~TERMS''$ in their $fix\_t$ index. 
-The $fix\_t$ index is, as for the BUG, an index based on all the field of changeset and hunk both. As a result, we search seamlessly in bugs report and their fixes in natural language. 
+The first part of the query component of the query retrieve all the bugs that contains the $``YOUR~TERMS''$ query in at least one its features by selecting type:BUG and report\_t, which is an index composed of all the features of the bug, set to $``YOUR~TERMS''$.
+Then, we merge this query with another one that reads \\
+$(!parent~which=type``BUG'')fix\_t:~``YOUR~TERMS'')$.
+In this one, we retrieve the parent documents, i.e the bugs, of fixes that contains $``YOUR~TERMS''$ in their $fix\_t$ index.
+The $fix\_t$ index is, as for the BUG, an index based on all the field of changeset and hunk both. As a result, we search seamlessly in bugs report and their fixes in natural language.
 
 As a more practicle example, Figure \ref{fig:bumper-live} illustrate a query on https://bumper-app.com. The search term is  ``{\it Exception}'' and we can see that 20,285 issues / tasks have been found in 25 ms. This particular set of issues, displayed on the left side, match because they contain ``{\it Exception}'' in the issue report or in the source code modified to fix this issue (implement this task). Then on the right side of the screen, the selected issue (task) is displayed. We can see the basic characteristic of the issue (task) followed by comments and finally, the source code.
 

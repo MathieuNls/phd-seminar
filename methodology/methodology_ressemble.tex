@@ -2,15 +2,15 @@
 
 \section{RESEMBLE - REcommendation System based on cochangE Mining at Block LEvel\label{sec:RESEMBLE}}
 
-{\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) is a contextual recommendation system that will take place directly into developers IDE. {\tt RESEMBLE} will leverage the decades of data indexed by {\tt BUMPER} to identify, on the fly, sub-optimum or hazardous code and display and actual solution to the problem. 
+{\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) is a contextual recommendation system that will take place directly into developers IDE. {\tt RESEMBLE} will leverage the decades of data indexed by {\tt BUMPER} to identify, on the fly, sub-optimum or hazardous code and display and actual solution to the problem.
 
 \subsection{Motivation}
 
-Most of the context-aware IDE \cite{Brandt2009,JoelBrandt} rely on web-search (e.g querying google and specialized website such as stackoverflow) to fetch their information. 
-Other approaches such as the {\it learn API by examples} ones \cite{Kim2011,Montandon2013} do propose contextual examples but programmers have to leave their IDE and search for a specific method or class in order to see examples on how to use it. 
-While these approaches are useful and their authors were able to show their efficiency by using different groups of students, developers need to know what they don't know and search for it. 
+Most of the context-aware IDE \cite{Brandt2009,JoelBrandt} rely on web-search (e.g querying google and specialized website such as stackoverflow) to fetch their information.
+Other approaches such as the {\it learn API by examples} ones \cite{Kim2011,Montandon2013} do propose contextual examples but programmers have to leave their IDE and search for a specific method or class in order to see examples on how to use it.
+While these approaches are useful and their authors were able to show their efficiency by using different groups of students, developers need to know what they don't know and search for it.
 Indeed, these approaches aggregate code samples and documentations but if one know how to use a method, one will never use these services.
-Moreover, the said developer could be using this method in a suboptimal, dangerous or hazardous way. 
+Moreover, the said developer could be using this method in a suboptimal, dangerous or hazardous way.
 
 By mining co-change at block level, normalizing code and comparing it to code sample that we known to be suboptimal, dangerous or hazardous because they led to the creation of an issue and a fix, {\tt RESEMBLE} will be able to recommend modifications in order to improve the overall quality of a given piece of code.
 
@@ -40,10 +40,10 @@ Even though plain association rules could serve some relevant information, we ar
 the sequences of changes that we believe will yield more precise result. Indeed, we think that similar modifications are often done in the same order by the same developer (e.g top to bottom or bottom to top).
 We therefore adopt a variant called sequential association rules in which
 both $X$ and $Y$ become sequences of descriptors.
-Moreover, our sequences follow a temporal order with the antecedent preceding the consequent. 
+Moreover, our sequences follow a temporal order with the antecedent preceding the consequent.
 Rules of this type mined from changes reveal crucial
 information about the likelihood of blocks of code to be modified  together in a programming session
-and, more importantly, in a specific order. 
+and, more importantly, in a specific order.
 For instance, a strong rule \emph{$Block_A$ $,$ $Block_B$} implies \emph{$Block_C$} would mean that after modifying $Block_A$ and then $Block_B$, there are good chances that the developer needs to modify $Block_C$.
 The conciseness of this example should not confuse the reader as in practical cases
 the sequences appearing in a rule can be of an arbitrary length.
@@ -68,9 +68,9 @@ Nevertheless, to jump-start our experimental study, we used a sequential pattern
 
 Normalizing code is the action of making its structure consistent throughout the program according to a defined model. In our case, we only normalize the block of code that are in the current sequential association rules. To do so, we improve and combine several technologies such as source code transformation \cite{Cordy2006,Cordy2006a}, source code pretty-printing \cite{Roy2008}, flexible source code normalization \cite{Cordy2011}.
 
-More specifically, the code first goes to a pretty printer. A pretty-printer is a component that will slightly transform the code in order to obtain consistent control structure. 
-Concretely, spaces will be added, accolade moved and tabulation added for an $if$, a $while$ and others structures to always appear the same way, regardless of the programming language. 
-Then, the code is normalized several times. Each normalization is different and targets specific feature of the code. 
+More specifically, the code first goes to a pretty printer. A pretty-printer is a component that will slightly transform the code in order to obtain consistent control structure.
+Concretely, spaces will be added, accolade moved and tabulation added for an $if$, a $while$ and others structures to always appear the same way, regardless of the programming language.
+Then, the code is normalized several times. Each normalization is different and targets specific feature of the code.
 For example, we have one normalization that removes completely the variable names and replace the types by the highest known object in the object oriented hierarchy before {\tt Object} itself. Another normalization only keeps the structures of the source code by normalizing both variables names and types.
 
 \subsubsection{Comparing normalization\label{sec:resemble-comparing}}
@@ -98,6 +98,6 @@ We did not started the experiments for {\tt RESEMBLE} yet as the development of 
 	\end{itemize}
 \end{itemize}
 
-We believe that {\tt RESEMBLE} will be a real asset in a developer tool belt in order to ship better code in terms of quality, performances and security. 
-However, as {\tt RESEMBLE} aims to provide recommendations in real-time, it will not be able to be as exhaustive as an offline process. 
+We believe that {\tt RESEMBLE} will be a real asset in a developer tool belt in order to ship better code in terms of quality, performances and security.
+However, as {\tt RESEMBLE} aims to provide recommendations in real-time, it will not be able to be as exhaustive as an offline process.
 To fill this gap, we built {\tt BIANCA} that we present in the next sections.
