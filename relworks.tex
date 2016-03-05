@@ -10,7 +10,7 @@ During the backward process, STAR computes the required condition to reach the c
 The objects that satisfy the required conditions are generated and orchestrated inside a JUnit test case. The test is run and the resulting crash stack is compared to the original one. If both match, the bug is said to be reproduced. When applied to different systems, STAR achieved 60\% accuracy. \\
 
 Jaygarl et al. \cite{Jaygarl} created OCAT (Object Capture based Automated Testing).
-The authors’ approach starts by capturing objects created by the program when it runs on-field in order to provide them in an automated test process. Indeed the coverage of automated tests is often low due to the lack of correctly constructed objects.
+The authors' approach starts by capturing objects created by the program when it runs on-field in order to provide them in an automated test process. Indeed the coverage of automated tests is often low due to the lack of correctly constructed objects.
 Also, the objects can be mutated by means of evolutionary algorithms. These mutations target primitive fields in order to create even more objects and therefore improve the code coverage once more.
 While not targeting the reproduction of a bug, OCAT is a well-known approach and was used as the main mechanism for bug reproduction. \\
 
@@ -22,7 +22,7 @@ The data that successfully reproduced the field crash is sent to software develo
 Based on the success of BugRedux, the authors built F3 (Fault localization for Field Failures) \cite{Jin2013}.
 F3 performs many executions of a program on top of BugRedux in order to cover different paths leading to the fault. It then generates many ‘pass’ and ‘fail’ paths which can lead to a better understanding of the bug. They also use grouping, profiling and filtering, to improve the fault localization process.\\
 
-While being close to our approach, BugRedux and F3 may require the call sequence and/or the complete execution trace in order to achieve bug reproduction. When using only the crash traces (referred to as call stack at crash time in their paper), the success rate of BugRedux significantly drops to 37.5\% (6/16). The call sequence and the complete execution trace required to reach 100\% of bug reproduction can only be obtained through instrumentation and with an overhead ranging from 1\% to 1066\%.\\
+While being close to our approach, BugRedux and F3 may require the call sequence and/or the complete execution trace in order to achieve bug reproduction. When using only the crash traces (referred to as call stack at crash time in their paper), the success rate of BugRedux significantly drops to 37.5\% (6/16). The call sequence and the complete execution trace required to reach 100\% of bug reproduction can only be obtained through instrumentation and with an overhead ranging from 1\% to 1066\%. \\
 
 Clause et al. \cite{Clause2007} proposed a technique for enabling and supporting debugging of field failures.
 They record the execution of the program on the client side and propose to compress the generated data to the minimal required size to ensure that the reproduction is feasible.
@@ -52,24 +52,24 @@ Except for STAR, approaches targeting the reproduction of field crashes require 
 Researchers have been studying the relationships between issues and source code repositories since more than two decades now.
 To the best of our knowledge the first ones who conduct this type of study on a significant scale were Perry and Stieg \cite{PerryDewayneE.1993}.
 In these two decades, many aspects of these relationships have been studied in length.
-For example, researchers  interested themselves in ameliorating the issues report itself by specified guidelines to make good report \cite{Bettenburg2008} and try to further simplify the existing models \cite{Herraiz2008}.
+For example, researchers  interested themselves in ameliorating the issues report it by specifying guidelines to make a good report \cite{Bettenburg2008} and try to further simplify the existing models \cite{Herraiz2008}.
 
-Then, we can find approaches on how long it will take for a issues to get fixed \cite{Bhattacharya2011,Zhang2013,Saha2014} and where it should be fixed \cite{Zhou2012,Kim2013a}.
-With the rapidly increasing number of issues, the community also interested itself in prioritizing the issues report compared to one another \cite{Kim2011c} and partially do so by predicting the severity of a issues \cite{Lamkanfi2010}.
+Then, we can find approaches on how long it will take for an issue to get fixed \cite{Bhattacharya2011,Zhang2013,Saha2014} and where it should be fixed \cite{Zhou2012,Kim2013a}.
+With the rapidly increasing number of issues, the community also interested itself in prioritizing the issues report compared to one another \cite{Kim2011c} and partially do so by predicting the severity of an issue \cite{Lamkanfi2010}.
 
 Finally, researchers proposed approaches to predict which issues will get reopened \cite{Zimmermann2012,Lo2013} which issues report is a duplicate of which other one \cite{Jalbert2008,Bettenburg2008a,Tian2012a}.
 
-Another field of study consist in assigning these issues reports, if possible automatically to the right developers through triaging  \cite{Anvik2006,Jeong2009,Tamrawi2011a,Bortis2013}
+Another field of study consists in assigning these issues reports, if possible automatically to the right developers through triaging  \cite{Anvik2006,Jeong2009,Tamrawi2011a,Bortis2013}
 and which locations are likely to yield new bugs \cite{Kim2006,Kim2007}.
 
 \section{Crash Prediction}
 
 Predicting crash, fault and bug is very large and popular research area.
-The main goal behind the pletor of papers is to save on manpower---being to more expensive resource to build software---by directing their efforts on locations likely to contain a bug, fault or crash.
+The main goal behind the plethora of papers is to save on manpower---being to more expensive resource to build software---by directing their efforts on locations likely to contain a bug, fault or crash.
 
 There are two distinct trends in crash, fault and bug prediction in the papers accepted to major venues such as MSR, ICSE, ICSME and ASE:  analysis and current version analysis.
 
-In the  analysis, researchers extract and interpret information from  system.
+In the  analysis, researchers extract and interpret information from  the system.
 The idea being that the files or locations that are the most frequently changed are more likely to contain a bug.
 Additionally, some of these approaches also assume that locations linked to a previous bug are likely to be linked to a bug in the future.
 
@@ -83,16 +83,16 @@ In the remaining of this section, we will describe approaches belonging to the t
 
 Change logs based approaches rely on mining the historical data of the application and more particularly, the source code \textit{diffs}.
 A source code \textit{diffs} contains two versions of the same code in one file.
-Indeed, it contains the lines of code that have been deleted and the one that have been added.
+Indeed, it contains the lines of code that have been deleted and the one that has been added.
 It is worth noting that, \textit{diffs} files do not represent the concept of modified line.
 Indeed, a modified line will be represented by a deletion and an addition.
-Researchers mainly use five metrics when dealing with \textit{diffs} files :
+Researchers mainly use five metrics when dealing with \textit{diffs} files:
 
 \begin{itemize}
   \item Number of files: The number of modified files in a given commit
   \item Insertions: The number of added lines
   \item Deletions: The number of deleted lines
-  \item Churns: The number of deletion lines immediately followed by an insertion which give an approximation of how many lines have been modified
+  \item Churns: The number of deleted lines immediately followed by an insertion which give an approximation of how many lines have been modified
   \item Hunks: The number of consecutive blocks of lines. This gives an approximation of how many distinct locations have been edited to accomplish a unit of work.
 \end{itemize}
 
@@ -134,6 +134,6 @@ All these approaches, proved software metrics to be useful at detecting software
 
 Finally, Nagappan \textit{et al.} \cite{Nagappan2005,Nagappan2006} and Zimmerman \cite{Zimmermann2007,Zimmermann2008} further refined metrics-based detection by using statical analysis and call-graph analysis.
 
-\\ 
+\\
 While hundreds of bug prediction papers have been published by academia over the last decade, the developed tools and approaches fail to change developer behavior while deployed in industrial environment\cite{Lewis2013}.
 This is mainly due to the lack of actionable message, i.e. messages that provide concrete steps to resolve the problem at hand.

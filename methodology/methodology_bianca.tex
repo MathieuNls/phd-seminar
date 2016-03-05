@@ -6,7 +6,7 @@
 
 \subsection{Motivation\label{sec:bianca-motivation}}
 
-Many tool exists to prevent developer to ship {\it bad} code \cite{Dangel2000,Hovemeyer2007,Moha2010} or to identify {\it bad} code after executions (e.g in test or production environment) \cite{Nayrolles,Nayrolles2013a}.
+Many tools exist to prevent a developer to ship {\it bad} code \cite{Dangel2000,Hovemeyer2007,Moha2010} or to identify {\it bad} code after executions (e.g in test or production environment) \cite{Nayrolles,Nayrolles2013a}.
 However, these tools rely on metrics and rules to statically and/or dynamically identify sub-optimum code.
 
 \subsection{The {\tt BIANCA} approach\label{sec:bianca-approach}}
@@ -28,20 +28,20 @@ Finally, the third state is called the {\it before state} and represent the file
 Hereafter, we refer at the {\it before state} with the $n-2$ name.
 {\tt BIANCA} extracts the change pattern form $n-2$ to $n-1$ and from $n-1$ to $n$ and generate the changes to go directly from $n-2$ to $n$.
 
-When a developer commit new modifications, {\tt BIANCA} extracts the change pattern from the version $n_{dev}$ (current version) and $n-1_{dev}$ (version before modification) of the developer's source code and compare this change pattern to known $n-2$ to $n-1$ patterns.
+When a developer commits new modifications, {\tt BIANCA} extracts the change pattern from the version $n_{dev}$ (current version) and $n-1_{dev}$ (version before modification) of the developer's source code and compare this change pattern to known $n-2$ to $n-1$ patterns.
 If $n_{dev}$ to $n-1_{dev}$ matches a $n-2$ to $n-1$ then it means that the developer is inserting a known defect in the source code.
-In such a case, {\tt BIANCA} will propose the related $n-1$ to $n$ pattern to the developer so s/he could improve the source code and will show the related $n-2$ to $n$ pattern so the developer will learn how to s/he should have modified the code in the first place. Moreover, if the issue was previously reproduced by {\tt JCHARMING}, then {\tt BIANCA} will display the step to reproduce it.
+In such a case, {\tt BIANCA} will propose the related $n-1$ to $n$ pattern to the developer, so s/he could improve the source code and will show the related $n-2$ for the $n$ pattern so the developer will learn how to s/he should have modified the code in the first place. Moreover, if the issue was previously reproduced by {\tt JCHARMING}, then {\tt BIANCA} will display the step to reproduce it.
 
-To extract the change patterns and compare them we used the same technics as the one presented in sections \ref{sec:resemble-normalization} and \ref{sec:resemble-comparing} with new normalizations.
+To extract the change patterns and compare them, we used the same technique as the one presented in sections \ref{sec:resemble-normalization} and \ref{sec:resemble-comparing} with new normalizations.
 The third and the fourth normalizations are removing all {\it less} important calls in the normalization one and two of {\tt RESEMBLE}.
-We classify a call as less-important if, for example, it only does display-related functionalities such as generating html or printing something to the console. Finally, the fourth normalization will transform the code to an intermediate language of our own that will allow us to compare source code implemented in different programming languages.
+We classify a call as less-important if, for example, it only does display-related functionalities such as generating HTML or printing something to the console. Finally, the fourth normalization will transform the code to an intermediate language of our own that will allow us to compare source code implemented in different programming languages.
 
-Then, as in {\tt RESEMBLE}, if the LCS is above an user-defined threshold, then a warning is raised by {\tt BIANCA} alerting the developer that the commit is suspected to insert a defect. The said defect is shown to the developer that can either force the commit if s/he don't find the warning relevant or abort the commit.
+Then, as in {\tt RESEMBLE}, if the LCS is above a user-defined threshold, then a warning is raised by {\tt BIANCA} alerting the developer that the commit is suspected to insert a defect. The given defect is shown to the developer that can either force the commit if s/he don't find the warning relevant or abort the commit.
 
 
 \subsection{Early experiments}
 
-We have experimented the efficiency of {\tt BIANCA} with the same datasets we used to build our Bug Taxonomy proposed in section \ref{sec:taxo}.
+We have experimented the efficiency of {\tt BIANCA} with the same datasets, we used to build our Bug Taxonomy proposed in section \ref{sec:taxo}.
 
 \begin{table}[h]
 \begin{center}
@@ -57,7 +57,7 @@ Total            & 102,707         & 229,153     & 68,809         & 388         
 \caption{Datasets\label{table:datasets-bianca}}
 \end{table}
 
-We choose to use the same datasets for several reasons. First of all, we spare the time needed to collect new datasets. Then because these datasets contain a very large system mainly implemented in Java: Netbeans; and 349 independent Apache projects implemented in very wide range of programming language. Consequently, these datasets allow us to test the efficiency of our different code normalizations.
+We choose to use the same datasets for several reasons. First of all, we spare the time needed to collect new datasets. Then, because these datasets contain a very large system mainly implemented in Java: Netbeans; and 349 independent Apache projects implemented in a very wide range of programming language. Consequently, these datasets allow us to test the efficiency of our different code normalizations.
 
 We ran two different experiments using the two first normalizations we described in section \ref{sec:bianca-approach}. Both experiments consider only a few months of history, from April to August 2008. While this could hinder the pertinence of our results, these five months of history contain 167,597 commits related to bug fix. Consequently, our results are representative.
 
@@ -70,7 +70,7 @@ The first experiment yield the result presented by Figure \ref{fig:bianca-exp-1}
     \label{fig:bianca-exp-1}}
 \end{figure}
 
-With the first normalization, we {\tt BIANCA} raised 69,519 warnings out of 167,597 (41.5\%) commits we analyze. Out of these 69,519, 13.4\% turned out to be false positives. A false positive is a commit that have been tagged as introducing a bug by {\tt BIANCA} but did not according to the history. However, false positives have to treated carefully in this study as the commit might have introduced a bug but the bug could have not been reported yet.
+With the first normalization, we {\tt BIANCA} raised 69,519 warnings out of 167,597 (41.5\%) commits we analyze. Out of these 69,519, 13.4\% turned out to be false positives. A false positive is a commit that have been tagged as introducing a bug by {\tt BIANCA} but did not according to the history. However, false positives have to deal with carefully in this study as the commit might have introduced a bug but the bug could have not been reported yet.
 
 In our second experiment, we used the second normalization and {\tt BIANCA} raised 83,627 warnings out of 167,597 (48.89\%) commits we analyze. However, the false positive rate increases to 21\%. Figure \ref{fig:bianca-exp-2} shows the results.
 
