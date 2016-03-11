@@ -30,7 +30,7 @@ On a lighter note, Brian Russell resumed this into what he --- ironically --- na
 \item If a software project becomes too large, it will collapse into a black hole. Time and money are absorbed, but nothing ever comes out.
 \end{itemize}
 
-While these laws, written from 1974 to 1996, still very much apply to nowadays software engineering, engineers and practitioners have created tools, technics and processes to control their negative impacts.
+While these laws, written from 1974 to 1996, still very much apply to nowadays software engineering, engineers and practitioners have created tools, techniques and processes to control their negative impacts.
 For instance, most of real world project's---in opposition to test / very small size projects---host their source code on a version control system \cite{rochkind1975source} that is able is able to keep track of the different revisions of a system and of the different changes made by the developers of the team.
 Version control systems help to control the {\it continuing change}, {\it increasing complexity} and {\it continuing growth} rules' effects.
 In order to manage the {\it feedback systems} and {\it declining quality} rules, an organization uses issue \& project tracking system to assign tasks to developers, report unexpected behaviors or crashes and track advancement.
@@ -148,7 +148,8 @@ In this section we present the problems in the literature (Section \ref{sec:pb-l
 
 \begin{itemize}
 	\item {\bf Problem 1}: As shown by Figure \ref{fig:scholar}, the proportion of empirical studies and studies based on mining software repositories regarding to software quality has been increasing exponentially since 2010 (\cite{Kim2011a,Lee2011a,Sun2011,Bhattacharya2011,Tian2012a,Zimmermann2012, Shang2013, Chen2014, McIntosh, Hemmati2015} are some noticeable examples).
-	Yet, all this accumulated knowledge fails to be useful in day-to-day programming session and to effectively improve the overall quality of software produced nowadays.
+	While hundreds of bug prediction papers have been published by academia over the last decade, the developed tools and approaches fail to change developer behavior while deployed in industrial environment	\cite{Lewis2013}.
+	This is mainly due to the lack of actionable message, i.e. messages that provide concrete steps to resolve the problem at hand.
 
 	\begin{figure}[h!]
 	  \centering
@@ -158,7 +159,7 @@ In this section we present the problems in the literature (Section \ref{sec:pb-l
 
 	\item {\bf Problem 2}: The literature contains numerous paper about tools that improve the overall software quality with static \cite{Dangel2000, burn2003checkstyle, Hovemeyer2007, Moha2010} and dynamic \cite{Nayrolles,Nayrolles2013a,Palma2013} analysis. To the best of our knowledge approaches leveraging other sources to improve quality or efficiency mostly rely on web-search \cite{Brandt2009,Rahman2013,Montandon2013}.
 
-	\item {\bf Problem 3}: There is no approach that support the natural language search and comparison of issues, source code and tasks regardless of the project, repository, revision and issue management system and programming language. Such an approach could dramatically transform software engineering processes. Moreover, the data contained in these repositories lack a taxonomy, as for clone detection \cite{CoryKapser}, to classify the research.
+	\item {\bf Problem 3}: There is no approach that supports the natural language search and comparison of issues, source code and tasks regardless of the project, repository, revision and issue management system and programming language. Such an approach could dramatically transform software engineering processes. Moreover, the data contained in these repositories lack a taxonomy, as for clone detection \cite{CoryKapser}, to classify the research.
 \end{itemize}
 
 \subsection{Research Challenges\label{sec:challenges}}
