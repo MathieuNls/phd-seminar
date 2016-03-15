@@ -49,27 +49,27 @@ Except for STAR, approaches targeting the reproduction of field crashes require 
 
 \section{Issue and source code relationships\label{rel:issue-rela}}
 
-Researchers have been studying the relationships between issues and source code repositories since more than two decades now.
+Researchers started studying the relationships between issues and source code repositories more than two decades ago.
 To the best of our knowledge the first ones who conduct this type of study on a significant scale were Perry and Stieg \cite{PerryDewayneE.1993}.
 In these two decades, many aspects of these relationships have been studied in length.
-For example, researchers  interested themselves in ameliorating the issues report it by specifying guidelines to make a good report \cite{Bettenburg2008} and try to further simplify the existing models \cite{Herraiz2008}.
+For example, researchers  interested themselves in ameliorating the issues report by specifying guidelines to make a good report \cite{Bettenburg2008} and try to further simplify the existing models \cite{Herraiz2008}.
 
 Then, we can find approaches on how long it will take for an issue to get fixed \cite{Bhattacharya2011,Zhang2013,Saha2014} and where it should be fixed \cite{Zhou2012,Kim2013a}.
-With the rapidly increasing number of issues, the community also interested itself in prioritizing the issues report compared to one another \cite{Kim2011c} and partially do so by predicting the severity of an issue \cite{Lamkanfi2010}.
+With the rapidly increasing number of issues, the community also interested itself in prioritizing the issues report compared to one another \cite{Kim2011c} and do so by predicting the severity of an issue \cite{Lamkanfi2010}.
 
 Finally, researchers proposed approaches to predict which issues will get reopened \cite{Zimmermann2012,Lo2013} which issues report is a duplicate of which other one \cite{Jalbert2008,Bettenburg2008a,Tian2012a}.
 
 Another field of study consists in assigning these issues reports, if possible automatically to the right developers through triaging  \cite{Anvik2006,Jeong2009,Tamrawi2011a,Bortis2013}
-and which locations are likely to yield new bugs \cite{Kim2006,Kim2007}.
+and predicting which locations are likely to yield new bugs \cite{Kim2006,Kim2007}.
 
 \section{Crash Prediction}
 
 Predicting crash, fault and bug is very large and popular research area.
-The main goal behind the plethora of papers is to save on manpower---being to more expensive resource to build software---by directing their efforts on locations likely to contain a bug, fault or crash.
+The main goal behind the plethora of papers is to save on manpower---being the most expensive resource to build software---by directing their efforts on locations likely to contain a bug, fault or crash.
 
-There are two distinct trends in crash, fault and bug prediction in the papers accepted to major venues such as MSR, ICSE, ICSME and ASE:  analysis and current version analysis.
+There are two distinct trends in crash, fault and bug prediction in the papers accepted to major venues such as MSR, ICSE, ICSME and ASE:  history analysis and current version analysis.
 
-In the  analysis, researchers extract and interpret information from  the system.
+In the history analysis, researchers extract and interpret information from  the system.
 The idea being that the files or locations that are the most frequently changed are more likely to contain a bug.
 Additionally, some of these approaches also assume that locations linked to a previous bug are likely to be linked to a bug in the future.
 
@@ -96,7 +96,7 @@ Researchers mainly use five metrics when dealing with \textit{diffs} files:
   \item Hunks: The number of consecutive blocks of lines. This gives an approximation of how many distinct locations have been edited to accomplish a unit of work.
 \end{itemize}
 
-Naggapan \textit{et al.} studied the churns metric and how it can be connected to the apparition of new defect in a complex software system.
+Naggapan \textit{et al.} studied the churns metric and how it can be connected to the apparition of new defect in a complex software systems.
 They established that relative churns are, in fact, a better metric than classical churn \cite{Nagappan} while studying Windows Server 2003.
 
 Hassan, interested himself with the entropy of change, i.e. how complex the change is \cite{Hassan2009}.
@@ -106,15 +106,15 @@ Hassan used its entropy metric, with success, on six different systems.
 Prior to this work, Hassan, in collaboration with Holt proposed an approach that highlights the top ten most susceptible locations to have a bug using heuristics based on \textit{diffs} file metrics \cite{Hassan2005}.
 Moreover, their heuristics also leverage the data of the bug tracking system.
 Indeed, they use the past defect location to predict new ones.
-The conclusion of these two approaches has been that recently modified and fixed locations where the most defect-prone and comparison with frequently modified.
+The conclusion of these two approaches has been that recently modified and fixed locations where the most defect-prone compared to frequently modified ones.
 
-Similarly to Hassan and Hold,  Ostrand \textit{et al.} predict future crash location by combining the data from change and past defect location \cite{Ostrand2005}.
-The main difference between Hassan and Hold and Ostrand \textit{et al.} is that Ostrand \textit{et al.} validate their approach on industrial systems as they are members of the AT\&T lab while Hassan and Hold validated their approach on open-source system.
-This proved that these metrics are relevant for open-source and industrial system.
+Similarly to Hassan and Hold,  Ostrand \textit{et al.} predict future crash location by combining the data from changed and past defect locations \cite{Ostrand2005}.
+The main difference between Hassan and Hold and Ostrand \textit{et al.} is that Ostrand \textit{et al.} validate their approach on industrial systems as they are members of the AT\&T lab while Hassan and Hold validated their approach on open-source systems.
+This proved that these metrics are relevant for open-source and industrial systems.
 
-Kim and al applied the same recipe and mined recent changes and defects with their approach named bug cache \cite{Kim2007a}.
+Kim \textit{et al.} applied the same recipe and mined recent changes and defects with their approach named bug cache \cite{Kim2007a}.
 However, they are more accurate than the previous approaches at detecting defect location by taking into account that is more likely for a developer to make a change that introduces a defect when being under pressure.
-Such changes can be pushed to revision-control system when deadlines and releases are approaching.
+Such changes can be pushed to revision-control system when deadlines and releases date are approaching.
 
 \subsubsection{Single-version approaches}
 
@@ -124,8 +124,6 @@ Despite this fact, that one can see as a disadvantage compared to approaches tha
 
 Chidamber and Kemerer published the well-known CK metrics suite \cite{Chidamber1994} for object oriented designs and inspired Moha \textit{et al.} to publish similar metrics for service oriented programs \cite{Moha}.
 Another famous metric suite for assessing the quality of a given software design is Briand's coupling metrics \cite{Briand1999a}.
-
-\cite{Briand1999a}
 
 The CK and Briand's metrics suites have been used, for example, by Basili \textit{et al.} \cite{Basili1996}, El Emam \textit{et al.} \cite{ElEmam2001},  Subramanyam \textit{et al.} \cite{Subramanyam2003} and Gyimothy \textit{et al.} \cite{Gyimothy2005} for object oriented designs.
 Service oriented designs have been far less studied than object oriented design as they are relatively new, but, Nayrolles \textit{et al.} \cite{Nayrolles,Nayrolles2013d}, Demange \textit{et al.} \cite{demange2013} and Palma \textit{et al.} \cite{Palma2013} used Moha et \textit{et al.} metric suites to detect software defects.
@@ -137,3 +135,5 @@ Finally, Nagappan \textit{et al.} \cite{Nagappan2005,Nagappan2006} and Zimmerman
 \\
 While hundreds of bug prediction papers have been published by academia over the last decade, the developed tools and approaches fail to change developer behavior while deployed in industrial environment \cite{Lewis2013}.
 This is mainly due to the lack of actionable message, i.e. messages that provide concrete steps to resolve the problem at hand.
+
+{\tt pErICOPE} (Ecosystem Improve source COde during Programming session with real-time mining of common knowlEdge), our proposed ecosystem, will be different in a sense that we will provide actionable messages as presented in Section \ref{sec:objective-thesis}.
