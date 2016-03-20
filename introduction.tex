@@ -7,27 +7,17 @@
 
 Maintenance activities are known to be costly and challenging \cite{Pressman2005}. Studies have shown that the cost of software maintenance can reach up to 70\% of the overall cost of the software development process \cite{HealthSocial2002}.
 
-Lehman's laws of software evolution apply to three different types of software $S$, $P$ and $E$ \cite{lehman1980programs}. S-Software are written according to an exact specification of what that program can do, E-program are written to perform some real-world activity; how it should behave is strongly linked to the environment in which it runs, and such a program needs to adapt to varying requirements and circumstances in that environment and, finally, P-software are program is written to implement certain procedures that completely determine what the program can do.
+Lehman's laws of software evolution apply to three different types of software $S$, $P$ and $E$ \cite{lehman1980programs}. S-softwares are written according to an exact specification of what a program can do, E-softwares are written to perform some real-world activity; how it should behave is strongly linked to the environment in which it runs, and such a program needs to adapt to varying requirements and circumstances in that environment and, finally, P-softwares are programs written to implement certain procedures that completely determine what the program can do.
 
 \begin{itemize}
-	\item ``Continuing Change'' — an E-type system must be continually adapted or it becomes progressively less satisfactory
-	\item ``Increasing Complexity'' — as an E-type system evolves, its complexity increases unless work is done to maintain or reduce it
-	\item  ``Self Regulation'' — E-type system evolution processes are self-regulating with the distribution of product and process measures close to normal
-	\item ``Conservation of Organisational Stability (invariant work rate)'' - the average effective global activity rate in an evolving E-type system is invariant over the product's lifetime
-	\item ``Conservation of Familiarity'' — as an E-type system evolves, all associated with it, developers, sales personnel and users, for example, must maintain mastery of its content and behavior to achieve satisfactory evolution. Excessive growth diminishes that mastery. Hence the average incremental growth remains invariant as the system evolves.
-	\item ``Continuing Growth'' — the functional content of an E-type system must be continually increased to maintain user satisfaction over its lifetime
-	\item ``Declining Quality'' — the quality of an E-type system will appear to be declining unless it is rigorously maintained and adapted to operational environment changes
-	\item ``Feedback System'' — E-type evolution processes constitute multi-level, multi-loop, multi-agent feedback systems and must be treated as such to achieve significant improvement over any reasonable base
-\end{itemize}
-
-On a lighter note, Brian Russell resumed this into what he --- ironically --- named the Laws of Software Relativity \cite{RusselIRC}:
-
-\begin{itemize}
-\item As a software project approaches release, its mass increases.
-\item The energy required to release a software project is inversely proportional to the time before a scheduled release.
-\item It takes infinite energy to release a finished product on time; therefore, all software projects are both incomplete and late.
-\item Time is relative to the observer of a software project. The last month of development appears to an outside observer to take a year.
-\item If a software project becomes too large, it will collapse into a black hole. Time and money are absorbed, but nothing ever comes out.
+	\item ``Continuing Change'' --- an E-type system must be continually adapted or it becomes progressively less satisfactory.
+	\item ``Increasing Complexity'' --- as an E-type system evolves, its complexity increases unless work is done to maintain or reduce it.
+	\item  ``Self Regulation'' --- E-type system evolution processes are self-regulating with the distribution of product and process measures close to normal.
+	\item ``Conservation of Organisational Stability (invariant work rate)'' - the average effective global activity rate in an evolving E-type system is invariant over the product's lifetime.
+	\item ``Conservation of Familiarity'' --- as an E-type system evolves, all associated with it, developers, sales personnel and users, for example, must maintain mastery of its content and behavior to achieve satisfactory evolution. Excessive growth diminishes that mastery. Hence the average incremental growth remains invariant as the system evolves.
+	\item ``Continuing Growth'' --- the functional content of an E-type system must be continually increased to maintain user satisfaction over its lifetime.
+	\item ``Declining Quality'' --- the quality of an E-type system will appear to be declining unless it is rigorously maintained and adapted to operational environment changes.
+	\item ``Feedback System'' --- E-type evolution processes constitute multi-level, multi-loop, multi-agent feedback systems and must be treated as such to achieve significant improvement over any reasonable base.
 \end{itemize}
 
 While these laws, written between 1974 and 1996, still very much apply to nowadays software engineering, engineers and practitioners have created tools, techniques and processes to control their negative impacts.
@@ -43,21 +33,21 @@ Mining issue and source code version control systems is perhaps one of the most 
 \section{Preliminaries\label{sec:preliminaries}}
 
 
-In this section, we explain what are version control systems (in \ref{sec:version-control}) and Issue \& project tracking system (in \ref{sec:issue-tracking}). If one were to be familiar with Svn\footnote{https://subversion.apache.org/}, Git\footnote{https://git-scm.com/}, Mercurial\footnote{https://mercurial.selenic.com/}, Bugzilla\footnote{https://www.bugzilla.org/}, Jira\footnote{https://www.atlassian.com/software/jira} and Github\footnote{https://github.com/}, one might want to skip this section.
+In this section, we explain what version control systems (in \ref{sec:version-control}) and Issue \& project tracking system (in \ref{sec:issue-tracking}) are. If one were to be familiar with Svn\footnote{https://subversion.apache.org/}, Git\footnote{https://git-scm.com/}, Mercurial\footnote{https://mercurial.selenic.com/}, Bugzilla\footnote{https://www.bugzilla.org/}, Jira\footnote{https://www.atlassian.com/software/jira} and Github\footnote{https://github.com/}, one might want to skip this section.
 
 \subsection{Version control systems\label{sec:version-control}}
 
 Version control consists in maintaining the versions of files --- such as source code and other software artifacts.
 This activity is extremely complex and cannot be done by hand on real world project\footnote{Once again, real world project qualifies projects that are done in an industrial environment rather than school or so.}.
-Consequently, numerous software has been created to help practitioners manage the version of their software artifacts.
+Consequently, numerous softwares have been created to help practitioners manage the version of their software artifacts.
 Each evolution of a software is a version\footnote{Software version is not to be confused with the version of a software which refer to the shipping of a final product to customers.} (or revision) and each version (revision) is linked to the one before through modifications of software artifacts.
-These modifications, that consist in updating, adding or deleting software artifacts, can be referred as \texttt{diff}, {\tt patch} or {\tt commit}
+These modifications consist in updating, adding or deleting software artifacts. They can be referred as \texttt{diff}, {\tt patch} or {\tt commit}
 \footnote{These names are not to be used interchangeably as difference exists.}.
 Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristics:
 
 \begin{itemize}
 \item Number of Files: The number of software artifacts that have been modified, added or deleted.
-\item Number of Hunks: The number of consecutive blocks of modified, added or deleted lines in textual files. Hunks are useful to determine, in each file, how many different places the developer have modified.
+\item Number of Hunks: The number of consecutive blocks of modified, added or deleted lines in textual files. Hunks are useful to determine, in each file, how many different places the developer has modified.
 \item Number of Churns:  The number of lines modified. However, the churn value for a line change should be at least two as the line had to be deleted first and then added back with the modifications.
 \end{itemize}
 
@@ -66,7 +56,7 @@ Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristi
 In this document, we will mainly refer to three version control systems: {\tt Svn}, {\tt Git} and, to a lesser extent, {\tt Mercurial}. {\tt SVN} is distributed by the Apache foundation and is a centralized concurrent version system that can handle conflict in the different versions of different developers and it is widely used.
 At the opposite, {\tt Git} is a distributed revision control system --- originally developed by Linus Torvald --- where revisions can be kept locally for a while and then shared with the rest of the team.
 Finally {\tt Mercurial} is also a distributed revision system, but share a lot of concepts with {\tt Svn}.
-Consequently, it will be easier for folks used to {\tt Svn} to switch to a distributed revision system if they use {\tt Mercurial}.
+Consequently, it will be easier for people used to {\tt Svn} to switch to a distributed revision system if they use {\tt Mercurial}.
 
 \subsection{Issue \& Project Tracking Systems\label{sec:issue-tracking}}
 
@@ -74,12 +64,12 @@ Issue \& project tracking systems allow end-users to directly create bug reports
 These systems are also used by development teams to manage the BRs, and keep track of the fixes.
 
 The life cycle of an issue is as follows: After an issue is submitted by an end-user, it is set to the {\tt UNCONFIRMED} state until it receives enough votes or that a user with the proper permissions modifies its status to {\tt NEW}.
-The bug is then assigned to a developer to fix it.
+The bug is then assigned to a developer to be fixed.
 When the bug is in the {\tt ASSIGNED} state, the assigned developer(s) starts working on the issue.
 A fixed issue moves to the {\tt RESOLVED} state. Developers have five different possibilities to resolve an issue: {\tt FIXED}, {\tt DUPLICATE}, {\tt WONTFIX}, {\tt WORKSFORME} and {\tt INVALID}.
 
 \begin{itemize}
-	\item {\tt RESOLVED/FIXED}: A modification to the source code have been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the issue.
+	\item {\tt RESOLVED/FIXED}: A modification to the source code has been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the issue.
 	\item {\tt RESOLVED/DUPLICATE}: A previously submitted issue is being processed. The bug is marked as duplicate of the original bug.
 	\item {\tt RESOLVED/WONTFIX}: This is applied in the case where developers decide that a given bug will not be fixed.
 	\item {\tt RESOLVED/WORKSFORME}: If the issue cannot be reproduced on the reported OS / hardware.
@@ -88,15 +78,15 @@ A fixed issue moves to the {\tt RESOLVED} state. Developers have five different 
 
 Finally, the issue is {\tt CLOSED} after it is resolved.
 An issue can be reopened (sent to the {\tt REOPENED} state) and then assigned again if the initial fix was not adequate (the fix did not resolve the problem). The elapsed time between the issue marked as the new one and the resolved status are known as the {\it fixing time}, usually in days.
-If the issue is reopened then the days between the time the issue is reopened and the time it is marked again as {\tt RESOLVED/FIXED} are cumulated. Issues can be reopened many times.
+If the issue is reopened: the days between the time the issue is reopened and the time it is marked again as {\tt RESOLVED/FIXED} are cumulated. Issues can be reopened many times.
 
 Tasks, follow a similar life cycle at the exception of the {\tt UNCONFIRMED} and {\tt RESOLVED} states.
 Tasks are created by management and do not need to be confirmed in order to be {\tt OPEN} and {\tt ASSIGNED} to developers.
 When a task is complete, it will not go to the {\tt RESOLVED} state, but to the {\tt IMPLEMENTED} state.
-Issue are considered as problem to eradicate in the program and thus, fold into the maintenance activity.
+Issues are considered as problems to eradicate in the program and thus, fold into the maintenance activity.
 Tasks are considered as new features or amelioration to include in the program and fold into the evolution activity.
 
-Issue and tasks can (and must according to \cite{Bettenburg2008}) have a
+Issues and tasks can (and must according to \cite{Bettenburg2008}) have a
 severity. The severity is a classification of a issue to indicate the
 degree of negative impact on the quality of software and can
 evolve at any point during the lifecycle of the bug. The possible severities are blocker (blocks
@@ -108,12 +98,13 @@ other problem where easy workaround is present) trivial
 (cosmetic problem like misspelled words or misaligned text).
 
 
-The relationship between an issue or task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}) for the simple reason that they are in two different systems: the revision and the issue management systems. While it is considered a good practice to link each issue with the source code revision system by indicating the issue $\#id$ on the modification message, more than half of the issue are not linked to a modification.
+The relationship between an issue or task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}) for the simple reason that they are in two different systems: the revision and the issue management systems. While it is considered a good practice to link each issue with the source code revision system by indicating the issue $\#id$ on the modification message, more than half of the issues are not linked to a modification.
 
 
 \subsubsection{Providers\label{sec:bug-provider}}
 
- In this study, we collect data from four different bug tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$. $Bugzilla$ belongs to the Mozilla foundation and have first been released in 1998. $Jira$ is provided by Altassian have been released 14 years ago, in 2002. $Bugzilla$ is 100\% open source and it's difficult to estimate how many project uses it.
+ In this study, we collect data from four different bug tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$. $Bugzilla$ belongs to the Mozilla foundation and has first been released in 1998.
+ $Jira$, provided by Altassian, has been released 14 years ago, in 2002. $Bugzilla$ is 100\% open source and it's difficult to estimate how many project uses it.
  However, we can, without any risks envision that it owns a great share of the market as major organizations such as Mozilla, Eclipse and the Apache Software Foundation uses it.
  $Jira$, in the other hand, is a commercial software --- with a freemium business model --- and Altassian claims that they have 25,000 customers over the world.
 
@@ -126,13 +117,13 @@ The relationship between an issue or task and the actual modification can be har
 Architects, the ones that design buildings --- where mistakes cost lives --- spend at least five years at school and possibly their whole carriers to study, understand and reproduce great designs made by great architects.
 Software architects, however, begin in programing 101 by displaying the famous ``{\tt Hello World}'' statement and exponentially increase the complexity of their programs over their years of study and work.
 At some point, they will earn the title of software architect (or technical leader) because they have designed, maintained and evolved {\it enough} programs to be trustworthy on the matter.
-However, unlike building architects they have to learn how to recognize, analyze and reproduce great architectural choices by themselves in addition of their day to day work.
+However, unlike building architects, they have to learn how to recognize, analyze and reproduce great architectural choices by themselves in addition of their day to day work.
 Of course, software developers do learn good practices such as design patterns \cite{Gamma2008} but in a very few occasions they will be presented with a state-of-the-art program built by great developers (Amy Brown {\it et al.} propose exactly that in their books \cite{chansler2011architecture, AmyBrown2012, Armstrong2013}).
 
 While this research is not about reforming how programming classes are taught, we still want to ease the access to this knowledge for developers during their programming sessions in order to ship better programs.
 
 In this research proposal, we shift the focus from merely mining revision and issue management system, where knowledge of great developers lies, to integrate them in their rightful place: as the keystone of software development and evolution activities.
-Extracting the ground truth from repositories helped engineers and practitioners to be better at building softwares as they know, for example,{\it how long it will take to fix a bug} \cite{Weiss2007}, {\it what's makes a good bug report} \cite{Bettenburg2008} or {\it how to fix long-lived bugs} \cite{Saha2014}.
+Extracting the ground truth from repositories helped engineers and practitioners to be better at building softwares as they know, for example, {\it how long it will take to fix a bug} \cite{Weiss2007}, {\it what makes a good bug report} \cite{Bettenburg2008} or {\it how to fix long-lived bugs} \cite{Saha2014}.
 Using these discoveries, tools can be created, on a per organization basis, to fit particular requirements such as programming languages, development processes or particular threshold. If we want to truthfully and deeply modify the software engineering landscape to have better softwares in terms of quality, maintainability and availability, we need to provide this information during the development, maintenance and evolution processes according to a specific context in an easy, reliable, actionable, free way.
 
 If we look back at the history of software engineering, the increase of processors' speed and decrease of their price allowed one to have a compiler on its own machine rather than sending one's code to the mainframe and receive compilation errors hours (days) later. This allowed, among other factors, the democratization of software engineering as {\it everyone}, belonging to a major organization or not, became able to build code. We believe that, it is now time to allow developers, engineering and practitioners, regardless of their programming language and contextual environment, not only to write and build code but to write and built qualitative, robust, resilient, easy to maintain and to fix code. What better way to do so than to {\it stand on the shoulder of giants} by having access to all the open sources repositories, including but not limited to, issues, tasks, bug fixes, patches, comments, good practices break down to the right level and provided at the right time during day to day programming sessions?
