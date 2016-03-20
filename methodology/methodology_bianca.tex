@@ -2,7 +2,7 @@
 
 \section{BIANCA - Bug Insertion ANticipation by Clone Analysis at commit time\label{sec:BIANCA}}
 
-{\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at commit time) is the final piece of the proposed ecosystem and, as such, the final failsafe that prevent developer to ship code that we know to be sub-optimum or to be at the very root of issues.
+{\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at commit time) is the final piece of the proposed ecosystem and, as such, the final failsafe that prevents developer to ship code that we know to be sub-optimum or to be at the very root of issues.
 
 \subsection{Motivation\label{sec:bianca-motivation}}
 
@@ -11,8 +11,8 @@ However, these tools rely on metrics and rules to statically and/or dynamically 
 
 \subsection{The {\tt BIANCA} approach\label{sec:bianca-approach}}
 
-{\tt BIANCA} is different than the tool presented in \ref{sec:bianca-motivation} because, as {\tt RESEMBLE} it fetch its data into the common knowledge of hundreds of thousands of projects and developers.
-More specifically, {\tt BIANCA} mine and analyze the change pattern in commits and match it against past commit known to have introduce a defect in the code (or that have just been replaced by better implementation). Figure \ref{fig:bianca-approach} present an overview of our approach.
+{\tt BIANCA} is different than the tool presented in the previous section  because, as {\tt RESEMBLE} it fetches its data into the common knowledge of millions of projects and developers.
+More specifically, {\tt BIANCA} mines and analyzes the change patterns in commits and matches it against past commits known to have introduced a defect in the code (or that have just been replaced by better implementation). Figure \ref{fig:bianca-approach} presents an overview of our approach.
 
 \begin{figure}[h!]
   \centering
@@ -21,27 +21,36 @@ More specifically, {\tt BIANCA} mine and analyze the change pattern in commits a
     \label{fig:bianca-approach}}
 \end{figure}
 
-{\tt BIANCA} builds a model where each issue stored in {\tt BUMPER} three versions of the same file.
+{\tt BIANCA} builds a model where each issue is represented by three versions of the same file.
+These three versions are stored in {\tt BUMPER}.
 The first version $n$ is called the {\it stable state} because the code of this version was used to fix an issue.
 The $n-1$ version, however, is called the {\it unstable state} as it was marked as containing an issue.
-Finally, the third state is called the {\it before state} and represent the file before the introduction of the bug.
-Hereafter, we refer at the {\it before state} with the $n-2$ name.
-{\tt BIANCA} extracts the change pattern form $n-2$ to $n-1$ and from $n-1$ to $n$ and generate the changes to go directly from $n-2$ to $n$.
+Finally, the third version is called the {\it before state} and represents the file before the introduction of the bug.
+Hereafter, we refer to the {\it before state} as $n-2$.
+{\tt BIANCA} extracts the change patterns form $n-2$ to $n-1$ and from $n-1$ to $n$.
+It aslo generates the changes to go from $n-2$ to $n$.
 
-When a developer commits new modifications, {\tt BIANCA} extracts the change pattern from the version $n_{dev}$ (current version) and $n-1_{dev}$ (version before modification) of the developer's source code and compare this change pattern to known $n-2$ to $n-1$ patterns.
+When a developer commits new modifications, {\tt BIANCA} extracts the change pattern from the version $n_{dev}$ (current version) and $n-1_{dev}$ (version before modification) of the developer's source code and compare this change patterns to known $n-2$ to $n-1$ patterns.
 If $n_{dev}$ to $n-1_{dev}$ matches a $n-2$ to $n-1$ then it means that the developer is inserting a known defect in the source code.
-In such a case, {\tt BIANCA} will propose the related $n-1$ to $n$ pattern to the developer, so s/he could improve the source code and will show the related $n-2$ for the $n$ pattern so the developer will learn how to s/he should have modified the code in the first place. Moreover, if the issue was previously reproduced by {\tt JCHARMING}, then {\tt BIANCA} will display the step to reproduce it.
+In such a case, {\tt BIANCA} will propose the related $n-1$ to $n$ pattern to the developer, so s/he could improve the source code and will show the related $n-2$ for the $n$ pattern so the developer will learn how to s/he should have modified the code in the first place.
+
+Moreover, if the issue was previously reproduced by {\tt JCHARMING}, then {\tt BIANCA} will display the step to reproduce it.
+
 
 To extract the change patterns and compare them, we used the same technique as the one presented in sections \ref{sec:resemble-normalization} and \ref{sec:resemble-comparing} with new normalizations.
 The third and the fourth normalizations are removing all {\it less} important calls in the normalization one and two of {\tt RESEMBLE}.
 We classify a call as less-important if, for example, it only does display-related functionalities such as generating HTML or printing something to the console. Finally, the fourth normalization will transform the code to an intermediate language of our own that will allow us to compare source code implemented in different programming languages.
 
-Then, as in {\tt RESEMBLE}, if the LCS is above a user-defined threshold, then a warning is raised by {\tt BIANCA} alerting the developer that the commit is suspected to insert a defect. The given defect is shown to the developer that can either force the commit if s/he don't find the warning relevant or abort the commit.
+Then, as in {\tt RESEMBLE}, if the LCS is above a user-defined threshold, then a warning is raised by {\tt BIANCA} alerting the developer that the commit is suspected to insert a defect.
+The given defect is shown to the developer and can either force the commit if s/he don't find the warning relevant or abort the commit.
+
+We believe that the warning, alongside the previously mined change patterns and steps to reproduce the suspected default --- provided by {\tt JCHARMING}, if available --- will statisfy developers in terms of actionable inteligence.
+Thus, {\tt BIANCA} could succeed, where other tools failed, at being used in industrial environment	\cite{Lewis2013}.
 
 
 \subsection{Early experiments}
 
-We have experimented the efficiency of {\tt BIANCA} with the same datasets, we used to build our Bug Taxonomy proposed in section \ref{sec:taxo}.
+We have experimented the efficiency of {\tt BIANCA} with the same datasets we used to build our bug taxonomy proposed in section \ref{sec:taxo}.
 
 \begin{table}[h]
 \begin{center}
@@ -57,11 +66,11 @@ Total            & 102,707         & 229,153     & 68,809         & 388         
 \caption{Datasets\label{table:datasets-bianca}}
 \end{table}
 
-We choose to use the same datasets for several reasons. First of all, we spare the time needed to collect new datasets. Then, because these datasets contain a very large system mainly implemented in Java: Netbeans; and 349 independent Apache projects implemented in a very wide range of programming language. Consequently, these datasets allow us to test the efficiency of our different code normalizations.
+We choosed to use the same datasets for several reasons. First of all, we spare the time needed to collect new datasets. Then, because these datasets contain a very large system mainly implemented in Java: Netbeans; and 349 independent Apache projects implemented in a very wide range of programming language. Consequently, these datasets allow us to test the efficiency of our different code normalizations.
 
-We ran two different experiments using the two first normalizations we described in section \ref{sec:bianca-approach}. Both experiments consider only a few months of history, from April to August 2008. While this could hinder the pertinence of our results, these five months of history contain 167,597 commits related to bug fix. Consequently, our results are representative.
+We ran two different experiments using the two first normalizations we described in section \ref{sec:bianca-approach}. Both experiments consider only a few months of history, from April to August 2008. While this could hinder the pertinence of our results, these five months of history contain 167,597 commits related to bug fix. Consequently, we believe our results to be representative.
 
-The first experiment yield the result presented by Figure \ref{fig:bianca-exp-1}.
+The first experiment yields the result presented by Figure \ref{fig:bianca-exp-1}.
 
 \begin{figure}[h!]
   \centering
@@ -70,7 +79,9 @@ The first experiment yield the result presented by Figure \ref{fig:bianca-exp-1}
     \label{fig:bianca-exp-1}}
 \end{figure}
 
-With the first normalization, we {\tt BIANCA} raised 69,519 warnings out of 167,597 (41.5\%) commits we analyze. Out of these 69,519, 13.4\% turned out to be false positives. A false positive is a commit that have been tagged as introducing a bug by {\tt BIANCA} but did not according to the history. However, false positives have to deal with carefully in this study as the commit might have introduced a bug but the bug could have not been reported yet.
+With the first normalization, {\tt BIANCA} raised 69,519 warnings out of 167,597 (41.5\%) analyzed commits.
+Out of these 69,519, 13.4\% turned out to be false positives. A false positive is a commit that have been tagged as introducing a bug by {\tt BIANCA} but did not according to the history.
+However, false positives have to be dealt with carefully in this study as the commit might have introduced a bug but the bug could have not been reported yet.
 
 In our second experiment, we used the second normalization and {\tt BIANCA} raised 83,627 warnings out of 167,597 (48.89\%) commits we analyze. However, the false positive rate increases to 21\%. Figure \ref{fig:bianca-exp-2} shows the results.
 
@@ -83,7 +94,7 @@ In our second experiment, we used the second normalization and {\tt BIANCA} rais
 
 \subsection{Planned experiments}
 
-{\tt BIANCA} experiments are still in their early stage and we still trying to improve our normalizations in order to reduce the false positive rate. In addition to these improvements, we want to conduct the following additional experiments:
+{\tt BIANCA} experiments are still in their early stage and we are still trying to improve our normalizations in order to reduce the false positive rate. In addition to these improvements, we want to conduct the following additional experiments:
 
 \begin{itemize}
 	\item Full history test with Normalization 1.
