@@ -6,43 +6,62 @@
 \chapter{Introduction}
 
 Maintenance activities are known to be costly and challenging \cite{Pressman2005}. Studies have shown that the cost of software maintenance can reach up to 70\% of the overall cost of the software development process \cite{HealthSocial2002}.
+By ``maintenance activity'' we mean any change to software beyond its first release or iteration; i.e. development of software where there is already an existing system that is to be changed.
+This is the broadest possible meaning of the term.
+It includes adding new features, creating new iterations, as well as classic adaptive and corrective maintenance.
 
-Lehman's laws of software evolution apply to three different types of software $S$, $P$ and $E$ \cite{lehman1980programs}. S-softwares are written according to an exact specification of what a program can do, E-softwares are written to perform some real-world activity; how it should behave is strongly linked to the environment in which it runs, and such a program needs to adapt to varying requirements and circumstances in that environment and, finally, P-softwares are programs written to implement certain procedures that completely determine what the program can do.
+The difficulties encountered by maintenainers are various.
+In large software project, difficulties are partially attributable to the fact that the software are created, distrubuted and maintenained globally.
+Developpers and users are scattered accross the globe.
 
-\begin{itemize}
-	\item ``Continuing Change'' --- an E-type system must be continually adapted or it becomes progressively less satisfactory.
-	\item ``Increasing Complexity'' --- as an E-type system evolves, its complexity increases unless work is done to maintain or reduce it.
-	\item  ``Self Regulation'' --- E-type system evolution processes are self-regulating with the distribution of product and process measures close to normal.
-	\item ``Conservation of Organisational Stability (invariant work rate)'' - the average effective global activity rate in an evolving E-type system is invariant over the product's lifetime.
-	\item ``Conservation of Familiarity'' --- as an E-type system evolves, all associated with it, developers, sales personnel and users, for example, must maintain mastery of its content and behavior to achieve satisfactory evolution. Excessive growth diminishes that mastery. Hence the average incremental growth remains invariant as the system evolves.
-	\item ``Continuing Growth'' --- the functional content of an E-type system must be continually increased to maintain user satisfaction over its lifetime.
-	\item ``Declining Quality'' --- the quality of an E-type system will appear to be declining unless it is rigorously maintained and adapted to operational environment changes.
-	\item ``Feedback System'' --- E-type evolution processes constitute multi-level, multi-loop, multi-agent feedback systems and must be treated as such to achieve significant improvement over any reasonable base.
-\end{itemize}
+Consequently, maintainers can hardly have complete knowledge over the software at hand.
+Yet, such knowledge will be an asset to avoid known mistakes, programming errors and improve the software.
 
-While these laws, written between 1974 and 1996, still very much apply to nowadays software engineering, engineers and practitioners have created tools, techniques and processes to control their negative impacts.
-For instance, most of real world project's---in opposition to test / very small size projects---host their source code on a version control system \cite{rochkind1975source} that is able to keep track of the different revisions of a system and of the different changes made by the developers of the team.
-Version control systems help to control the {\it continuing change}, {\it increasing complexity} and {\it continuing growth} rules' effects.
-In order to manage the {\it feedback systems} and {\it declining quality} rules, organizations use issue \& project tracking system to assign tasks to developers, report unexpected behaviors or crashes and track advancement.
-
-In the last decade, source code revision control system and issue \& tracking systems have grown to contain hundreds of thousands of revision, issues and tasks per project.
+In the last decade, source code revision control system and project tracking systems have grown to contain hundreds of thousands of revision, bug and crash report per project.
 Naturally, this plethora of data pushed researchers across the world to conduct hundreds of studies in several active research fields: bug reproduction, bug triaging, duplicated bug identification, bug comprehension, bug re-production.
 
-Mining issue and source code version control systems is perhaps one of the most active research field today. The reason is that their analysis provides useful insight that can help with many maintenance activities such as bug fixing \cite{Weiss2007,Saha2014}, bug reproduction \cite{Artzi2008,Jin2012,Chen2013}, fault analysis \cite{Jiang2012,Jin2013}, etc. This increase of attention can be further justified by the emergence of many open source bug tracking systems, allowing open source software teams to make their bug reports available online to researchers.
+In order to support software maitenance, researchers and developers started to mine software repository.
+Software repository contains the each modification done to the software and related issues.
+
+Mining software repository is perhaps one of the most active research field today.
+The reason is that their analysis provides useful insight that can help with many maintenance activities such as bug fixing \cite{Weiss2007,Saha2014}, bug reproduction \cite{Artzi2008,Jin2012,Chen2013}, fault analysis \cite{Jiang2012,Jin2013}, etc.
+This increase of attention can be further justified by the emergence of many open source bug tracking systems, allowing open source software teams to make their bug reports available online to researchers.
 
 \section{Preliminaries\label{sec:preliminaries}}
 
+Software maintenance, comprehension, evolution, specifications and testing are research areas overlapping each other in terms of nomenclature.
 
-In this section, we explain what version control systems (in \ref{sec:version-control}) and Issue \& project tracking system (in \ref{sec:issue-tracking}) are. If one were to be familiar with Svn\footnote{https://subversion.apache.org/}, Git\footnote{https://git-scm.com/}, Mercurial\footnote{https://mercurial.selenic.com/}, Bugzilla\footnote{https://www.bugzilla.org/}, Jira\footnote{https://www.atlassian.com/software/jira} and Github\footnote{https://github.com/}, one might want to skip this section.
+In this proposal, we will use precise set of definitions.
+We do not claim ownership of these definitions --- they have been established using various ressources --- nor rightfulness over other definitions.
+
+We limit software maintenance to the following three artifacts:
+
+\begin{itemize}
+	\item Bug report: A bug report describes a behaviour observed on the field and considered abnormal by the reporter. Bug reports are submitted manually to bug report systems (bugzilla/jira). There is no mandatory format to report a bug, nevertheless, it should have : Version of the software / OS / Platform used, steps to reproduce, screenshots, stack trace and anything that could help a developer to assess the internal state of the software system.
+	\item Crash report: A crash report is the last action a software system does before crashing. Crash reports are automatic (they have to be implemented into the software system by developer) and contain data (that can be proprietary) to help developer understand the crash (e.g memory dump, ...).
+	\item Tasks: A task is a new feature, or the improvment of an existing feature, to be implemented in a future release of the software.
+\end{itemize}
+
+These artifacts are produced in response to the following phenomenons:
+
+\begin{itemize}
+	\item Software Bug: A software bug is an error, flaw, failure, defect or fault in a computer program or system that causes it to violate at least one of its functional or nonfunctional requirements.
+	\item Error: An error is a mistake, misconception, or misunderstanding on the part of a software developer.
+	Fault/defect: According to ISO 10303 a fault (defect) is defined as an abnormal condition or defect at the component, equipment, or subsystem level which may lead to a failure. A fault (defect) is not final (the system still works) and does not prevent a given feature to be accomplished.  A fault (defect) is a deviation (anomaly) of the healthy system that can be caused by an error or external factors (hardware, third parties, ...).
+	\item Failure: The inability of a software system or component to perform its required functions within specified requirements.
+	\item Crash: The software system encountered a fault (defect) that triggered a fatal failure from which the system could not recover from/overcome. As a result,  the system stopped.
+\end{itemize}
+
+In the remaining of this section, we introduce the two types of software repositories: version control and project tracking system.
 
 \subsection{Version control systems\label{sec:version-control}}
 
 Version control consists in maintaining the versions of files --- such as source code and other software artifacts.
-This activity is extremely complex and cannot be done by hand on real world project\footnote{Once again, real world project qualifies projects that are done in an industrial environment rather than school or so.}.
+This activity is extremely complex and cannot be done by hand on real world project.
 Consequently, numerous softwares have been created to help practitioners manage the version of their software artifacts.
 Each evolution of a software is a version\footnote{Software version is not to be confused with the version of a software which refer to the shipping of a final product to customers.} (or revision) and each version (revision) is linked to the one before through modifications of software artifacts.
-These modifications consist in updating, adding or deleting software artifacts. They can be referred as \texttt{diff}, {\tt patch} or {\tt commit}
-\footnote{These names are not to be used interchangeably as difference exists.}.
+These modifications consist in updating, adding or deleting software artifacts.
+They can be referred as \texttt{diff}, {\tt patch} or {\tt commit}\footnote{These names are not to be used interchangeably as difference exists.}.
 Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristics:
 
 \begin{itemize}
@@ -53,85 +72,74 @@ Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristi
 
 \subsubsection{Providers\label{sec:revision-provider}}
 
-In this document, we will mainly refer to three version control systems: {\tt Svn}, {\tt Git} and, to a lesser extent, {\tt Mercurial}. {\tt SVN} is distributed by the Apache foundation and is a centralized concurrent version system that can handle conflict in the different versions of different developers and it is widely used.
+In this proposal, we mainly refer to three version control systems: {\tt Svn}, {\tt Git} and, to a lesser extent, {\tt Mercurial}.
+{\tt SVN} is distributed by the Apache foundation and is a centralized concurrent version system that can handle conflict in the different versions of different developers and it is widely used.
 At the opposite, {\tt Git} is a distributed revision control system --- originally developed by Linus Torvald --- where revisions can be kept locally for a while and then shared with the rest of the team.
 Finally {\tt Mercurial} is also a distributed revision system, but share a lot of concepts with {\tt Svn}.
 Consequently, it will be easier for people used to {\tt Svn} to switch to a distributed revision system if they use {\tt Mercurial}.
 
-\subsection{Issue \& Project Tracking Systems\label{sec:issue-tracking}}
+\subsection{Project Tracking Systems\label{sec:issue-tracking}}
 
-Issue \& project tracking systems allow end-users to directly create bug reports (BRs) to report on system crashes and manager can create tasks to drive the evolution forward.
-These systems are also used by development teams to manage the BRs, and keep track of the fixes.
+Project tracking systems allow end-users to directly create bug reports (BRs) to report unexpected system behaviour,
+manager can create tasks to drive the evolution forward and crash report (CRs) can be automatically created.
+These systems are also used by development teams to keep track of the modification induced by bug and to crash reports, and keep track of the fixes.
 
-The life cycle of an issue is as follows: After an issue is submitted by an end-user, it is set to the {\tt UNCONFIRMED} state until it receives enough votes or that a user with the proper permissions modifies its status to {\tt NEW}.
-The bug is then assigned to a developer to be fixed.
-When the bug is in the {\tt ASSIGNED} state, the assigned developer(s) starts working on the issue.
+The life cycle of a report is as follows: After an  it is s submitted by an end-user, it is set to the {\tt UNCONFIRMED} state until it receives enough votes or that a user with the proper permissions modifies its status to {\tt NEW}.
+The report is then assigned to a developer to be fixed.
+When the report is in the {\tt ASSIGNED} state, the assigned developer(s) starts working on the issue.
 A fixed issue moves to the {\tt RESOLVED} state. Developers have five different possibilities to resolve an issue: {\tt FIXED}, {\tt DUPLICATE}, {\tt WONTFIX}, {\tt WORKSFORME} and {\tt INVALID}.
 
 \begin{itemize}
-	\item {\tt RESOLVED/FIXED}: A modification to the source code has been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the issue.
-	\item {\tt RESOLVED/DUPLICATE}: A previously submitted issue is being processed. The bug is marked as duplicate of the original bug.
-	\item {\tt RESOLVED/WONTFIX}: This is applied in the case where developers decide that a given bug will not be fixed.
-	\item {\tt RESOLVED/WORKSFORME}: If the issue cannot be reproduced on the reported OS / hardware.
-	\item {\tt RESOLVED/INVALID}: If the issue is not related to the software itself.
+	\item {\tt RESOLVED/FIXED}: A modification to the source code has been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the root problem described in the report.
+	\item {\tt RESOLVED/DUPLICATE}: A previously submitted report is being processed. The report is marked as duplicate of the original report.
+	\item {\tt RESOLVED/WONTFIX}: This is applied in the case where developers decide that a given report will not be fixed.
+	\item {\tt RESOLVED/WORKSFORME}: If the root problem described in the report cannot be reproduced on the reported OS / hardware.
+	\item {\tt RESOLVED/INVALID}: If the report is not related to the software itself.
 \end{itemize}
 
-Finally, the issue is {\tt CLOSED} after it is resolved.
-An issue can be reopened (sent to the {\tt REOPENED} state) and then assigned again if the initial fix was not adequate (the fix did not resolve the problem). The elapsed time between the issue marked as the new one and the resolved status are known as the {\it fixing time}, usually in days.
-If the issue is reopened: the days between the time the issue is reopened and the time it is marked again as {\tt RESOLVED/FIXED} are cumulated. Issues can be reopened many times.
+Finally, the report is {\tt CLOSED} after it is resolved.
+A report can be reopened (sent to the {\tt REOPENED} state) and then assigned again if the initial fix was not adequate (the fix did not resolve the problem).
+The elapsed time between the report marked as the new one and the resolved status are known as the {\it fixing time}, usually in days.
+If the issue is reopened: the days between the time the report is reopened and the time it is marked again as {\tt RESOLVED/FIXED} are cumulated.
+Reports can be reopened many times.
 
 Tasks, follow a similar life cycle at the exception of the {\tt UNCONFIRMED} and {\tt RESOLVED} states.
 Tasks are created by management and do not need to be confirmed in order to be {\tt OPEN} and {\tt ASSIGNED} to developers.
 When a task is complete, it will not go to the {\tt RESOLVED} state, but to the {\tt IMPLEMENTED} state.
-Issues are considered as problems to eradicate in the program and thus, fold into the maintenance activity.
-Tasks are considered as new features or amelioration to include in the program and fold into the evolution activity.
+Bug and crash reports are considered as problems to eradicate in the program.
+Tasks are considered as new features or amelioration to include in the program.
 
-Issues and tasks can (and must according to \cite{Bettenburg2008}) have a
-severity. The severity is a classification of a issue to indicate the
-degree of negative impact on the quality of software and can
-evolve at any point during the lifecycle of the bug. The possible severities are blocker (blocks
-development and/or testing work) critical (crashes, loss of
-data, severe memory leak), major (major loss of function),
-normal (regular issue, some loss of functionality under
-specific circumstances), minor (minor loss of function, or
-other problem where easy workaround is present) trivial
-(cosmetic problem like misspelled words or misaligned text).
+Reports and tasks can (and must according to \cite{Bettenburg2008}) have a severity.
+The severity is a classification to indicate the degree of  impact on the software.
+The possible severities are
 
+\begin{itemize}
+	\item blocker: blocks development and/or testing work.
+	\item critical: crashes, loss of data, severe memory leak.
+	\item major: major loss of function.
+	\item normal: regular issue, some loss of functionality under
+ specific circumstances.
+  \item minor: minor loss of function, or other problem where easy workaround is present.
+	\item trivial: cosmetic problem like misspelled words or misaligned text.
+\end{itemize}
 
-The relationship between an issue or task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}) for the simple reason that they are in two different systems: the revision and the issue management systems. While it is considered a good practice to link each issue with the source code revision system by indicating the issue $\#id$ on the modification message, more than half of the issues are not linked to a modification.
-
+The relationship between an report or a task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}).
+This reason is that they are in two different systems: the version control system and the project tracking system.
+While it is considered a good practice to link each issue with the source code revision system by indicating the issue $\#id$ on the modification message, more than half of the issues are not linked to a modification\cite{Wu2011}.
 
 \subsubsection{Providers\label{sec:bug-provider}}
 
- In this study, we collect data from four different bug tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$. $Bugzilla$ belongs to the Mozilla foundation and has first been released in 1998.
- $Jira$, provided by Altassian, has been released 14 years ago, in 2002. $Bugzilla$ is 100\% open source and it's difficult to estimate how many project uses it.
+ In this proposal, we have collected data from four different project tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$.
+ $Bugzilla$ belongs to the Mozilla foundation and has first been released in 1998.
+ $Jira$, provided by Altassian, has been released 14 years ago, in 2002.
+ $Bugzilla$ is 100\% open source and it's difficult to estimate how many project uses it.
  However, we can, without any risks envision that it owns a great share of the market as major organizations such as Mozilla, Eclipse and the Apache Software Foundation uses it.
  $Jira$, in the other hand, is a commercial software --- with a freemium business model --- and Altassian claims that they have 25,000 customers over the world.
 
- $Github$ and $Sourceforge$ are different from $Bugzilla$ and $Jira$ in a sense that they were created as revision system and evolve, later on, to add issue and project management capabilities to their softwares. Nevertheless, this common particularity has the advantage to ease the link between issues and source code.
-
-
-
-\section{Motivation}
-
-Architects, the ones that design buildings --- where mistakes cost lives --- spend at least five years at school and possibly their whole carriers to study, understand and reproduce great designs made by great architects.
-Software architects, however, begin in programing 101 by displaying the famous ``{\tt Hello World}'' statement and exponentially increase the complexity of their programs over their years of study and work.
-At some point, they will earn the title of software architect (or technical leader) because they have designed, maintained and evolved {\it enough} programs to be trustworthy on the matter.
-However, unlike building architects, they have to learn how to recognize, analyze and reproduce great architectural choices by themselves in addition of their day to day work.
-Of course, software developers do learn good practices such as design patterns \cite{Gamma2008} but in a very few occasions they will be presented with a state-of-the-art program built by great developers (Amy Brown {\it et al.} propose exactly that in their books \cite{chansler2011architecture, AmyBrown2012, Armstrong2013}).
-
-While this research is not about reforming how programming classes are taught, we still want to ease the access to this knowledge for developers during their programming sessions in order to ship better programs.
-
-In this research proposal, we shift the focus from merely mining revision and issue management system, where knowledge of great developers lies, to integrate them in their rightful place: as the keystone of software development and evolution activities.
-Extracting the ground truth from repositories helped engineers and practitioners to be better at building softwares as they know, for example, {\it how long it will take to fix a bug} \cite{Weiss2007}, {\it what makes a good bug report} \cite{Bettenburg2008} or {\it how to fix long-lived bugs} \cite{Saha2014}.
-Using these discoveries, tools can be created, on a per organization basis, to fit particular requirements such as programming languages, development processes or particular threshold. If we want to truthfully and deeply modify the software engineering landscape to have better softwares in terms of quality, maintainability and availability, we need to provide this information during the development, maintenance and evolution processes according to a specific context in an easy, reliable, actionable, free way.
-
-If we look back at the history of software engineering, the increase of processors' speed and decrease of their price allowed one to have a compiler on its own machine rather than sending one's code to the mainframe and receive compilation errors hours (days) later. This allowed, among other factors, the democratization of software engineering as {\it everyone}, belonging to a major organization or not, became able to build code. We believe that, it is now time to allow developers, engineering and practitioners, regardless of their programming language and contextual environment, not only to write and build code but to write and built qualitative, robust, resilient, easy to maintain and to fix code. What better way to do so than to {\it stand on the shoulder of giants} by having access to all the open sources repositories, including but not limited to, issues, tasks, bug fixes, patches, comments, good practices break down to the right level and provided at the right time during day to day programming sessions?
-
-What we concretely propose is an open-source, free, automatable tool suite that will allow everyone to (1) automatically reproduce field crashes in a controlled lab environment without any privacy concerns, (2) search in natural language the issues, comments, bugs, patches and fixes of tens of thousands of open source project, (3) prevent the insertion of defects in the source code during programming sessions by providing examples of the similar defect and how it has been fixed with a programming language abstraction. To support these tools we propose an empirical bug taxonomy (4).
+$Github$ and $Sourceforge$ are different from $Bugzilla$ and $Jira$ in a sense that they were created as source code revision system and evolve, later on, to add project tracking capabilities to their softwares.
+This common particularity have the advantage to ease the link between issues and source code.
 
 \section{Thesis Contributions}
-
 
 In this section we present the problems in the literature (Section \ref{sec:pb-litterature}), the research challenges we face in our work (Section \ref{sec:challenges}). Sections \ref{sec:scope} and \ref{sec:objective-thesis} present the scope and the contributions of this research.
 
@@ -217,11 +225,4 @@ To summarize this thesis have four main contributions:
 	\item To propose a context-aware IDE that will improve day-to-day programming session with concise and appropriate code samples.
 \end{itemize}
 
-
-
 \section{Outline\label{sec:outline}}
-
-The remainder of this proposal is organized as follows. Chapter \ref{chap:relwork} summarizes the related work.
-Chapter \ref{chap:methodology} introduces the proposed approache and the preliminary experiments along with the results.
-Chapter \ref{chap:plan} presents the current state of the research, and highlights our key current contributions and future research directions along with a possible publication schedule.
-Finally, Chapter \ref{chap:conclusion} provides some concluding remarks and future works.
