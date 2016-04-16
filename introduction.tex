@@ -23,16 +23,44 @@ Naturally, this plethora of data pushed researchers across the world to conduct 
 In order to support software maitenance, researchers and developers started to mine software repository.
 Software repository contains the each modification done to the software and related issues.
 
-Mining software repository is perhaps one of the most active research field today.
-The reason is that their analysis provides useful insight that can help with many maintenance activities such as bug fixing \cite{Weiss2007,Saha2014}, bug reproduction \cite{Artzi2008,Jin2012,Chen2013}, fault analysis \cite{Jiang2012,Jin2013}, etc.
-This increase of attention can be further justified by the emergence of many open source bug tracking systems, allowing open source software teams to make their bug reports available online to researchers.
+Mining software repository---the science of interpreting software artifacts---is perhaps one of the most active research field today.
+The reason is that their analysis provides useful insight that can help with many maintenance activities such as bug fixing \cite{Weiss2007,Saha2014}, bug reproduction \cite{Artzi2008,Jin2012,Chen2013}, fault analysis \cite{Jiang2012,Jin2013}, bug prediction \cite{Hovemeyer2007}, etc.
+
+A great length of effort have been conceded by the mining software repository community to create tools and approaches ranging from simple text-pattern matching to complex prediction models.
+This tools are often automatically tested and verified in laboratory\cite{Lewis2013}.
+Indeed, manually testing and validating industrial-sized repository for each iteration of a given algorithm is counterproductive.
+This automation of experiment allows researchers to improve their approaches and compare tools to each others.
+The current state-of-the-art approach can always be improved by new and more complex technics\cite{Hovemeyer2004}.
+
+Yet, one question remains:  Is it usefull to {\bf humans} maintainers?
+
+This simple question has been studied by researchers and companies alike (noticeable examples \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Lopez2011}).
+Of course, results of such studies are not binary and can be difficult to interpret.
+Nevertheless, it has been discovered that although human maintenainers agree that such tools are beneficial, false positives and the way in which the warnings are presented, among other things, are barriers to use\cite{Johnson2013}.
+In addition, human maintenainers agree to some of the caracteristics that maintenance-oriented tools should have \cite{Hovemeyer2004, Lopez2011, Lewis2013}:
+
+\begin{itemize}
+	\item Actionable messages. Presenting a warning about bug-proneness of a given line is not enough.
+	Clear actions to improve the source code should be provided
+	\item Obvious reasoning. The conditions that led to a given warning should be understandable by the maintainer.
+	If the conditions are hidden in complex statistical models, then maintainers cannot review them and will find it difficult to trust the tool.
+	\item Scaling. Industrial sized project contains thousand files and dependencies which can be updated many times a day.
+	Maintenance-oriented tools should not hinder the productivity of maintainers.
+	\item Contextualization. Warnings and messages should always be contextualized with respect to the project at hand and not generic rules.
+	\item Integration. Developers and maintainers are overwhelm by the amount of existing tools.
+	Yet, their daily use three different kind of tools.
+	An integrated development environment, a versionning system and a project tracking system to produce, version and manage their software, respectively.
+	Maintenance-oriented tools should fit in the existing ecosystem rather than complexifying the deployment process.
+\end{itemize}
+
+In the following sections, we present some preliminaries to the mining software repository field. Then, we describe the thesis contribution and this proposal's outline.
 
 \section{Preliminaries\label{sec:preliminaries}}
 
-Software maintenance, comprehension, evolution, specifications and testing are research areas overlapping each other in terms of nomenclature.
+Software maintenance, comprehension, evolution, specifications and testing are research areas overlapping each other in terms of terminology.
 
 In this proposal, we will use precise set of definitions.
-We do not claim ownership of these definitions --- they have been established using various ressources --- nor rightfulness over other definitions.
+We do not claim ownership of these definitions, they have been established using various ressources \cite{Avizienis2004,Pratt2001,Burnstein2006,Radatz1990,Whittaker2012}.
 
 We limit software maintenance to the following three artifacts:
 
@@ -47,7 +75,7 @@ These artifacts are produced in response to the following phenomenons:
 \begin{itemize}
 	\item Software Bug: A software bug is an error, flaw, failure, defect or fault in a computer program or system that causes it to violate at least one of its functional or nonfunctional requirements.
 	\item Error: An error is a mistake, misconception, or misunderstanding on the part of a software developer.
-	Fault/defect: According to ISO 10303 a fault (defect) is defined as an abnormal condition or defect at the component, equipment, or subsystem level which may lead to a failure. A fault (defect) is not final (the system still works) and does not prevent a given feature to be accomplished.  A fault (defect) is a deviation (anomaly) of the healthy system that can be caused by an error or external factors (hardware, third parties, ...).
+	Fault/defect: A fault (defect) is defined as an abnormal condition or defect at the component, equipment, or subsystem level which may lead to a failure. A fault (defect) is not final (the system still works) and does not prevent a given feature to be accomplished.  A fault (defect) is a deviation (anomaly) of the healthy system that can be caused by an error or external factors (hardware, third parties, ...).
 	\item Failure: The inability of a software system or component to perform its required functions within specified requirements.
 	\item Crash: The software system encountered a fault (defect) that triggered a fatal failure from which the system could not recover from/overcome. As a result,  the system stopped.
 \end{itemize}
@@ -70,6 +98,19 @@ Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristi
 \item Number of Churns:  The number of lines modified. However, the churn value for a line change should be at least two as the line had to be deleted first and then added back with the modifications.
 \end{itemize}
 
+Modern version control systems also support branching.
+A branch is a derivation in the evolution that contain a duplication of the source code so that both versions can be modified in parallel.
+Branches can be reconciled with a merge operation that merge modification from the two branches.
+This operation is completely automated at the exception of merge conflicts that arise when both branches contain modification on the same line.
+Such conflicts cannot be reconciled automatically and have to be dealt with by developer.
+This allows for a greater agility among developers as changes one branch do not affect other developers of other branches.
+
+Branching have been used for more than testing hazardous refactoring or testing framework upgrades.
+Indeed, task branching is an agile branching strategy where a new branch is created for each task\cite{MartinFowler2009}.
+It is common to see branch names {\tt 123\_implement\_X} where {\tt 123} is the {\tt \#id} of tasks {\tt X} given by the project tracking systems.
+Project tracking systems are presented in Section\ref{sec:issue-tracking}.
+
+
 \subsubsection{Providers\label{sec:revision-provider}}
 
 In this proposal, we mainly refer to three version control systems: {\tt Svn}, {\tt Git} and, to a lesser extent, {\tt Mercurial}.
@@ -86,8 +127,8 @@ These systems are also used by development teams to keep track of the modificati
 
 The life cycle of a report is as follows: After an  it is s submitted by an end-user, it is set to the {\tt UNCONFIRMED} state until it receives enough votes or that a user with the proper permissions modifies its status to {\tt NEW}.
 The report is then assigned to a developer to be fixed.
-When the report is in the {\tt ASSIGNED} state, the assigned developer(s) starts working on the issue.
-A fixed issue moves to the {\tt RESOLVED} state. Developers have five different possibilities to resolve an issue: {\tt FIXED}, {\tt DUPLICATE}, {\tt WONTFIX}, {\tt WORKSFORME} and {\tt INVALID}.
+When the report is in the {\tt ASSIGNED} state, the assigned developer(s) starts working on the report.
+A fixed report moves to the {\tt RESOLVED} state. Developers have five different possibilities to resolve a report: {\tt FIXED}, {\tt DUPLICATE}, {\tt WONTFIX}, {\tt WORKSFORME} and {\tt INVALID}.
 
 \begin{itemize}
 	\item {\tt RESOLVED/FIXED}: A modification to the source code has been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the root problem described in the report.
@@ -100,7 +141,9 @@ A fixed issue moves to the {\tt RESOLVED} state. Developers have five different 
 Finally, the report is {\tt CLOSED} after it is resolved.
 A report can be reopened (sent to the {\tt REOPENED} state) and then assigned again if the initial fix was not adequate (the fix did not resolve the problem).
 The elapsed time between the report marked as the new one and the resolved status are known as the {\it fixing time}, usually in days.
-If the issue is reopened: the days between the time the report is reopened and the time it is marked again as {\tt RESOLVED/FIXED} are cumulated.
+In case of task branching, the branch associated with the report is marked as ready to be merged.
+Then, the person in charge (quality assurance team, manager, ect...) will be able to merge the branch with the mainline.
+If the report is reopened: the days between the time the report is reopened and the time it is marked again as {\tt RESOLVED/FIXED} are cumulated.
 Reports can be reopened many times.
 
 Tasks, follow a similar life cycle at the exception of the {\tt UNCONFIRMED} and {\tt RESOLVED} states.
@@ -117,7 +160,7 @@ The possible severities are
 	\item blocker: blocks development and/or testing work.
 	\item critical: crashes, loss of data, severe memory leak.
 	\item major: major loss of function.
-	\item normal: regular issue, some loss of functionality under
+	\item normal: regular report, some loss of functionality under
  specific circumstances.
   \item minor: minor loss of function, or other problem where easy workaround is present.
 	\item trivial: cosmetic problem like misspelled words or misaligned text.
@@ -125,11 +168,11 @@ The possible severities are
 
 The relationship between an report or a task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}).
 This reason is that they are in two different systems: the version control system and the project tracking system.
-While it is considered a good practice to link each issue with the source code revision system by indicating the issue $\#id$ on the modification message, more than half of the issues are not linked to a modification\cite{Wu2011}.
+While it is considered a good practice to link each report with the source code revision system by indicating the report $\#id$ on the modification message, more than half of the reports are not linked to a modification\cite{Wu2011}.
 
 \subsubsection{Providers\label{sec:bug-provider}}
 
- In this proposal, we have collected data from four different project tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$.
+We have collected and plan to collect data from four different project tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$.
  $Bugzilla$ belongs to the Mozilla foundation and has first been released in 1998.
  $Jira$, provided by Altassian, has been released 14 years ago, in 2002.
  $Bugzilla$ is 100\% open source and it's difficult to estimate how many project uses it.
@@ -137,18 +180,27 @@ While it is considered a good practice to link each issue with the source code r
  $Jira$, in the other hand, is a commercial software --- with a freemium business model --- and Altassian claims that they have 25,000 customers over the world.
 
 $Github$ and $Sourceforge$ are different from $Bugzilla$ and $Jira$ in a sense that they were created as source code revision system and evolve, later on, to add project tracking capabilities to their softwares.
-This common particularity have the advantage to ease the link between issues and source code.
+This common particularity have the advantage to ease the link between reports and source code.
 
 \section{Thesis Contributions}
 
-In this section we present the problems in the literature (Section \ref{sec:pb-litterature}), the research challenges we face in our work (Section \ref{sec:challenges}). Sections \ref{sec:scope} and \ref{sec:objective-thesis} present the scope and the contributions of this research.
+In this section we present the problems in the literature (Section \ref{sec:pb-litterature}) and the research challenges we face in our work (Section \ref{sec:challenges}). Sections \ref{sec:scope} and \ref{sec:objective-thesis} present the scope and the contributions of this research.
 
 \subsection{Problems in the Literature\label{sec:pb-litterature}}
 
 \begin{itemize}
-	\item {\bf Problem 1}: As shown by Figure \ref{fig:scholar}, the proportion of empirical studies and studies based on mining software repositories regarding to software quality has been increasing exponentially since 2010 (\cite{Kim2011a,Lee2011a,Sun2011,Bhattacharya2011,Tian2012a,Zimmermann2012, Shang2013, Chen2014, McIntosh, Hemmati2015} are some noticeable examples).
-	While hundreds of bug prediction papers have been published by academia over the last decade, the developed tools and approaches fail to change developer behavior while deployed in industrial environment	\cite{Lewis2013}.
-	This is mainly due to the lack of actionable messages, i.e. messages that provide concrete steps to resolve the problem at hand.
+
+		\item {\bf Problem 1}: The literature contains numerous papers about tools that improve the overall software quality with static \cite{Dangel2000, burn2003checkstyle, Hovemeyer2007, Moha2010} and dynamic \cite{Nayrolles,Nayrolles2013a,Palma2013} analysis.
+		At a few exceptions (such as \cite{Lopez2011, Montandon2013}), these tools do not account for the context of project.
+		By context, we refer to past versions, reports, comments or any direct and undirect software artifact that could help provide precise step to resolve a given warning.
+
+		\item {\bf Problem 2}: Tools aiming to ease maintenance processes do not integrate themselves seamlessly in the  five steps of maintenance: acknowledge a report or a task, create a branch, fix or enhance source code, test, mark branch as ready	\cite{Kamiya2002a, Nayrolles,Nayrolles2013a,Jeffrey2009,Chen2013,Gavrilov2013,Jin2012,Nessa2008,Dallmeier,Nayrolles2015a,demange2013,Jiang2007,Iss2009}.
+		Indeed most of the tools are plain-old tools, at the exception of IDE plugins \cite{Kamiya2002a, Hovemeyer2007}, that maintainer have to install and update manually.
+		Then, for each completed task, the tools have to be started and their results analyzed: false positive discarded and warning messages decrypted.
+		This among other things, are barriers to their broad adoption \cite{Johnson2013,Lewis2013}.
+
+		\item {\bf Problem 3}: As shown by Figure \ref{fig:scholar}, the proportion of empirical studies and studies based on mining software repositories regarding to software quality has been increasing exponentially since 2005 (\cite{Kim2011a,Lee2011a,Sun2011,Bhattacharya2011,Tian2012a,Zimmermann2012, Shang2013, Chen2014, McIntosh, Hemmati2015} are some noticeable examples).
+		Yet, the field lack of a clear taxonomy to be able to compare approaches efficiently and replicate experiments\cite{Hassan2008,Godfrey2009}.
 
 	\begin{figure}[h!]
 	  \centering
@@ -156,22 +208,7 @@ In this section we present the problems in the literature (Section \ref{sec:pb-l
 	    \caption{Proportion of papers containing ``Empirical Study'' or ``Mining software repository'' with regards to the paper in Software quality indexed by Google Scholar	\label{fig:scholar}}
 	\end{figure}
 
-	\item {\bf Problem 2}: The literature contains numerous papers about tools that improve the overall software quality with static \cite{Dangel2000, burn2003checkstyle, Hovemeyer2007, Moha2010} and dynamic \cite{Nayrolles,Nayrolles2013a,Palma2013} analysis. To the best of our knowledge approaches leveraging other sources to improve quality or efficiency mostly rely on web-search \cite{Brandt2009,Rahman2013,Montandon2013}.
-
-	\item {\bf Problem 3}: There is no approach that supports the natural language search and comparison of issues, source code and tasks regardless of the project, repository, revision and issue management system and programming language. Such an approach could dramatically transform software engineering processes. Moreover, the data contained in these repositories lack a taxonomy, as for clone detection \cite{CoryKapser}, to classify the research.
 \end{itemize}
-
-\subsection{Research Challenges\label{sec:challenges}}
-
-\begin{itemize}
-	\item {\bf Challenge 1} : Issues \& projects and revision systems are plenty and they all have specific processes and limitations. Mining them all in order to have a representative model is challenging. Despite the parsing aspect, terabytes of new data are generated every day thus, storing and accessing to these data in reasonable time will require innovations in high density nosql databases \cite{Nayrolles2014b} and web servers \cite{Nayrolles2013b}. Moreover, creating the relationship between both systems is still an open issue as discussed in sections \ref{sec:issue-tracking} and \ref{rel:issue-rela}.
-
-	\item {\bf Challenge 2}: Providing code samples broke down to the right level, at the right time in order to solve a problem  or improve the current code in terms of quality, performances or reliability during a programming session will force us to improve current approaches of source code transformation and normalization \cite{Cordy2006a, Cordy2006, Roy2008, Cordy2011}.
-\end{itemize}
-
-\subsection{Scope of the research \label{sec:scope}}
-
-The area of this research is to improve the processes of software engineering by providing contextual information, in order to improve the quality, the performance, the reliability of a given code during a programming session. These contextual information will come from the mining issue \& project and revision systems. Hence, we will not define what are the good or bad practices to improve the quality, the performance, the reliability of a given code but rely on the mined data.
 
 \subsection{Thesis contributions\label{sec:objective-thesis}}
 
