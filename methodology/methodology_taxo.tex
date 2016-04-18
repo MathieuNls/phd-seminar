@@ -62,7 +62,7 @@ following research questions:
 \end{itemize}
 
 
-\subsection{Study Setup}
+\section{Study Setup}
 
 Figure \ref{fig:bug-taxo-flow} illustrates our data collection and analysis
 process that we present here and discuss in more detail in the
@@ -90,7 +90,7 @@ for fixes or patch. Finally, we analyze these characteristics to
 answer the aforementioned research questions (RQ).
 
 
-\subsection{Datasets}
+\section{Datasets}
 
 In this study, we used two distinct datasets: Netbeans and
 the Apache Software Foundation projects. Netbeans is an
@@ -128,7 +128,7 @@ management systems. Finally, the cumulated opening time for
 all the bugs reaches 10,661 working years (3,891,618
 working days).
 
-\subsection{Study Design}
+\section{Study Design}
 
 We describe the design of our study by first stating the
 research questions, and then explaining the variables, and
@@ -144,7 +144,7 @@ questions address the complexity of the bugs and the bug
 fixing duration according to the type of bugs.
 1)
 
-\subsubsection{RQ 1: What are the proportions of different types of bugs?}
+\subsection{RQ 1: What are the proportions of different types of bugs?}
 
 The answer to this question provides insight into the
 distribution of bugs according to their type with a focus on
@@ -205,7 +205,7 @@ reject the null hypothesis $H_{01A}$ and conclude that the
 proportion of types 3 and 4 bugs is different from the
 proportion of type 1 and 2 bugs for each system.
 
-\subsubsection{RQ 2: How complex is each type of bugs?}
+\subsection{RQ 2: How complex is each type of bugs?}
 
 We address the relation between Types 2 and 4 bugs and
 the complexity of the bugs in terms of severity, duplicate and
@@ -248,7 +248,7 @@ conclude the fact that the bug is more likely to be duplicated
 we reject $H_{02S}$ and conclude that the severity level of the bug
 is related to the bug type.
 
-\subsubsection{RQ 3 : How fast are these types of bugs fixed ?}
+\subsection{RQ 3 : How fast are these types of bugs fixed ?}
 
 In this question, we study the relation between the
 different types of bugs and the fixing time. We are interested
@@ -283,13 +283,13 @@ hypothesis H 03 and conclude that the average fixing time of
 Types 1 and 3 bugs is significantly different from the average
 fixing time of Types 2 and 4 bugs.
 
-\subsection{Study result and discussion}
+\section{Study result and discussion}
 
 In this section, we report on the results of the analyses we
 performed to answer our research questions. We then dedicate
 a section to discussing the results.
 
-\subsubsection{RQ 1 : What are the proportions of different types of
+\subsection{RQ 1 : What are the proportions of different types of
 bugs?}
 
 Figure \ref{fig:bug-taxo-rq1} shows the percentage of the different types of
@@ -356,7 +356,7 @@ not related to a specific system.
     }%
 }
 
-\subsubsection{RQ 2 : How complex is each type of bugs?}
+\subsection{RQ 2 : How complex is each type of bugs?}
 
 Figure \ref{fig:bug-taxo-rq2-prop-apache} and \ref{fig:bug-taxo-rq2-prop-netbeans} show the proportion of each bug type with
 respect to their severity for each dataset. Table V shows the
@@ -520,7 +520,7 @@ between the duplication of a bug and its type.
     }%
 }
 
-\subsubsection{RQ 3 : How fast are these types of bugs fixed ?}
+\subsection{RQ 3 : How fast are these types of bugs fixed ?}
 
 Figure \ref{fig:bug-taxo-rq3} shows the fixing time for Types 1 and 3 versus
 Types 2 and 4 for Netbeans and the Apache Software
@@ -673,5 +673,3 @@ reproduction and triaging, prediction of reopening,
 duplication, severity, files to fix and fixing time. Moreover, if
 one could predict the type of a bug at submission time, all
 these areas could be improved.
-
-In order to ease all these future works we built {\tt BUMPER} that we present in the next section.

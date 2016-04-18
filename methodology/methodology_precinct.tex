@@ -86,7 +86,7 @@ We have selected TXL for several reasons. First, TXL is easy to install and to i
 Second, it was relatively easy to create a grammar that accepts commits as input.
 This is because TXL is shipped with C, Java, Csharp, Python and WSDL grammars that define all the particularities of these languages, with the ability to customize these grammars to accept changesets (chunks of the modified source code that include the added, modified, and deleted lines) instead of the whole code.
 
-\input{algorithm}
+\input{methodology/algorithm}
 
 Algorithm~\ref{alg:extract} presents an overview of the ``extract" and ``save" blocks operations of PRECINCT. This algorithm receives as arguments, the changesets, the blocks that have been previously extracted and a boolean named compare\_history.
 Then, from Lines 1 to 9 lie the $for$ loop that iterates over the changesets. For each changeset (Line 2), we extract the blocks by calling the $~extract\_blocks(Changeset~cs)$ function.
@@ -129,7 +129,7 @@ The pretty-printing allows NICAD to detect Segments 1 and 2 as a clone pair beca
 This specific example would not have been marked as a clone by other  tools we tested such as Duploc\cite{Ducasse1999}.
 In addition to the pretty-printing, code can be normalized and filtered to detect different classes of clones and match user preferences.
 
-\input{pretty-printing-table.tex}
+\input{methodology/pretty-printing-table.tex}
 
 Finally, the extracted, pretty-printed, normalized and filtered blocks are marked as potential clones using a Longest Common Subsequence (LCS) algorithm\cite{Hunt1977}. Then, a percentage of unique statements can be computed and, depending on a given threshold (see Section~\ref{sec:Experimentations}), the blocks are marked as clones.
 
@@ -238,14 +238,14 @@ F_1-measure = 2 * \frac{precision * recall}{precision + recall}
 \end{equation}
 
 
-\input{plot-result}
+\input{methodology/plot-result}
 
 \subsubsection{Results}
 \label{sub:Results}
 
 Figures~\ref{fig:r1},~\ref{fig:r2},~\ref{fig:r3} show the results of our study in terms of clone pairs that are detected per revision for our three subject systems: Monit, JHotDraw and Dnsjava. We used as baseline for comparison the clone pairs detected by NICAD. The blue line shows the clone detection performed by NICAD. The red line shows the clone pairs detected by PRECINCT. The brown line shows the clone pairs that have been missed by PRECINCT. As we can quickly see, the blue and red lines almost overlap, which indicates a good accuracy of the PRECINCT approach.
 
-\input{table-result}
+\input{methodology/table-result}
 
 Table~\ref{tab:result} summarizes PRECINCT's results in terms of precision, recall, F$_{1}$-measure, execution time and output reduction.
 The first version of Monit contains 85 clone pairs and this number stays stable until Revision 100. From Revision 100 to 472 the detected clone pairs vary between 68 and 88 before reaching 219 at Revision 473.
