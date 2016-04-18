@@ -24,7 +24,7 @@ list of functions output when an uncaught exception in Java
 occurs (i.e., the crash trace) to guide a model checking engine
 to uncover the statements that caused the crash. While we do not filter any personal information that may appear in the crash trace, JCHARMING  raises less privacy concerns than a tool recording every call or dump the content of the memory.
 
-To assess the effiency of {\tt JCHARMING} we try to reproduce issues contained in {\tt BUMPER}.
+To assess the effiency of {\tt JCHARMING} we try to reproduce bug reports contained in {\tt BUMPER}.
 
 \subsection{Preliminaries}
 
@@ -537,57 +537,46 @@ occurred during event dispatching:''}
 The reporter also attached the following crash trace that we
 used as input for JCHARMING:
 
-\noindent\fbox{%
-    \parbox{\textwidth}{%
-1. java.lang.NullPointerException:\\
-2. at\\
+\begin{lstlisting}
+
+1. java.lang.NullPointerException:
+2. at
 3. uci.uml.ui.props.PropPanelAttribute
-.setTargetInternal (PropPanelAttribute.java)\\
+.setTargetInternal (PropPanelAttribute.java)
 4. at uci.uml.ui.props.PropPanel.
-setTarget(PropPanel.java)\\
-5. at uci.uml.ui.TabProps.setTarget(TabProps.java)\\
+setTarget(PropPanel.java)
+5. at uci.uml.ui.TabProps.setTarget(TabProps.java)
 6. at uci.uml.ui.DetailsPane.setTarget
-(DetailsPane.java)\\
+(DetailsPane.java)
 7. at uci.uml.ui.ProjectBrowser.select
-(ProjectBrowser.java)\\
+(ProjectBrowser.java)
 8. at uci.uml.ui.NavigatorPane.mySingleClick
-(NavigatorPane.java)\\
+(NavigatorPane.java)
 9. at uci.uml.ui.NavigatorPane\$Navigator
-MouseListener.mouse Clicked(NavigatorPane.java)\\
+MouseListener.mouse Clicked(NavigatorPane.java)
 10.at
 java.awt.AWTEventMulticaster.mouseClicked
-(AWTEventMulticaster.java:211)\\
-11.
-at
-java.awt.AWTEventMulticaster.mouseClicked
-(AWTEvent
-Multicast er.java:210)\\
-12.at
-java.awt.Component.processMouseEvent
-(Component.java:3168)\\
-...\\
+(AWTEventMulticaster.java:211)
+11. at java.awt.AWTEventMulticaster.mouseClicked
+(AWTEvent Multicaster.java:210)
+12.at java.awt.Component.processMouseEvent
+(Component.java:3168)
+...
 19. java.awt.LightweightDispatcher
-.retargetMouseEvent (Container.java:2068)\\
-22.
-at java.awt.Container
-.dispatchEventImp l(Container.java:1046)\\
-23.
-at java.awt.Window
-.dispatchEventImpl (Window.java:749)\\
-24.
-at java.awt.Component
-.dispatchEvent (Component.java:2312)\\
-25.
-at java.awt.EventQueue
-.dispatchEvent (EventQueue.java:301)\\
-28.
-at java.awt.EventDispatchThread.pumpEvents\\
+.retargetMouseEvent (Container.java:2068)
+22. at java.awt.Container
+.dispatchEventImp l(Container.java:1046)
+23. at java.awt.Window
+.dispatchEventImpl (Window.java:749)
+24. at java.awt.Component
+.dispatchEvent (Component.java:2312)
+25. at java.awt.EventQueue
+.dispatchEvent (EventQueue.java:301)
+28. at java.awt.EventDispatchThread.pumpEvents
 (EventDispatch Thread.java:90)
-29.
-at java.awt.EventDispatchThread.run(EventDispatch
+29. at java.awt.EventDispatchThread.run(EventDispatch
 Thread.java:82)
-    }%
-}
+\end{lstlisting}
 
 The cause of this bug is that the reference to the attribute of
 the class was lost after being displayed on the left panel of
@@ -626,21 +615,19 @@ suppressed and stayed in the crash trace. That is,
 JCHARMING produced only the 6 (out of 7) first lines and
 reached 83\% similarity, and thus a partial reproduction.
 
-\noindent\fbox{%
-    \parbox{\textwidth}{%
+\begin{lstlisting}
 
-1. java.lang.IllegalArgumentException: null source\\
+1. java.lang.IllegalArgumentException: null source
 2. at java.util.EventObject.<init>(
-EventObject.java:38)\\
-3. at\\
+EventObject.java:38)
+3. at
 4 org.jfree.chart.ChartMouseEvent.<init>
-(ChartMouseEvent.java:83)\\
+(ChartMouseEvent.java:83)
 5. at org.jfree.chart.ChartPanel
-.mouseMoved(ChartPanel.java:1692)\\
+.mouseMoved(ChartPanel.java:1692)
 6. $<$deleted entry$>$
 
-    }%
-}
+\end{lstlisting}
 
 In all bugs that were partially reproduced, we found that the
 differences between the crash trace generated from the model
@@ -656,31 +643,29 @@ For the bug \#47957 belonging to Log4j and reported in late
 exist; it throws a NullPointerException. Following is the
 exception trace:}'' and attached the following crash trace:
 
-\noindent\fbox{%
-    \parbox{\textwidth}{%
+\begin{lstlisting}
 
 1. 10052009 01:36:46 ERROR [Default: 1]
 struts.CPExceptionHandler.execute
 RID[(null;25KbxlK0voima4h00ZLBQFC;236Al8E60000045C3A
-7D74272C4B4A61)] \\
-2. Wrapping Exception in ModuleException\\
-3. java.lang.NullPointerException\\
+7D74272C4B4A61)]
+2. Wrapping Exception in ModuleException
+3. java.lang.NullPointerException
 4. at org.apache.log4j.net.SyslogAppender
-.append(SyslogAppender.java:250)\\
+.append(SyslogAppender.java:250)
 5. at org.apache.log4j.AppenderSkeleton
-.doAppend(AppenderSkeleton.java:230)\\
+.doAppend(AppenderSkeleton.java:230)
 6. at org.apache.log4j.helper.AppenderAttachableImpl
 .appendLoopOnAppenders(AppenderAttachableImpl
-.java:65)\\
+.java:65)
 7. at org.apache.log4j.Category.callAppenders
-(Category.java:203)\\
+(Category.java:203)
 8. at org.apache.log4j.Category
-.forcedLog(Category.java:388)\\
+.forcedLog(Category.java:388)
 9. at org.apache.log4j.Category.info
 (Category.java:663)
 
-    }%
-}
+\end{lstlisting}
 
 The first three lines are not produced by the standard
 execution of the SUT but by an ExceptionHandler belonging

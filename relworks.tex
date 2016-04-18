@@ -137,3 +137,35 @@ While hundreds of bug prediction papers have been published by academia over the
 This is mainly due to the lack of actionable message, i.e. messages that provide concrete steps to resolve the problem at hand.
 
 {\tt pErICOPE} (Ecosystem Improve source COde during Programming session with real-time mining of common knowlEdge), our proposed ecosystem, will be different in a sense that we will provide actionable messages as presented in Section \ref{sec:objective-thesis}.
+
+
+\section{Clone Detection}
+\label{sec:rel-clones}
+
+Clone detection is an important and difficult task. Throughout the years, researchers and practitioners have developed a considerable number of methods and tools in order to detect efficiently source code clones.
+
+Text-based techniques use the code --- often raw (e.g. with comments) --- and compare sequences of code (blocks) to each other in order to identify potential clones. Johnson was perhaps the first one to use fingerprints to detect clones\cite{Johnson1993,Johnson1994}. Blocks of code are hashed, producing fingerprints that can be compared.
+If two blocks share the same fingerprint, they are considered as clones.
+Manber et al. \cite{Manber1994} and Ducasse et al.\cite{Ducasse1999} refined the fingerprint technique by using leading keywords and dot-plots.
+
+Tree-matching and metric-based are two sub-categories of syntactic analysis for clone detection.
+Syntactic analysis consists of building abstract syntax trees (AST) and analyse them with a set of dedicated metrics or searching for identical sub-trees.
+Many approaches using AST have been published using sub-tree comparison including the work of Baxter et al.\cite{Baxter1998}, Wahleret et al. \cite{Wahler}, or more recently, the work of Jian et al. with Deckard \cite{Jiang2007}.
+An AST-based approach compares metrics computed on the AST, rather than the code itself, to identify clones \cite{Patenaude1999, Balazinska}.
+
+Another approach to detect clones is to use static analysis and to leverage the semantics of the program to improve the detection.
+These techniques rely on program dependency graphs where nodes are statements and edges are dependencies.
+Then, the problem of finding clones is reduced to the problem of finding identical sub-groups in the program dependency graph.
+Examples of recent techniques that fall into this category are the ones presented by Krinke et al.\cite{Krinke2001} and  Gabel et al. \cite{Gabel2008}.
+
+Many clone detection tools have been created using a lexical approach for clone detection. Here, the code is transformed into a series of tokens. If sub-series repeat themselves, it means that a potential clone is in the code. Some popular tools that use this technique include, but not limited to, Dup\cite{Baker}, CCFinder\cite{Kamiya2002}, and CP-Miner\cite{Li2006}.
+
+Furthermore, a large number of taxonomies have been published in an attempt to classify  clones and ease the research on clone detection\cite{Mayrand1996,Balazinska1999,Koschke2006,Bellon2007,Kontogiannis,Kapser}.
+
+Other active research activities in clone detection focus on clone removal and management. Once detected, an obvious step is to provide approaches to remove clones in an automatic way or (at least) keep track of them if removing them is not an option.
+Most modern IDEs provide the \textit{extract method} feature that transforms a potentially copy-pasted block of code into a method and a call to the newly generated method\cite{Komondoor,higo2004refactoring}.
+More advanced techniques (see Codelink\cite{Toomim} and\cite{Duala-Ekoko2007}) involve analysing the output of CCFinder\cite{Kamiya2002a,Livieri2007} or program dependencies graphs\cite{higo2004refactoring} to automatically suggest a method that would go through the \textit{extract method} process.
+
+The aforementioned  techniques, however, focus on detecting clones after they are inserted in the code. Only a few studies focus on preventing the insertion of clones. Lague et al. \cite{Lague} conducted a very large empirical study with 10,000 developers over 3 years, where developers where asked to use clone detection tools during the development process of a very large telecom system. The authors found that while clones are being removed over time, using clone detection tools help improving the quality of the system as it prevents defects to reach the customers. Duala et al. \cite{Duala-Ekoko2007,Duala-Ekoko2010} proposed to create clone region descriptors (CRDs), which describe clone regions within methods in a robust way that is independent from the exact text of the clone region or its location in a file. Then, using CRDs, clone insertion can be prevented.
+
+PRECINCT aims to prevent clone insertion while integrating the clone detection process in a transparent manner in the day-to-day development process. This way, software developers do not have to resort to external tools to remove clones after they are inserted. Our approach operates at commit time, notifying software developers of possible clones as they commit their code.

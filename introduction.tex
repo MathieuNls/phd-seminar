@@ -213,24 +213,77 @@ In this section we present the problems in the literature (Section \ref{sec:pb-l
 \subsection{Thesis contributions\label{sec:objective-thesis}}
 
 Figure \ref{fig:proposal} depicts our proposed solution for fulfilling our objectives.
-First of all, an end-user (team member) will report an issue (open a task) in one the organization issues \& project management system. This can be done in $Sourceforge$, $Bugzilla$, $JIRA$ or $Github$ which are the systems we want to support first as described in section \ref{sec:bug-provider}.
+More specifically, this figure describes how our different contribution interface themselves in a classical maintenance process supported by feature branching.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.9]{media/proposal.png}
+	\includegraphics[scale=0.25]{media/proposal.png}
 	\caption{Proposed Architecture}
 	\label{fig:proposal}
 \end{figure}
 
+During maintenance process supported by feature branching.
+First, a developer will browse the project management system and acknoledge reports or tasks assigned to him.
+Assigning reports or issues to developers is known as triaging.
+There have been research on how to perform automated triaging that determines which developer is the best suited to accomplish it\cite{Saha2014, Tamrawi2011, Bortis2013}.
+We do not propose ameliorations in the field of triaging.
 
-Issues (tasks) are  mapped with their fixes (implementations) inside {\tt BUMPER} (BUg MetarePository for dEvelopers and Researchers). The source code is fetched from the supported version system: $Git$, $Svn$, $Mercurial$ presented in section \ref{sec:version-control}.
-{\tt BUMPER} is a meta-repository that makes issues, tasks and related source code searchable using natural language  (in opposition to structured query language).
-When an issue is reported, {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) will fetch the content of the issue and try to create a scenario to reproduce the on-field crash. In case of success, the developer assigned to this issue will be notified and the scenario stored in {\tt BUMPER}.
-The developer assigned to the task or the issue will modify the code and, in real time, very much like intellisense or auto-completion in modern IDE, {\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) will propose improvements or follow up on the developer's code using the decades of history stored in {\tt BUMPER}. Once s/he is done, s/he submit a commit, patch or diff to the version system.
-However, before s/he allowed to do so, {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at commit time) will kick in and query {\tt BUMPER} looking for similar modifications in other projects and even other programming languages that led to the insertion of a defect in order to warn the user about potential hazardous code.
+The second step will be to create a feature branch for the report or the issue at hand.
+Creating a feature branch is a straighforward command, for example $git checkout -b 123\_task\_name$ for git.
+We can identify which task or report is being tackle by the developer with the name of the branch and automatically fetch relevant informations such as steps to reproduce the reports or similar reports closed in the past.
+We do that using a pre-checkout and one of our contribution:{\tt BUMPER} (Bug Metarepository for Research and DevelopeRs).
 
+A hook is a process that can be implemented to receive the  modification to the source code done by the developer.
+Hooks are custom scripts set to fire off before and after versionning actions occur.
+There are two types of hooks: client-side and server-side.
+Client-side hooks are triggered by operations such as committing and merging, whereas server-side hooks run on network operations such as receiving pushed commits.
+These hooks can be used for all sorts of reasons such as compliance to coding rules or automatic run of unit test suites.
 
-The bug taxonomy required to build {\tt BUMPER}, {\tt BUMPER} itself, {\tt JCHARMING}, {\tt RESSEMBLE} and {\tt BIANCA} are presented in sections \ref{sec:taxo}, \ref{sec:BUMPER}, \ref{sec:JCHARMING}, \ref{sec:RESEMBLE} and \ref{sec:BIANCA}, respectively. In addition, we list parts that have been published in peer-reviewed conferences in section \ref{sec:current-state} and our publication plan in \ref{sec:publication-plan}.
+Leveraging the hook-feature, we can fetch information from a central repository called {\tt BUMPER} (Bug Metarepository for Research and DevelopeRs) about the task or report at hand.
+{\tt BUMPER} is a meta-repository that makes reports, tasks and related source code searchable using a structured API.
+{\tt BUMPER} contains several adaptator to fetch new reports and tasks submitted to project management systems.
+It updates itself every night.
+
+When a report is created, {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) will fetch the content of the issue and try to create a scenario to reproduce the on-field crash.
+In case of success the scenario is stored in {\tt BUMPER}.
+
+Consequently, at branching-time, we can add the scenarios to reproduce the report directly inside the source code and recommend similar reports.
+We provide {\it accurate} and {\it contextual} information in a transparent manner for the developer.
+Indeed, the reproduction of a field-crash is binary, reproduced or not. In addition, this process occurs directly inside the versionning system that the maintainer already uses.
+
+At this point, the maintainers start editing the code and commit their changes to their local branch.
+For each commit, we perform two operations on the local history: clones insertion and co-change recommendation using {\tt PRECINCT} (PREventing Clones INsertion at Commit Time) and {\tt RESSEMBLE} (REcommendation System based on cochangE Mining at Block LEvel).
+Once again, we leverage hooks, and more specifically pre-commits hooks to do so.
+For each commit, we are able to prevent the insertion of a clone before it reaches to central repository and recommend changes based on mining similar co-changes at block level.
+This is possible because the local branch of the developer contains all the history of the project, from its begining to the present.
+At commit-time, we provide {\tt contextualised} advice directely into the source versionning system to improve the software before the changes reach the central repository.
+Figure \ref{fig:precinct-intro} presents an output of {\tt PRECINCT}, directly in the source versionning system.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.7]{media/commit.png}
+	\caption{{\tt PRECINCT} sample output}
+	\label{fig:precinct-intro}
+\end{figure}
+
+When maintainers are confident enough to share their changes, they will push them to the central repository.
+Using a server-side push hook, we can analyse the source code pushed by the maintainer.
+Our last tool, {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at psuh time), analyzes the change pattern performed by the maintainer in order to identify if it this pattern is likely to introduce a default in the application.
+{\tt BIANCA} does this by analyzing every changes ultimately led to a report.
+In case of a match, {\tt BIANCA} displays the matching source code to the maintenainer.
+The matching source code that led to a report and its subsequent modifications to fix that report are actionnable messages.
+Indeed, the maintainers are informed their modifications raised a warning and they can see how to transform their code, based on the provided example, if they decide to take action.
+Futhermore, the reasonning behind {\tt BIANCA}'s warning is obvious: the submitted modification matches modification known to have introduced a deffect.
+At push-time, the response time of any analysis shall be as short as possible: maitainer are waiting for their modification syncrinized with the central repository.
+Hence, {\tt BIANCA} only checks for matches inside the current project history.
+At merge-time, however, we can compute more expensive operation.
+Indeed, the maitenaire submits the modification for integration to the mainline and the modification will be reviewed by other developers in code reviews.
+Consequently, {\tt BIANCA} checks for matching example in all known projects.
+{\tt BIANCA} uses the code normalizations and text-based clone detection technics \cite{Cordy2006,ROY2009,Cordy2011}.
+
+All these approaches have been designed with the aim to reduce known barriers of adoption, namely, actionable messages, obvious reasoning, scaling and contextualization\cite{Johnson2013, Hovemeyer2004, Lopez2011, Lewis2013}.
+
+\\
 
 As a motivating example, we draft the following scenario. Table \ref{tab:bumper-hypo} presents hypothetical data stored in {\tt BUMPER} in terms of sequence \#id, sequence of code blocks, a flag to know if a said sequence introduced an issue in a given system and step to reproduce the issue if any.
 
@@ -246,20 +299,17 @@ Seq \#ID & Language \#ID & Blocks & Root of Issue & Steps to reproduce \\ \hline
 \label{tab:bumper-hypo}
 \end{table}
 
-During a programming session, let's assume that a developer has implemented $A-B-C$, then {\tt RESEMBLE} will recommends to transform the current code to $A-A-B-C$ as it seems to be the right thing to do.
-If the developer follows {\tt RESEMBLE} recommendation and then adds another two $A$s, the sequence is now $A-A-B-C-A-A$.
-If the developer commit its changes, {\tt BIANCA} will raise a warning saying that this sequence is known to be the root of an issue and invite the developer to execute the steps $E-F-G$ -- that were produced by {\tt JCHARMING} -- in order to see if s/he did introduce a defect. Moreover, {\tt BIANCA} will take the time to compare $A-A-B-C-A-A$ and $D-E-A-C$ using our normalization algorithms even if they are not in the same programming language.
-Finally, when a new issue is submitted, {\tt BUMPER} indexes it and {\tt JCHARMING} tries to reproduce it and update the step to reproduce part of {\tt BUMPER}.
+During a maintenance activity, let's assume that a developer has commited $A-B-C$ to its local hisoty.
+Then, {\tt RESEMBLE} will recommends to transform the current code to $A-A-B-C$ as it seems to be the right thing to do.
+If the developer follows {\tt RESEMBLE} recommendation and then, adds another two $A$s, the sequence is transformed to $A-A-B-C-A-A$.
+If the developer commit its changes, {\tt BIANCA} will raise a warning saying that this sequence is known to be the root of an issue and invite the developer to execute the steps $E-F-G$ --- that were produced by {\tt JCHARMING} --- in order to see if s/he did introduce a defect.
+Moreover, {\tt BIANCA} will take the time to compare $A-A-B-C-A-A$ and $D-E-A-C$, at merge-time, using our normalization algorithms even if they are not in the same programming language.
+Finally, when a new report is submitted, {\tt BUMPER} indexes it and {\tt JCHARMING} tries to reproduce it and update the step to reproduce part of {\tt BUMPER}.
 
 We can envision the potential of such a system and its complexity, knowing that it would contain millions of issues, hundreds of thousand projects, dozens of programming languages and will help developers leveraging the knowledge of other developers.
 
-To summarize this thesis have four main contributions:
+In addition to these contributions, we want to provide a way to classify the research related to defaults in software maintenance.
+Such taxonomy will allow researchers to specialiaze on classes of defect and to be able to compare accurately their approaches with other, very much like the taxonmy that exists for clones detection \cite{CoryKapser}.
 
-\begin{itemize}
-	\item To provide a taxonomy of software issues to classify the research.
-	\item To propose approaches to aggregate as many issues and revisions systems as possible.
-	\item To propose approaches to reproduce field crashes in a lab environment using the issue content.
-	\item To propose a context-aware IDE that will improve day-to-day programming session with concise and appropriate code samples.
-\end{itemize}
 
 \section{Outline\label{sec:outline}}

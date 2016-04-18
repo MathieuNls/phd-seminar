@@ -1,18 +1,20 @@
 %!TEX root = ../research_proposal.tex
 
-\section{BIANCA - Bug Insertion ANticipation by Clone Analysis at commit time\label{sec:BIANCA}}
 
 {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at commit time) is the final piece of the proposed ecosystem and, as such, the final failsafe that prevents developer to ship code that we know to be sub-optimum or to be at the very root of issues.
-
-\subsection{Motivation\label{sec:bianca-motivation}}
 
 Many tools exist to prevent a developer to ship {\it bad} code \cite{Dangel2000,Hovemeyer2007,Moha2010} or to identify {\it bad} code after executions (e.g in test or production environment) \cite{Nayrolles,Nayrolles2013a}.
 However, these tools rely on metrics and rules to statically and/or dynamically identify sub-optimum code.
 
-\subsection{The {\tt BIANCA} approach\label{sec:bianca-approach}}
+\subsubsection{The {\tt BIANCA} approach\label{sec:bianca-approach}}
 
-{\tt BIANCA} is different than the tool presented in the previous section  because, as {\tt RESEMBLE} it fetches its data into the common knowledge of millions of projects and developers.
-More specifically, {\tt BIANCA} mines and analyzes the change patterns in commits and matches it against past commits known to have introduced a defect in the code (or that have just been replaced by better implementation). Figure \ref{fig:bianca-approach} presents an overview of our approach.
+{\tt BIANCA} is different than the approaches presented in the previous sections  because it mines and analyzes the change patterns in commits and matches it against past commits known to have introduced a defect in the code (or that have just been replaced by better implementation).
+Also, {\tt BIANCA} is an offline approach that is triggered by a merge request.
+When a maitainers estimate that their work are ready to be integrated with the main branch, they open a merge request\footnote{Also known as pull request}.
+Merging a task branch is not an instanteous process as the code need to pass code review.
+{\tt BIANCA} leverages this {\it down} time to perform a complete history check on all projects contained in {\tt BUMPER}. 
+
+Figure \ref{fig:bianca-approach} presents an overview of our approach.
 
 \begin{figure}[h!]
   \centering
@@ -48,7 +50,7 @@ We believe that the warning, alongside the previously mined change patterns and 
 Thus, {\tt BIANCA} could succeed, where other tools failed, at being used in industrial environment	\cite{Lewis2013}.
 
 
-\subsection{Early experiments}
+\subsubsection{Early experiments}
 
 We have experimented the efficiency of {\tt BIANCA} with the same datasets we used to build our bug taxonomy proposed in section \ref{sec:taxo}.
 
@@ -92,7 +94,7 @@ In our second experiment, we used the second normalization and {\tt BIANCA} rais
     \label{fig:bianca-exp-2}}
 \end{figure}
 
-\subsection{Planned experiments}
+\subsubsection{Planned experiments}
 
 {\tt BIANCA} experiments are still in their early stage and we are still trying to improve our normalizations in order to reduce the false positive rate. In addition to these improvements, we want to conduct the following additional experiments:
 

@@ -1,34 +1,9 @@
 %!TEX root = ../research_proposal.tex
 
-\section{RESEMBLE - REcommendation System based on cochangE Mining at Block LEvel\label{sec:RESEMBLE}}
+\subsection{RESEMBLE - REcommendation System based on cochangE Mining at Block LEvel\label{sec:RESEMBLE}}
 
-{\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) is a contextual recommendation system that will take place directly into developers' IDE. {\tt RESEMBLE} will leverage the decades of data indexed by {\tt BUMPER} to identify, on the fly, sub-optimum or hazardous code and display and actual solution to the problem.
+{\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) is a contextual recommendation system that will take the form of another pre-commit hook. {\tt RESEMBLE} will leverage the branches' history and the blocks extracted by {\tt PRECINCT} to identify, on the fly, sub-optimum or hazardous code and display and actual solution to the problem.
 
-\subsection{Motivation}
-
-Most of the context-aware IDE \cite{Brandt2009,JoelBrandt} rely on web-search (e.g. querying google and specialized website, such as stack overflow) to fetch their information.
-Other approaches such as the {\it learn API by examples} ones \cite{Kim2011,Montandon2013} do propose contextual examples, but programmers have to leave their IDE and search for a specific method or class in order to see examples on how to use it.
-While these approaches are useful and their authors were able to show their efficiency by using different groups of students, developers need to know what they don't know and search for it.
-Indeed, these approaches aggregate code samples and documentations but if one knows how to use a method, one will never use these services.
-Moreover, the said developer could be using this method in a suboptimal, dangerous or hazardous way.
-
-By mining co-change at block level, normalizing code and comparing it to code sample known to be suboptimal, dangerous or hazardous because, for example,  they led to the creation of an issue and a fix, {\tt RESEMBLE} will be able to recommend modifications in order to improve the overall quality of a given piece of code.
-
-\subsection{The {\tt RESEMBLE} approach}
-
-Figure \ref{fig:RESEMBLE-approach} displays a general overview of the {\tt RESEMBLE} approach. {\tt RESEMBLE} mine changes via a plug-in that developers will have to install on their favorite IDE.
-We plan to support Netbeans, Eclipse and Sublime Text.
-Then, the {\tt RESEMBLE} engine stands in two parts. The first part is local and runs on the developer's computer.
-This first part identifies the current block of code, normalize it, anonymize it and sent it to second part.
-The second part {\tt RESEMBLE} will query {\tt BUMPER} for related code sample and will build the contextual advices.
-
-\begin{figure}[h!]
-    \includegraphics[scale=0.9]{media/resemble-approach.png}
-    \caption{The RESEMBLE Approach
-    \label{fig:RESEMBLE-approach}}
-\end{figure}
-
-In the following sections, we present the detailed steps of {\tt RESEMBLE}.
 
 \subsubsection{Mining sequences of changes}
 
@@ -89,9 +64,9 @@ If the LCS is above an user-defined threshold, then a two different behaviors ca
 	\item If the modified blocks' --- and potentially of the ones that are likely to be modified after according to our sequential association rules --- normalizations match the normalization of blocks of code that are present in the history. {\tt RESEMBLE} computes the differences between the developer code and the history code in order to suggests what the developer have to do next.
 \end{itemize}
 
-\subsection{Planned experiments}
+\subsubsection{Planned experiments}
 
-We did not started the experiments for {\tt RESEMBLE} yet as the development of the IDE plugins is not complete. Nevertheless, we plan to conduct the following experiments:
+We did not started the experiments for {\tt RESEMBLE} yet. Nevertheless, we plan to conduct the following experiments:
 
 \begin{itemize}
 	\item Full history test with Normalization 1.
@@ -105,5 +80,5 @@ We did not started the experiments for {\tt RESEMBLE} yet as the development of 
 \end{itemize}
 
 We believe that {\tt RESEMBLE} will be a real asset in a developer tool belt in order to ship better code in terms of quality, performances and security.
-However, as {\tt RESEMBLE} aims to provide recommendations in real-time, it will not be able to be as exhaustive as an offline process.
+However, as {\tt RESEMBLE} aims to provide recommendations in at commit-time, using the local history and ressources, it will not be able to be as exhaustive as an offline process.
 To fill this gap, we built {\tt BIANCA} that we present in the next section.

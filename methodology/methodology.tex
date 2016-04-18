@@ -1,11 +1,165 @@
 %!TEX root = ../research_proposal.tex
 
-\chapter{Methodology\label{chap:methodology}}
+\chapter{Aggregating versionning systems and project managements systems}
 
-In this chapter, we present, in the details, each component involved in our proposed solution (Section \ref{sec:objective-thesis}). First, we describe the bug taxonomy we created in section \ref{sec:taxo}, then we present our four different approaches {\tt BUMPER}, {\tt JCHARMING}, {\tt RESEMBLE} and {\tt BIANCA} in sections \ref{sec:BUMPER}, \ref{sec:JCHARMING}, \ref{sec:RESEMBLE} and \ref{sec:BIANCA}, respectively.
+In this chapter, we present two approaches: {\tt BUMPER} and {\tt JCHARMING}.
+{\tt BUMPER} is the keystone of our proposed framework for programmatic software maintenance.
+The role of {\tt BUMPER} is to aggregate information beloging to versionning systems and project management systems.
+{\tt BUMPER} acts as our consolidated dataset.
 
-\input{methodology/methodology_taxo}
+{\tt JCHARMING} is an approach to reproduce field-faillure.
+Every time a bug report is submitted to a project management system and aggregated by {\tt BUMPER}, {\tt JCHARMING} will try to reproduce it.
+In case of success, the steps to reproduce the bug are saved in {\tt BUMPER}.
+
+The materials presented in this chapter are based on the following publications:
+
+\begin{itemize}
+	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. (2016). A Bug Reproduction Approach Based on Directed Model Checking and Crash Traces. Journal of Software: Evolution and Process. Wiley. (Accepted)
+  \item Nayrolles, M. \& Hamou-Lhadj, W. (2016). BUMPER: A Tool to Cope with Natural Language Search of Millions Bugs and Fixes. International Conference on Software Analysis, Evolution, and Reengineering - Tool Track (SANER'16). IEEE.
+  \item Mathieu Nayrolles, Abdelwahab Hamou-Lhadj, Tahar Sofiene, and Alf Larsson. JCHARMING : A Bug Reproduction Approach Using Crash Traces and Directed Model Checking. In SANER'15, pages 101-110, 2015. (Best Paper Award).
+\end{itemize}
+
 \input{methodology/methodology_bumper}
 \input{methodology/methodology_jcharming}
+
+\chapter{Using clone detection for pragmatic software maintenance}
+
+The adoption of tools and processes that aim to support humain maintainers during maintenance is relatively low \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Lopez2011}.
+Human maintenainers agree that such tools are beneficial but, in addition of disrupting their worlflow, these tools tend to have a high false positives rate.
+Also, the way in which the warnings are presented, among other things, are barriers to use\cite{Johnson2013}.
+When asked for their opinions, human maintainers agree to the following caracteristics for maintenance-oriented tools\cite{Hovemeyer2004, Lopez2011, Lewis2013}:
+
+\begin{itemize}
+	\item Actionable messages. Presenting a warning about bug-proneness of a given line is not enough.
+	Clear actions to improve the source code should be provided
+	\item Obvious reasoning. The conditions that led to a given warning should be understandable by the maintainer.
+	If the conditions are hidden in complex statistical models, then maintainers cannot review them and will find it difficult to trust the tool.
+	\item Scaling. Industrial sized project contains thousand files and dependencies which can be updated many times a day.
+	Maintenance-oriented tools should not hinder the productivity of maintainers.
+	\item Contextualization. Warnings and messages should always be contextualized with respect to the project at hand and not generic rules.
+	\item Integration. Developers and maintainers are overwhelm by the amount of existing tools.
+	Yet, their daily use three different kind of tools.
+	An integrated development environment, a versionning system and a project tracking system to produce, version and manage their software, respectively.
+	Maintenance-oriented tools should fit in the existing ecosystem rather than complexifying the deployment process.
+\end{itemize}
+
+In modern versioning systems, when maintainers make modifications to the source code and their modification versionned, they have to do commit.
+The commit operation will versionne the modifications applied to one or many files.
+
+Figure \ref{fig:branching} presents the data structure used to store a modification or commit.
+Each commit is represented as a tree.
+The root leaf (green) contains the commit, tree and parent hashes as same as the author and the description associated to the commit.
+The second leaf (blue) contains the leaf hash and the hashes of the files of the project.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.25]{media/commit-datastructure.png}
+    \caption{Data structure of a commit.
+    \label{fig:branching}}
+\end{figure}
+
+In this example, we can see that author ``Mathieu'' has created the file $file1.java$ with the message ``project init''.
+Figure \ref{fig:two-commits} represents an ulterior modification.
+In this second example, $file1.java$ is modified while $file2.java$ is created.
+The second commit $98ca9$ have $34ac2$ as parent.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.25]{media/branching.png}
+    \caption{Data structure of two commits.
+    \label{fig:two-commits}}
+\end{figure}
+
+Branches point to a commit.
+In a task-branching environment, a branch is created via a checkout operation for each task.
+Task can be to fix the root cause of crash or bug report or features to implement.
+In figure \ref{fig:two-branches}, the $master$ branch and the $1\_fix\_overflow$ point on commit $98ca9$.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.25]{media/2branches.png}
+    \caption{Two branches pointing on one commit.
+    \label{fig:two-branches}}
+\end{figure}
+
+Both branches can evolve seperately and be merged together when the task branch is ready.
+In figure \ref{fig:merge}, the $master$ branch points on $a13ab2$ while the $1\_fix\_overflow$ points on $ahj23k$.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.25]{media/merge.png}
+    \caption{Two branches pointing on two commits.
+    \label{fig:merge}}
+\end{figure}
+
+In this chapter, we present approaches that have the characteristics described by human maintenaire and integrate themselves seamlessly in a task branching environment.
+
+\section{Software maintenance at branching-time}
+
+Software maintenance at branching-time allows humain maintainers to obtain, in an automatic fashion, the steps to reproduce the root cause of a bug or crash report.
+
+As an example, if a maintainer is assigned to fix the root cause of bug report $\#38622$ of the Ant project, related to parsing exception, he will create a branch named $38622\_fix\_parsing$ with the command: $git~checkout~-b~38622\_fix\_parsing$ for Git.
+
+Before the checkout, our pre-checkout hook triggers.
+As a reminder, a hook is a bash script that can be executed before or after any versionning operation.
+Figure \ref{fig:pre-checkout-hook} presents our pre-checkout hook.
+The first operation is to parse the branch name in order to extract the task $\#id$.
+With the task $\#id$ we query the {\tt BUMPER}'s API for the test suite created by {\tt JCHARMING}.
+Then, we write the response to the $/tests/$ directory of the project.
+
+\begin{figure}
+  \lstinputlisting[language=Bash]{media/pre-checkout.sample}
+  \caption{Pre-checkout hook
+  \label{fig:pre-checkout-hook}}
+\end{figure}
+
+Figure \ref{fig:jcharming-imported} shows the Java test suite that would have been downloaded and added to the $/tests/$ directory in this case.
+
+\begin{figure}
+  \lstinputlisting[language=Java]{media/java.testcase.java}
+  \caption{JCHARMING generated test imported into task branch
+  \label{fig:jcharming-imported}}
+\end{figure}
+
+The combination of {\tt BUMPER}, {\tt JCHARMING} and this pre-checkout hook provide maintainers actionnable and contextualized information in a non-intrusive manner.
+This information can be used to ease the maintenance process.
+
+\section{Software maintenance at commit-time}
+
+Software maintenance at commit-time allows developers to receive recommendation and improvment at commit-time using code clones detection techniques.
+
+Code clones appear when developers reuse code with little to no modification to the original code.
+Studies have shown  that clones can account for about 7\% to 50\% of code in a given software system\cite{Baker, StephaneDucasse}.
+Developers often reuse code (and create clones) in their software on purpose\cite{Kim2005}.
+Nevertheless, clones are considered a bad practice in software development since they can introduce new bugs in the code\cite{Kapser2006,Juergens2009,Li2006}.
+If a  bug is discovered in one segment of the code that has been copied and pasted several times, then the developers will have to remember the places where this segment has been reused in order to fix the bug in each place.
+
+In the last two decades, there have been many studies and tools that aim at detecting clones. They can be grouped into three categories.
+The first category includes techniques that treat the source code as text and use transformation and normalization methods to compare various code fragments\cite{Johnson1994,Johnson1993, Cordy2011, Roy2008}.
+The second category includes methods that
+use lexical analysis, where the source code is sliced into sequences of tokens, similar to the way a compiler operates\cite{Baker,Bakera,Baker2002,Kamiya2002,Li2006}.
+The tokens are used to compare code fragments.
+Finally, syntactic analysis has also been performed where the source code is converted into trees, more particularly abstract syntax tree (AST), and then the clone detection is performed using tree matching algorithms\cite{Baxter1998, Komondoor2000, Tairas2006, Falke2008}.
+
+Many taxonomies have been published in an attempt to classify clones into types. \cite{Mayrand1996,Balazinska1999,Koschke2006,Bellon2007,Kontogiannis,Kapser}.
+Despite the particularities of each proposed taxonomy, researchers agree on the following classification.
+Type 1 clones are copy-pasted blocks of code that only differ from each other in terms of non-code artefacts such as indentation, whitespaces, comments and so on.
+Type 2 clones are blocks of code that are syntactically identical at the exception of literals, identifiers and types that can be modified.
+In addition, Type 2 clones share the particularities of Type 1 about indentation, whitespaces and comments.
+Type 3 clones are similar to Type 2 clones in terms of modification of literals, identifiers, types, indentation, whitespaces and comments but also contain added or deleted code statements.
+Finally, Type 4 are code blocks that perform the same tasks, but using a completely different implementation.
+
+\input{methodology/methodology_precinct}
 \input{methodology/methodology_ressemble}
+
+\\
+
+In summary, using {\tt PRECINCT} and {\tt RESSEMBLE} we are able to provide contextualized and accurate information in a non-intrusive manner.
+
+\section{Software maintenance at merge-time}
+
 \input{methodology/methodology_bianca}
+
+\chapter{A taxonomy to classify the research}
+
+\input{methodology/methodology_taxo}
