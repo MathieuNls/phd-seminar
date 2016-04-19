@@ -13,11 +13,13 @@ PRECINCT is also well integrated with the workflow of the developers since it is
 
 In this study, we focus on Type 3 clones as they are more challenging to detect. Since Type 3 clones include Type 1 and 2 clones, then these types could be detected separately by PRECINCT as well.
 
+PRECINCT aims to prevent clone insertion while integrating
+the clone detection process in a transparent manner
+in the day-to-day maintenance process.
+This way, software developers do not have to resort to external tools to remove clones after they are inserted such as the one presented in Section \ref{sec:rel-clones}.
+Our approach operates at commit time, notifying software developers of possible clones as they commit their code.
+
 We evaluated the effectiveness of PRECINCT using precision and recall on three systems, developed independently and written in both C and Java. The results show that PRECINCT prevents Type 3 clones to reach the final source code repository with an average accuracy of 97.7\%.
-
-The rest of this paper is organized as follows: In Section~\ref{sec:Related Work}, we present the studies related to PRECINCT. Then, in Section~\ref{sec:The PRECINCT Approach}, we present the PRECINCT approach. The evaluation of PRECINCT is the subject of  Section~\ref{sec:Experimentations}, followed by threats to validity.
-Finally, we conclude the paper in Section~\ref{sec:Conclusion}.
-
 
 \subsubsection{The PRECINCT Approach}
 \label{sec:The PRECINCT Approach}
@@ -46,7 +48,7 @@ Developers can do things like check for code style, check for trailing white spa
 
 PRECINCT is a set of bash scripts where the entry point of these scripts lies in the pre-commit hooks. Pre-commit hooks are easy to create and implement as depicted in Listing~\ref{gitprehook}.
 This pre-hook is shipped with Git, a popular version control system.
-Note that even though we use Git as the main version control to present PRECINCT, we believe that the techniques presented in this paper are readily applicable to other version control systems.
+Note that even though we use Git as the main version control to present PRECINCT, we believe that the techniques presented in this section are readily applicable to other version control systems.
 In Listing~\ref{gitprehook}, from lines 3 to 11, the script identifies if the commit is the first one in order to select the revision to work against.
 Then, in Lines 18 and 19, the script checks for trailing whitespace and fails if any are found.
 
@@ -196,7 +198,6 @@ Dnsjava\footnote{http://www.dnsjava.org/} is a tool for implementing the DNS (Do
 This tool can be used for queries, zone transfers, and dynamic updates.
 It is not as large as the other two, but it still makes an interesting case subject because it has been well maintained for the past decade. Also, this tool is used in many other popular tools such as Aspirin, Muffin and
 Scarab. Dnsjava is composed of 1637 revisions, 233 files, the latest revision contains 47 KLoC.
-We have chosen this system because we are familiar with it as we used it before\cite{Nayrolles2015c}.
 
 \subsubsection{Process}
 \label{sub:Process}
@@ -292,11 +293,12 @@ In conclusion, internal and external validity have both been minimized by choosi
 \subsubsection{Conclusion}
 \label{sec:Conclusion}
 
-PRECINCT (PREventing Clones INsertion at Commit Time) iq an incremental approach for preventing clone insertion at commit time that combines efficient block extraction and clone detection and integrate itself seamlessly in the day-to-day workflow of developers.
+PRECINCT (PREventing Clones INsertion at Commit Time) is an incremental approach for preventing clone insertion at commit time that combines efficient block extraction and clone detection and integrate itself seamlessly in the day-to-day workflow of developers.
 PRECINCT takes advantage of TXL and NICAD to create a clone detection tool approach that runs automatically before each commit in 1.2 second with a 97.7\% precision and a 100\% recall (when using NICAD results as a baseline).
 
 Our approach also assesses two major factors that contribute to the slow adoption of clone detection tools: large number of data output by clone detection methods,  and  smooth integration with the task flow of the developers.
 PRECINCT is able to reduce the number of lines output by a classical clone detection tool such as NICAD by 83.4\% while keeping all the necessary information that allow developers to decide whether the detect clone is in fact a clone.
 Also, our approach is seamlessly integrated with the developers' workflow by means of pre-commit hooks, which are part any version control systems.
 
-To build on this work, we need to experiment with additional (and larger) systems with the dual aim to (a) improve and fine-tune the approach, and (b) assess the scalability of our approach when applied to even larger (and proprietary) systems. Also, we want to improve PRECINCT to support Type 4 clones.
+To build on this work, we need to experiment with additional (and larger) systems with the dual aim to (a) improve and fine-tune the approach, and (b) assess the scalability of our approach when applied to even larger (and proprietary) systems.
+Also, we want to improve PRECINCT to support Type 4 clones.

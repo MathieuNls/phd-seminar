@@ -2,12 +2,11 @@
 
 \subsection{RESEMBLE: REcommendation System based on cochangE Mining at Block LEvel\label{sec:RESEMBLE}}
 
-{\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) is a contextual recommendation system that will take the form of another pre-commit hook. {\tt RESEMBLE} will leverage the branches' history and the blocks extracted by {\tt PRECINCT} to identify, on the fly, sub-optimum or hazardous code and display and actual solution to the problem.
+{\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) is a contextual recommendation system that will take the form of another pre-commit hook. {\tt RESEMBLE} will leverage the branches' history and the blocks extracted by {\tt PRECINCT} to recommend blocks that should be modified.
+More specifically, {\tt RESEMBLE} will mine the blocks extracted by {\tt PRECINCT}  in order to establish sequences of changes.
+On new changes, the previously established sequence can be compared to the new ones and recommendation made about which blocks you have been modified.
 
-
-\subsubsection{Mining sequences of changes}
-
-In the data mining field, ARM is a
+In the data mining field, association rule mining (ARM) is a
 well-established method for discovering co-occurrences between attributes
 in the objects of a large data set \cite{Gregory1991,HEIKKI1997}. Plain
 associations have the form $X \rightarrow Y$, where $X$ and $Y$,
@@ -33,7 +32,7 @@ the mining task is tuned by minimal thresholds to
 output only the sufficiently high scores for both metrics.
 
 To extract the association rules from changes,
-two choices were possible. On one hand, sequential pattern mining and rule mining algorithms
+two choices are possible. On one hand, sequential pattern mining and rule mining algorithms
 have been designed for structures that are slightly more general than the ones used here.
 In fact, sequential patterns are defined on transactions that represent sequences of sets.
 Efficient sequential pattern miners have been published, e.g. the PrefixSpan method \cite{Pei2004}.
@@ -41,43 +40,10 @@ On the other hand, sequence of changes do not compile to fully-blown sequential 
 In the general data mining literature, mining from pure sequences, as opposed to sequences made of sets, has been addressed under the name of episode mining \cite{HEIKKI1997}.
 Episodes are made of \textit{events} and in a sense, code changes are events. Arguably the largest body of knowledge on the subject belongs to the web usage mining field: The input data is again a system log, yet this time the log of requests sent to a web server \cite{Pei2000}.
 It is noteworthy that sequential patterns are more general than the pure sequence ones, hence mining algorithms designed for the former might prove to be less efficient when applied to the latter (as additional steps might be required for listing all significant set).
-Nevertheless, to jump-start our experimental study, we used a sequential pattern/rule miner that has the advantage to be freely available on the web\footnote{http://www.philippe-fournier-viger.com/spmf/}.
+Nevertheless, to jump-start our experimental study, we will use a sequential pattern/rule miner that has the advantage to be freely available on the web\footnote{http://www.philippe-fournier-viger.com/spmf/}.
 Although it has not been optimized for pure sequences its performances are more than satisfactory.
 
-\subsubsection{Code Normalization\label{sec:resemble-normalization}}
-
-Normalizing code is the action of making its structure consistent throughout the program according to a defined model. In our case, we only normalize the block of code that are in the current sequential association rules. To do so, we improve and combine several technologies such as source code transformation \cite{Cordy2006,Cordy2006a}, source code pretty-printing \cite{Roy2008}, flexible source code normalization \cite{Cordy2011}.
-
-More specifically, the code first goes to a pretty printer. A pretty-printer is a component that will slightly transform the code in order to obtain consistent control structure.
-Concretely, spaces will be added, accolade moved and tabulation added for an $if$, a $while$ and others structures to always appear the same way, regardless of the programming language.
-Then, the code is normalized several times. Each normalization is different and targets specific feature of the code.
-For example, we have one normalization that removes completely the variable names and replace the types by the highest known object in the object oriented hierarchy before {\tt Object} itself\footnote{For Java programs}. Another normalization only keeps the structures of the source code by normalizing both variables names and types.
-
-\subsubsection{Comparing normalization\label{sec:resemble-comparing}}
-
-Comparing different normalizations is the easiest step and can be done efficiently using using the longest common sequence (LCS) algorithm \cite{hirschberg1977algorithms}.
-If the LCS is above an user-defined threshold, then a two different behaviors can be observed:
-
-\begin{itemize}
-	\item If the modified blocks' --- and potentially the ones that are likely to be modified after according to our sequential association rules --- normalizations match the normalizations of blocks of code that have been removed in past history. {\tt RESEMBLE} recommends the replacing code as a better solution.
-  In other words, if blocks $A$, $B$ and $C$ have been replaced by blocks $A'$, $B'$ and $C'$ and blocks $D$, $E$ and $F$ normalizations match $A$, $B$ and $C$, then, {\tt RESEMBLE} recommends to transform $D$, $E$ and $F$ to look like $A'$, $B'$ and $C'$. This could lead to the introduction of software clones but we argue that (i) software clones are not always harmfull \cite{Juergens2009} and (ii) informing the developer that $A'$, $B'$ and $C'$ exist could lead him to re-use these blocks.
-	\item If the modified blocks' --- and potentially of the ones that are likely to be modified after according to our sequential association rules --- normalizations match the normalization of blocks of code that are present in the history. {\tt RESEMBLE} computes the differences between the developer code and the history code in order to suggests what the developer have to do next.
-\end{itemize}
-
-\subsubsection{Planned experiments}
-
-We did not started the experiments for {\tt RESEMBLE} yet. Nevertheless, we plan to conduct the following experiments:
-
-\begin{itemize}
-	\item Full history test with Normalization 1.
-	\item Full history test with Normalization 2.
-	\item An human study where:
-	\begin{itemize}
-		\item Developers use {\tt RESEMBLE} in order to determine whether or not developers take into account our recommendations to avoid inserting defects in the code.
-		\item Developers use {\tt RESEMBLE} in order to determine whether or not developers take into account our recommendations to complete their modification according to what we found in the history.
-		\item Rate the suggested solution in a scale from 1 to 10 in order to determine if the proposed change pattern does resolve the current problem.
-	\end{itemize}
-\end{itemize}
+We did not started the experiments for {\tt RESEMBLE} yet.
 
 We believe that {\tt RESEMBLE} will be a real asset in a developer tool belt in order to ship better code in terms of quality, performances and security.
 However, as {\tt RESEMBLE} aims to provide recommendations in at commit-time, using the local history and ressources, it will not be able to be as exhaustive as an offline process.

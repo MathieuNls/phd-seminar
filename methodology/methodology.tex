@@ -1,33 +1,166 @@
 %!TEX root = ../research_proposal.tex
 
-\chapter{Aggregating versionning systems and project managements systems}
+\chapter{PASMAST: An Open Source Framework for Pragmatic Software Maintenance\label{chap:pasmast}}
+
+In this chapter, we present our reflections about software engineering and the reasons that led us to introduce the notion of pragmatic software maintenance.
+Then, we introduce our framework {\tt PASMAST} (PrAgmatic Software Maintenance At verSioning Time) in section~\ref{sec:overview} and a related working example in section~\ref{sec:pasmast-example}.
+
+\section{Reflection on Pragmatic Software Maintenance}
+
+Architects, the ones that design buildings --- where mistakes cost lives --- spend at least five years at school and possibly their whole carriers to study, understand and reproduce great designs made by great architects.
+Software architects, however, begin in programing 101 by displaying the famous ``{\tt Hello World}'' statement and exponentially increase the complexity of their programs over their years of study and work.
+At some point, they will earn the title of software architect (or technical leader) because they have designed, maintained and evolved {\it enough} programs to be trustworthy on the matter.
+However, unlike building architects, they have to learn how to recognize, analyze and reproduce great architectural choices by themselves in addition of their day to day work.
+Of course, software developers do learn good practices such as design patterns \cite{Gamma2008} but in a very few occasions they will be presented with a state-of-the-art program built by great developers (Amy Brown {\it et al.} propose exactly that in their books \cite{chansler2011architecture, AmyBrown2012, Armstrong2013}).
+
+While our research is not about reforming how programming classes are taught, we still want to ease the access to this knowledge for developers during their maintenance sessions in order to ship better programs.
+
+We shift the focus from mining version control and project management systems, where knowledge of great developers lies, to integrate them in their rightful place: as the keystone of maintenance activities.
+Extracting the ground truth from repositories helped engineers and practitioners to be better at building softwares as they know, for example, {\it how long it will take to fix a bug} \cite{Weiss2007}, {\it what makes a good bug report} \cite{Bettenburg2008} or {\it how to fix long-lived bugs} \cite{Saha2014}.
+Using these discoveries, tools can be created, on a per organization basis, to fit particular requirements such as programming languages, development processes or particular threshold. If we want to modify the software maintenance landscape to have better softwares in terms of quality, maintainability and availability, we need to provide this information during the maintenance process according to a specific context in an easy, reliable and  actionable way
+
+If we look back at the history of software engineering, the increase of processors' speed and decrease of their price allowed one to have a compiler on its own machine rather than sending one's code to the mainframe and receive compilation errors hours (days) later. This allowed, among other factors, the democratization of software engineering as {\it everyone}, belonging to a major organization or not, became able to build code. We believe that, it is now time to allow developers, engineering and practitioners, regardless of their programming language and contextual environment, not only to write and build code but to write and built qualitative, robust, resilient, easy to maintain and to fix code. What better way to do so than to {\it stand on the shoulder of giants} by having access to all the open sources repositories, including but not limited to, bug and crash reports, tasks, fixes, and good practices break down to the right level and provided at the right time during day to day maintenance sessions?
+\\ \\
+This is what we call pragmatic software maintenance.
+\\ \\
+We believe that the {\it right} times for detailing this information are when maintainer use their version control system, so we do not interrupt their thought process.
+It has been proved that interrupting a thought process with a warning or multitasking is, in fact, bad for productivity and source of error~\cite{Trafton2003,Altmann2004,LOHR,hunt2008pragmatic,gobbo2008pomodoro}.
+Consequently, we think that providing warnings or recommendations {\it on-the-fly} is less desirable than when maintainer use their version control system.
+Now, the {\it right} level of details is an important question.
+As described earlier, maintainers do not use maintenance oriented tools because they yield to much false positive, have obscure reasoning and do not provide contextualized information\cite{Hovemeyer2004, Lopez2011, Johnson2013, Lewis2013}.
+In the next section, we present our framework for pragmatic software maintenance and evaluate it in terms of false positive, reasoning and contextualized information.
+
+
+\section{Overview of PASMAT\label{sec:overview}}
+
+In this section, we introduce our framework {\tt PASMAST} (PrAgmatic Software Maintenance At verSioning Time).
+Figure \ref{fig:proposal} depicts {\tt PASMAST} and describes how the different tools interface themselves in a classical maintenance process supported by feature branching.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.20]{media/proposal.png}
+	\caption{Proposed Architecture}
+	\label{fig:proposal}
+\end{figure}
+
+During the maintenance process supported by feature branching a developer will first browse the project management system and acknowledge reports or tasks assigned to him.
+Assigning reports or issues to developers is known as trading.
+There have been research on how to perform automated triaging that determines which developer is the best suited to accomplish it\cite{Saha2014, Tamrawi2011, Bortis2013}.
+We do not propose ameliorations in the field of triaging.
+
+The second step will be to create a feature branch for the report or the issue at hand.
+Creating a feature branch is a straightforward command, for example $git~checkout~-b~123\_task\_name$ for git.
+We can identify which task or report is being tackled by the developer with the name of the branch and automatically fetch relevant information such as steps to reproduce the reports or similar reports closed in the past.
+We do that using a pre-checkout and one of our contribution:{\tt BUMPER} (Bug Metarepository for Research and DevelopeRs).
+
+A hook is a process that can be implemented to receive the  modification to the source code done by the developer.
+Hooks are custom scripts set to fire off before and after versioning actions occur.
+There are two types of hooks: client-side and server-side.
+Client-side hooks are triggered by operations such as committing and merging, whereas server-side hooks run on network operations such as receiving pushed commits.
+These hooks can be used for all sorts of reasons such as compliance to coding rules or automatic run of unit test suites.
+
+Leveraging the hook-feature, we can fetch information from a central repository called {\tt BUMPER} (Bug Metarepository for Research and DevelopeRs) about the task or report at hand.
+{\tt BUMPER} is a meta-repository that makes reports, tasks and related source code searchable using a structured API.
+{\tt BUMPER} contains several adaptor to fetch new reports and tasks submitted to project management systems.
+It updates itself every night.
+
+When a report is created, {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) will fetch the content of the issue and try to create a scenario to reproduce the on-field crash.
+{\tt JCHARMING} uses a combination of crash traces and model
+checking to automatically reproduce bugs that caused field crashes.
+In case of success the scenario is stored in {\tt BUMPER}.
+
+Consequently, at branching-time, we can add the scenarios to reproduce the report directly in the source code and recommend similar reports.
+We provide {\it accurate} and {\it contextual} information in a transparent manner for the developer.
+Indeed, the reproduction of a field-crash is binary, reproduced or not.
+In addition, this process occurs directly in the  system that the maintainer already uses.
+
+At this point, the maintainers start editing the code and commit their changes to their local branch.
+For each commit, we perform two operations on the local history: clones insertion and co-change recommendation using {\tt PRECINCT} (PREventing Clones INsertion at Commit Time) and {\tt RESSEMBLE} (REcommendation System based on cochangE Mining at Block LEvel).
+Once again, we leverage hooks, and more specifically pre-commits hooks to do so.
+For each commit, we are able to prevent the insertion of a clone before it reaches to the central repository and recommend changes based on mining similar co-changes at the block level.
+This is possible because the local branch of the developer contains all the history of the project, from its beginning to the present.
+
+At commit-time, we provide {\tt contextualised} advice directly into the source versioning system to improve the software before the changes reach the central repository.
+Figure \ref{fig:precinct-intro} presents an output of {\tt PRECINCT}, directly in the source versioning system.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.7]{media/commit.png}
+	\caption{{\tt PRECINCT} sample output}
+	\label{fig:precinct-intro}
+\end{figure}
+
+When maintainers are confident enough to share their changes, they will push them to the central repository.
+Using a server-side push hook, we can analyze the source code pushed by the maintainer.
+Our last tool, {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at parse time), analyzes the change pattern performed by the maintainer in order to identify if it this pattern is likely to introduce a default in the application.
+{\tt BIANCA} does this by analyzing every change ultimately led to a report.
+In case of a match, {\tt BIANCA} displays the matching source code to the maintainer.
+The matching source code that led to a report and its subsequent modifications to fix that report are actionable messages.
+Indeed, the maintainers are informed their modifications raised a warning and they can see how to transform their code, based on the provided example, if they decide to take action.
+Futhermore, the reasoning behind {\tt BIANCA}'s warning is obvious: the submitted modification matches modification known to have introduced a defect.
+At push-time, the response time of any analysis shall be as short as possible: maintainer is waiting for their modification synchronized with the central repository.
+Hence, {\tt BIANCA} only checks for matches inside the current project history.
+At merge-time, however, we can compute more expensive operation.
+Indeed, the maintainer submits the modification for integration into the mainline and the modification will be reviewed by other developers in code reviews.
+Consequently, {\tt BIANCA} checks for matching example, in all known projects.
+{\tt BIANCA} uses the code normalizations and text-based clone detection technics \cite{Cordy2006,ROY2009,Cordy2011}.
+
+All these approaches have been designed with the aim to reduce known barriers of adoption, namely, actionable messages, obvious reasoning, scaling and contextualization\cite{Johnson2013, Hovemeyer2004, Lopez2011, Lewis2013}.
+
+\section{Working example\label{sec:pasmast-example}}
+
+In this section, we draft a hypothetical scenario that emphasizes the relationships between the different approaches composing our framework. Table \ref{tab:bumper-hypo} presents hypothetical data stored in {\tt BUMPER} in terms of sequence \#id, sequence of code blocks, a flag to know if a said sequence introduced an issue in a given system and step to reproduce the issue if any.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c}
+Seq \#ID & Language \#ID & Blocks & Root of Issue & Steps to reproduce \\ \hline \hline
+1        & 1             & A-A-B-C-A-A   & Yes  & E-F-G         \\
+2        & 1             & A-A-B-C       & No   & -         \\
+3        & 2             & D-E-A-C       & No &  - \\ \hline \hline
+\end{tabular}
+\caption{Hypothetical {\tt BUMPER} data}
+\label{tab:bumper-hypo}
+\end{table}
+
+During a maintenance activity, let's assume that a developer has committed $A-B-C$ to its local history.
+Then, {\tt RESEMBLE} will recommends to transform the current code to $A-A-B-C$ as it seems to be the right thing to do.
+If the developer follows {\tt RESEMBLE} recommendation and then, adds another two $A$s, the sequence is transformed to $A-A-B-C-A-A$.
+If the developer commits its changes, {\tt BIANCA} will raise a warning saying that this sequence is known to be the root of an issue and invite the developer to execute the steps $E-F-G$ --- that were produced by {\tt JCHARMING} --- in order to see if s/he did introduce a defect.
+Moreover, {\tt BIANCA} will take the time to compare $A-A-B-C-A-A$ and $D-E-A-C$, at merge-time, using our normalization algorithms even if they are not in the same programming language.
+Finally, when a new report is submitted, {\tt BUMPER} indexes it and {\tt JCHARMING} tries to reproduce it and update the step to reproduce part of {\tt BUMPER}.
+
+In the following chapters, we describe each part of our framework in details.
+
+\chapter{Aggregating Version Control and Project Management Systems\label{chap:aggreating}}
 
 In this chapter, we present two approaches: {\tt BUMPER} and {\tt JCHARMING}.
 {\tt BUMPER} is the keystone of our proposed framework for programmatic software maintenance.
-The role of {\tt BUMPER} is to aggregate information beloging to versionning systems and project management systems.
+The role of {\tt BUMPER} is to aggregate information belonging to versioning systems and project management systems.
 {\tt BUMPER} acts as our consolidated dataset.
 
-{\tt JCHARMING} is an approach to reproduce field-faillure.
+{\tt JCHARMING} is an approach to reproduce field-failure.
 Every time a bug report is submitted to a project management system and aggregated by {\tt BUMPER}, {\tt JCHARMING} will try to reproduce it.
 In case of success, the steps to reproduce the bug are saved in {\tt BUMPER}.
 
 The materials presented in this chapter are based on the following publications:
 
 \begin{itemize}
-	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. (2016). A Bug Reproduction Approach Based on Directed Model Checking and Crash Traces. Journal of Software: Evolution and Process. Wiley. (Accepted)
-  \item Nayrolles, M. \& Hamou-Lhadj, W. (2016). BUMPER: A Tool to Cope with Natural Language Search of Millions Bugs and Fixes. International Conference on Software Analysis, Evolution, and Reengineering - Tool Track (SANER'16). IEEE.
-  \item Mathieu Nayrolles, Abdelwahab Hamou-Lhadj, Tahar Sofiene, and Alf Larsson. JCHARMING : A Bug Reproduction Approach Using Crash Traces and Directed Model Checking. In SANER'15, pages 101-110, 2015. (Best Paper Award).
+	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. (2016). A Bug Reproduction Approach Based on Directed Model Checking and Crash Traces. Journal of Software: Evolution and Process. Wiley. 2016. (Accepted).
+	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: A Tool to Cope with Natural Language Search of Millions Bugs and Fixes. In Proceeding of the International Conference on Software Analysis, Evolution, and Reengineering (SANER'16) - Tool Track, pages 649-652, 2016.
+	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: Bug Metarepository Search Engine for Developers and Researchers. Consortium for Software Engineering Research Fall, 2015.
+	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. JCHARMING : A Bug Reproduction Approach Using Crash Traces and Directed Model Checking. In Proceeding of the International Conference on Software Analysis, Evolution, and Reengineering (SANER'15), pages 101-110, 2015. (Best Paper Award).
 \end{itemize}
 
 \input{methodology/methodology_bumper}
 \input{methodology/methodology_jcharming}
 
-\chapter{Using clone detection for pragmatic software maintenance}
+\chapter{Using Clone Detection for Pragmatic Software Maintenance\label{chap:clone-detection-pragmatic}}
 
-The adoption of tools and processes that aim to support humain maintainers during maintenance is relatively low \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Lopez2011}.
-Human maintenainers agree that such tools are beneficial but, in addition of disrupting their worlflow, these tools tend to have a high false positives rate.
+The adoption of tools and processes that aim to support human maintainers during maintenance is relatively low \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Lopez2011}.
+Human maintainers agree that such tools are beneficial, but, in addition of disrupting their workflow, these tools tend to have a high false positive rate.
 Also, the way in which the warnings are presented, among other things, are barriers to use\cite{Johnson2013}.
-When asked for their opinions, human maintainers agree to the following caracteristics for maintenance-oriented tools\cite{Hovemeyer2004, Lopez2011, Lewis2013}:
+When asked for their opinions, human maintainers agree to the following characteristics for maintenance-oriented tools\cite{Hovemeyer2004, Lopez2011, Lewis2013}:
 
 \begin{itemize}
 	\item Actionable messages. Presenting a warning about bug-proneness of a given line is not enough.
@@ -37,71 +170,22 @@ When asked for their opinions, human maintainers agree to the following caracter
 	\item Scaling. Industrial sized project contains thousand files and dependencies which can be updated many times a day.
 	Maintenance-oriented tools should not hinder the productivity of maintainers.
 	\item Contextualization. Warnings and messages should always be contextualized with respect to the project at hand and not generic rules.
-	\item Integration. Developers and maintainers are overwhelm by the amount of existing tools.
-	Yet, their daily use three different kind of tools.
-	An integrated development environment, a versionning system and a project tracking system to produce, version and manage their software, respectively.
+	\item Integration. Developers and maintainers are overwhelmed by the amount of existing tools.
+	Yet, their daily use three different kinds of tools.
+	An integrated development environment, a versioning system and a project tracking system to produce, version and manage their software, respectively.
 	Maintenance-oriented tools should fit in the existing ecosystem rather than complexifying the deployment process.
 \end{itemize}
 
-In modern versioning systems, when maintainers make modifications to the source code and their modification versionned, they have to do commit.
-The commit operation will versionne the modifications applied to one or many files.
+In this chapter, we present approaches that have the characteristics described by human maintainer and integrate them seamlessly into a task branching environment.
 
-Figure \ref{fig:branching} presents the data structure used to store a modification or commit.
-Each commit is represented as a tree.
-The root leaf (green) contains the commit, tree and parent hashes as same as the author and the description associated to the commit.
-The second leaf (blue) contains the leaf hash and the hashes of the files of the project.
+\section{Software Maintenance at Branching-Time}
 
-\begin{figure}[h!]
-  \centering
-    \includegraphics[scale=0.25]{media/commit-datastructure.png}
-    \caption{Data structure of a commit.
-    \label{fig:branching}}
-\end{figure}
-
-In this example, we can see that author ``Mathieu'' has created the file $file1.java$ with the message ``project init''.
-Figure \ref{fig:two-commits} represents an ulterior modification.
-In this second example, $file1.java$ is modified while $file2.java$ is created.
-The second commit $98ca9$ have $34ac2$ as parent.
-
-\begin{figure}[h!]
-  \centering
-    \includegraphics[scale=0.25]{media/branching.png}
-    \caption{Data structure of two commits.
-    \label{fig:two-commits}}
-\end{figure}
-
-Branches point to a commit.
-In a task-branching environment, a branch is created via a checkout operation for each task.
-Task can be to fix the root cause of crash or bug report or features to implement.
-In figure \ref{fig:two-branches}, the $master$ branch and the $1\_fix\_overflow$ point on commit $98ca9$.
-
-\begin{figure}[h!]
-  \centering
-    \includegraphics[scale=0.25]{media/2branches.png}
-    \caption{Two branches pointing on one commit.
-    \label{fig:two-branches}}
-\end{figure}
-
-Both branches can evolve seperately and be merged together when the task branch is ready.
-In figure \ref{fig:merge}, the $master$ branch points on $a13ab2$ while the $1\_fix\_overflow$ points on $ahj23k$.
-
-\begin{figure}[h!]
-  \centering
-    \includegraphics[scale=0.25]{media/merge.png}
-    \caption{Two branches pointing on two commits.
-    \label{fig:merge}}
-\end{figure}
-
-In this chapter, we present approaches that have the characteristics described by human maintenaire and integrate themselves seamlessly in a task branching environment.
-
-\section{Software maintenance at branching-time}
-
-Software maintenance at branching-time allows humain maintainers to obtain, in an automatic fashion, the steps to reproduce the root cause of a bug or crash report.
+Software maintenance at a branching-time allows human maintainers to obtain, in an automatic fashion, the steps to reproduce the root cause of a bug or crash report.
 
 As an example, if a maintainer is assigned to fix the root cause of bug report $\#38622$ of the Ant project, related to parsing exception, he will create a branch named $38622\_fix\_parsing$ with the command: $git~checkout~-b~38622\_fix\_parsing$ for Git.
 
 Before the checkout, our pre-checkout hook triggers.
-As a reminder, a hook is a bash script that can be executed before or after any versionning operation.
+As a reminder, a hook is a bash script that can be executed before or after any versioning operation.
 Figure \ref{fig:pre-checkout-hook} presents our pre-checkout hook.
 The first operation is to parse the branch name in order to extract the task $\#id$.
 With the task $\#id$ we query the {\tt BUMPER}'s API for the test suite created by {\tt JCHARMING}.
@@ -121,12 +205,12 @@ Figure \ref{fig:jcharming-imported} shows the Java test suite that would have be
   \label{fig:jcharming-imported}}
 \end{figure}
 
-The combination of {\tt BUMPER}, {\tt JCHARMING} and this pre-checkout hook provide maintainers actionnable and contextualized information in a non-intrusive manner.
+The combination of {\tt BUMPER}, {\tt JCHARMING} and this pre-checkout hook provide maintainers actionable and contextualized information in a non-intrusive manner.
 This information can be used to ease the maintenance process.
 
-\section{Software maintenance at commit-time}
+\section{Software Maintenance at Commit-Time}
 
-Software maintenance at commit-time allows developers to receive recommendation and improvment at commit-time using code clones detection techniques.
+Software maintenance at commit-time allows developers to receive recommendation and improvements in commit-time using code clone detection techniques.
 
 Code clones appear when developers reuse code with little to no modification to the original code.
 Studies have shown  that clones can account for about 7\% to 50\% of code in a given software system\cite{Baker, StephaneDucasse}.
@@ -135,7 +219,7 @@ Nevertheless, clones are considered a bad practice in software development since
 If a  bug is discovered in one segment of the code that has been copied and pasted several times, then the developers will have to remember the places where this segment has been reused in order to fix the bug in each place.
 
 In the last two decades, there have been many studies and tools that aim at detecting clones. They can be grouped into three categories.
-The first category includes techniques that treat the source code as text and use transformation and normalization methods to compare various code fragments\cite{Johnson1994,Johnson1993, Cordy2011, Roy2008}.
+The first category includes techniques that treat the source code as text and use transformation and normalization methods to compare various codes fragments\cite{Johnson1994,Johnson1993, Cordy2011, Roy2008}.
 The second category includes methods that
 use lexical analysis, where the source code is sliced into sequences of tokens, similar to the way a compiler operates\cite{Baker,Bakera,Baker2002,Kamiya2002,Li2006}.
 The tokens are used to compare code fragments.
@@ -143,7 +227,7 @@ Finally, syntactic analysis has also been performed where the source code is con
 
 Many taxonomies have been published in an attempt to classify clones into types. \cite{Mayrand1996,Balazinska1999,Koschke2006,Bellon2007,Kontogiannis,Kapser}.
 Despite the particularities of each proposed taxonomy, researchers agree on the following classification.
-Type 1 clones are copy-pasted blocks of code that only differ from each other in terms of non-code artefacts such as indentation, whitespaces, comments and so on.
+Type 1 clones are copy-pasted blocks of code that only differ from each other in terms of non-code artifacts such as indentation, whitespaces, comments and so on.
 Type 2 clones are blocks of code that are syntactically identical at the exception of literals, identifiers and types that can be modified.
 In addition, Type 2 clones share the particularities of Type 1 about indentation, whitespaces and comments.
 Type 3 clones are similar to Type 2 clones in terms of modification of literals, identifiers, types, indentation, whitespaces and comments but also contain added or deleted code statements.
@@ -156,10 +240,10 @@ Finally, Type 4 are code blocks that perform the same tasks, but using a complet
 
 In summary, using {\tt PRECINCT} and {\tt RESSEMBLE} we are able to provide contextualized and accurate information in a non-intrusive manner.
 
-\section{Software maintenance at merge-time}
+\section{Software Maintenance at Merge-Time}
 
 \input{methodology/methodology_bianca}
 
-\chapter{A taxonomy to classify the research}
+\chapter{A taxonomy to classify the research\label{chap:taxonomy}}
 
 \input{methodology/methodology_taxo}

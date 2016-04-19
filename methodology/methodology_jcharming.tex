@@ -24,7 +24,12 @@ list of functions output when an uncaught exception in Java
 occurs (i.e., the crash trace) to guide a model checking engine
 to uncover the statements that caused the crash. While we do not filter any personal information that may appear in the crash trace, JCHARMING  raises less privacy concerns than a tool recording every call or dump the content of the memory.
 
-To assess the effiency of {\tt JCHARMING} we try to reproduce bug reports contained in {\tt BUMPER}.
+JCHARMING's directed model checking overcomes the state explosion problem of classical model checking techniques and allows the generation of JUnit test cases in a reasonable amount of time.
+JCHARMING is also easy to deploy.
+It does not require instrumentation, and hence does not require access to data that may potentially be considered confidential.
+Moreover, JCHARMING offers better results than approaches described in Section \ref{sec:rel-reproduction} that only use bug report data.
+To assess the efficiency of {\tt JCHARMING} we try to reproduce bug reports contained in {\tt BUMPER} and uur approach is able to reproduce 80\% (24/30) of bugs.
+Moreover, it outperforms STAR (54.6\%) \cite{Chen2013} and BugRedux (37.5\%) \cite{Jin2012}.
 
 \subsection{Preliminaries}
 
@@ -296,7 +301,7 @@ meaningful is $f_0$.
 
 \subsubsection{Directed Model Checking}
 
-The model checking engine we use in this paper is called JPF
+The model checking engine we use in this section is called JPF
 (Java PathFinder) \cite{Visser2004}, which is an extensible JVM for Java
 bytecode verification. This tool was first created as a front-end
 for the SPIN model checker \cite{holzmann1997model} in 1999 before being open-
@@ -333,10 +338,10 @@ the bug is reproduced.
 
 However, as argued by Kim et al. in \cite{Kim2013b}, the same failure can
 be reached from different paths of the program. Although the
-states executed to reach the defect are not exactly the same,
+states executed to reach the crash are not exactly the same,
 they might be useful to enhance the understanding of the bug
 by software developers, and speed up the deployment of a fix.
-Therefore, in this paper, we consider a defect to be partially
+Therefore, in this section, we consider a crash to be partially
 reproduced if the crash trace generated from the model
 checker matches the original crash trace by a factor of $t$, where
 $t$ is a threshold specified by the user. $t$ is the percentage of

@@ -1,9 +1,17 @@
 %!TEX root = ../research_proposal.tex
 
-In order to classify the research on the different field related to software maintenance, we can reason about types of bugs at different levels. For
+In order to classify the research on the different fields related to software maintenance, we can reason about types of bugs at different levels. For
 example, we can group bugs based on the developers that fix
 them or using information about the bugs such as crash traces.
-In this paper, we are interested in bugs that share similar fixes.
+
+
+Our aim is not to improve testing as it is the case in the work of Eldh \cite{Eldh2001} and Hamill et al.\cite{Hamill2014}.
+Our objective is to propose a classification that can allow researchers in the filed of mining bug 9 repositiories to use the taxonomy as a new criterion in triaging, prediction, and reproduction of bugs.
+By analogy, we can look at the proposed bug taxonomy in a similar way as the clone taxonomy presented by Kapser and Godfrey \cite{CoryKapser}.
+The authors proposed seven types of source code clones and then conducted a case study, using their classification, on the file system module of the Linux operating system.
+This clone taxonomy continues to be used by researchers to build better approaches for detecting a given clone type and being able to effectively compare approaches with each other.
+
+In this section, we are interested in bugs that share similar fixes.
 By a fix, we mean a modification (adding or deleting lines of
 code) to an exiting file that is used to solve the bug. With this
 in mind, the relationship between bugs and fixes can be
@@ -11,6 +19,8 @@ modeled using the UML diagram in Figure \ref{fig:bug-taxo-diag}. The diagram
 only includes bugs that are fixed. From this figure, we can
 think of four instances of this diagram, which we refer to as
 bug taxonomy or simply bug types (see Figure \ref{fig:bug-taxo}).
+
+
 
 \begin{figure}[h!]
   \centering
@@ -52,7 +62,7 @@ duplicates but for related bugs (bugs that are due to failures of
 different features of the system, caused by the same faults). To
 our knowledge, there is no study that exmpirically examines
 bug data with these types in mind, which is the main objective
-of this paper. More particularly, we are interested in the
+of this section. More particularly, we are interested in the
 following research questions:
 
 \begin{itemize}
@@ -100,8 +110,7 @@ very first version of Netbeans, then known as Xelfi, appeared
 in 1996. The Apache Software Foundation is a U.S non-profit
 organization supporting Apache software projects such as the
 popular Apache web server since 1999. The characteristics of
-the Netbeans and Apache Software Foundation datasets used
-in this paper are presented in Table \ref{table:datasets}.
+the Netbeans and Apache Software Foundation are presented in Table \ref{table:datasets}.
 
 \begin{table}[h]
 \begin{center}

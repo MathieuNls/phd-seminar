@@ -1,72 +1,114 @@
 %!TEX root = research_proposal.tex
 
-\chapter{Research Plan\label{chap:plan}}
+\chapter{Remaining Work to Complete the Thesis\label{chap:plan}}
 
-In this chapter, we present the current state of research. Section \ref{sec:current-state} presents our current contributions and section \ref{sec:publication-plan} presents our publication plan.
+In this chapter, we summarize the state of the research and the work that needs to be completed in order to finalize the thesis.
+We proceed according to the contributions listed on Section\ref{sec:objective-thesis}.
 
-\section{Current State of Research\label{sec:current-state}}
 
-Chapter \ref{chap:methodology} presented the current state of our research. The completed parts are :
+\section{An analysis of Existing Techniques Aiming to Support Software Maintenance}
 
-\begin{itemize}
-	\item To create a taxonomy of bug (section \ref{sec:taxo}).
-	\item To make software artifacts such as source code, issues, tasks, comments and more searchable using natural language and not structured query language (section \ref{sec:BUMPER}).
-	\item To efficiently reproduce field crashes in lab environment without raising any privacy concerns (section \ref{sec:JCHARMING}).
-	\item To sequentially mine co-changes (section \ref{sec:RESEMBLE}).
-	\item To normalize source code (sections \ref{sec:RESEMBLE} and \ref{sec:BIANCA}).
-	\item To efficiently compare normalized source code (sections \ref{sec:RESEMBLE} and \ref{sec:BIANCA}).
-	\item To raise warning when a normalized source code matches another normalized source code known to have introduce a defect in an application (section \ref{sec:BIANCA}).
-\end{itemize}
+We need to create a classification for the tools and technics we observed to clearly show how they differ and why they were not adopted by industry.
 
-\section{Current Contribution\label{sec:current-state}}
+\section{Pragamatic Software Maintenance}
 
-We already have one contribution referred in an international journal \cite{Nayrolles2016a}:
+We measured the efficiency for 60\% of our proposed framework for pragmatic software maintenance (three components out of five).
+Our work for this contribution has already been featured in the following publications:
 
 \begin{itemize}
-	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. (2016). A Bug Reproduction Approach Based on Directed Model Checking and Crash Traces. Journal of Software: Evolution and Process. Wiley. (Accepted with revisions).
+	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. (2016). A Bug Reproduction Approach Based on Directed Model Checking and Crash Traces. Journal of Software: Evolution and Process. Wiley. 2016. (Accepted).
+	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: A Tool to Cope with Natural Language Search of Millions Bugs and Fixes. In Proceeding of the International Conference on Software Analysis, Evolution, and Reengineering (SANER'16) - Tool Track, pages 649-652, 2016.
+	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: Bug Metarepository Search Engine for Developers and Researchers. Consortium for Software Engineering Research Fall, 2015.
+	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. JCHARMING : A Bug Reproduction Approach Using Crash Traces and Directed Model Checking. In Proceeding of the International Conference on Software Analysis, Evolution, and Reengineering (SANER'15), pages 101-110, 2015. (Best Paper Award).
 \end{itemize}
 
-and three contributions referred in international conferences \cite{Nayrolles2015,Maiga2014,Nayrolles2016b, Nayrolles2016c}:
+We need to conduct additional experiments to measure the effiency of the two remaining components: {\tt RESEMBLE} and {\tt BIANCA}.
 
-\begin{itemize}
-	\item Nayrolles, M. \& Hamou-Lhadj, W. (2016). BUMPER: A Tool to Cope with Natural Language Search of Millions Bugs and Fixes. International Conference on Software Analysis, Evolution, and Reengineering - Tool Track (SANER'16). IEEE. (Accepted).
-	\item Mathieu Nayrolles, Abdelwahab Hamou-Lhadj, Tahar Sofiene, and Alf Larsson. JCHARMING : A Bug Reproduction Approach Using Crash Traces and Directed Model Checking. In SANER'15, pages 101-110, 2015. (Best Paper Award).
-	\item Maiga, A., Hamou-Lhadj, W., Nayrolles, M. , Sabor, K. \& Larsson, A. (2015). An Empirical Study on the Handling of Crash Reports in a Large Software Company: An Experience Report. International Conference on Software Maintenance and Evolution (ICSME). (pp. 342-351). IEEE.
-\end{itemize}
+\section{A Taxonomy to Classify the Research on Software Maintenance}
 
-Finally, we also presented {\tt BUMPER} during the 2015 Consortium for Software Engineering Research Fall Edition \cite{Nayrolles2015e}:
-
-\begin{itemize}
-	\item Nayrolles, M. \& Hamou-Lhadj, W. (2015). BUMPER: Bug Metarepository Search Engine for Developers and Researchers. Consortium for Software Engineering Research Fall.
-\end{itemize}
-
-\section{Plan for short term work\label{sec:planning}}
-
-As short term work, we want to complete the following parts:
-
-\begin{itemize}
-	\item Recommend code in order to improve a sub-optimum code.
-	\item Recommend code in order to complete an incomplete piece of code.
-	\item Develop IDE plugins
-	\item Develop new parsers (Github, Sourceforge) in order to improve:
-	\begin{itemize}
-		\item The coverage of {\tt BUMPER}.
-		\item The precision of {\tt RESEMBLE} and {\tt BIANCA}.
-		\item The accuracy of our Bug Taxonomy.
-	\end{itemize}
-\end{itemize}
+We need to refine our statistical analysis for our taxonomy.
+More specifically, we need to compare each bug type one by one in addition to the comparison we have already done.
 
 \section{Publication Plan\label{sec:publication-plan}}
 
-This section presents our planned publications over the course of the next year.
-Depending on time constraints and possible invitations to journal extension, publication can be removed or added during the next years.
+This section presents our planned publications over the course of the next years.
 
 \begin{itemize}
-
-	\item {\bf Publication 6}. {\tt BIANCA} will be submitted to {\tt International Symposium on Software Reliability Engineering, ISSRE 2016}.
-	\item {\bf Publication 7}. {\tt PRECINCT} will be submitted to {\tt International Working Conference on Source Code Analysis and Manipulation, SCAM 2016}.
+	\item {\bf Publication 6}. {\tt PRECINCT} will be submitted to {\tt International Working Conference on Source Code Analysis and Manipulation, SCAM 2016}.
+	\item {\bf Publication 7}. {\tt BIANCA} will be submitted to {\tt Journal of Software: Evolution and Process. 2016}.
 	\item {\bf Publication 8}. {\tt RESEMBLE} will be submitted to {\tt International Conference Software Maintenance and Evolution, ICSME 2017}.
-	\item {\bf Publication 9}. Our proposed bug taxonomy will be submitted to {\tt Transaction of Software Engineering, TSE 2017}.
-	\item {\bf Publication 10}. Our ecosystem as a whole, {\tt BUMPER}, {\tt JCHARMING}, {\tt RESEMBLE} and {\tt BIANCA} will be submitted to {\tt Transaction of Software Engineering, TSE 2017}.
-	\item {\bf Thesis}. In parallel to publications 10 and 11, I plan to write my Ph.D thesis.
+	\item {\bf Publication 9}. Our proposed bug taxonomy will be submitted to {\tt Empirical Software Engineering, ESE 2017}.
+	\item {\bf Publication 10}. Our framework as a whole, {\tt BUMPER}, {\tt JCHARMING}, {\tt RESEMBLE} and {\tt BIANCA} will be submitted to {\tt Transaction of Software Engineering, TSE 2017}.
+	\item {\bf Thesis}. In parallel to publications 9 and 10, I plan to write my Ph.D thesis.
 \end{itemize}
+
+Figure \ref{fig:planning} presents and overview of the publications planning and the relationship between the publications.
+
+ \begin{figure}[h!]
+
+ \centering
+ \begin{ganttchart}
+	  [
+ inline
+]{1}{30}
+ \gantttitle{2014}{6}
+ \gantttitle{2015}{6}
+ \gantttitle{2016}{6}
+ \gantttitle{2017}{6}
+ \gantttitle{2018}{6}  \\
+ \gantttitle{W}{2}
+ \gantttitle{S}{2}
+ \gantttitle{F}{2}
+ \gantttitle{W}{2}
+ \gantttitle{S}{2}
+ \gantttitle{F}{2}
+ \gantttitle{W}{2}
+ \gantttitle{S}{2}
+ \gantttitle{F}{2}
+ \gantttitle{W}{2}
+ \gantttitle{S}{2}
+ \gantttitle{F}{2}
+ \gantttitle{W}{2}
+ \gantttitle{S}{2}
+ \gantttitle{F}{2} \\
+
+
+\ganttbar{$Courses$}{1}{4}
+
+\\
+\ganttbar{$JChar$}{5}{8}
+\ganttbar{$JChar_2$}{12}{14}
+\ganttbar{$Taxonomy$}{19}{22}
+\\
+\ganttbar{$Bumper$}{4}{11}
+\ganttbar{$Pasmat$}{22}{25}
+\\
+\ganttbar{$Precinct$}{13}{16}
+\\
+\ganttbar{$Resemb$}{18}{20}
+\ganttbar{$Thesis$}{25}{29}
+\\
+\ganttbar{$Bianca$}{15}{20}
+\\
+
+
+\ganttlink{elem0}{elem1}
+\ganttlink{elem1}{elem2}
+\ganttlink{elem2}{elem3}
+\ganttlink{elem4}{elem2}
+\ganttlink{elem4}{elem3}
+\ganttlink{elem4}{elem6}
+\ganttlink{elem6}{elem7}
+\ganttlink{elem6}{elem9}
+
+\ganttlink{elem6}{elem5}
+\ganttlink{elem7}{elem5}
+\ganttlink{elem9}{elem5}
+\ganttlink{elem3}{elem5}
+\ganttlink{elem5}{elem8}
+
+ \end{ganttchart}
+
+
+ \caption{Provisional Publication Planning\label{fig:planning}}
+ \end{figure}
