@@ -34,7 +34,7 @@ In the next section, we present our framework for pragmatic software maintenance
 \section{Overview of PASMAT\label{sec:overview}}
 
 In this section, we introduce our framework {\tt PASMAST} (PrAgmatic Software Maintenance At verSioning Time).
-Figure \ref{fig:proposal} depicts {\tt PASMAST} and describes how the different tools interface themselves in a classical maintenance process supported by feature branching.
+Figure \ref{fig:proposal} depicts {\tt PASMAST} and describes how the different tools interface themselves in a classical maintenance process supported by task branching.
 
 \begin{figure}[h!]
 	\centering
@@ -43,35 +43,35 @@ Figure \ref{fig:proposal} depicts {\tt PASMAST} and describes how the different 
 	\label{fig:proposal}
 \end{figure}
 
-During the maintenance process supported by feature branching a developer will first browse the project management system and acknowledge reports or tasks assigned to him.
-Assigning reports or issues to developers is known as trading.
+During the maintenance process supported by task branching a developer will first browse the project management system and acknowledge reports or tasks assigned to him.
+Assigning reports or issues to developers is known as triaging.
 There have been research on how to perform automated triaging that determines which developer is the best suited to accomplish it\cite{Saha2014, Tamrawi2011, Bortis2013}.
 We do not propose ameliorations in the field of triaging.
 
-The second step will be to create a feature branch for the report or the issue at hand.
-Creating a feature branch is a straightforward command, for example $git~checkout~-b~123\_task\_name$ for git.
+The second step will be to create a task branch for the report or the issue at hand.
+Creating a task branch is a straightforward command, for example $git~checkout~-b~123\_task\_name$ for git.
 We can identify which task or report is being tackled by the developer with the name of the branch and automatically fetch relevant information such as steps to reproduce the reports or similar reports closed in the past.
-We do that using a pre-checkout and one of our contribution:{\tt BUMPER} (Bug Metarepository for Research and DevelopeRs).
+We do that using a pre-checkout and one of our contribution: {\tt BUMPER} (Bug Metarepository for Research and DevelopeRs).
 
-A hook is a process that can be implemented to receive the  modification to the source code done by the developer.
+A hook is a process that can be implemented to receive the  modifications done to the source code.
 Hooks are custom scripts set to fire off before and after versioning actions occur.
 There are two types of hooks: client-side and server-side.
 Client-side hooks are triggered by operations such as committing and merging, whereas server-side hooks run on network operations such as receiving pushed commits.
 These hooks can be used for all sorts of reasons such as compliance to coding rules or automatic run of unit test suites.
 
-Leveraging the hook-feature, we can fetch information from a central repository called {\tt BUMPER} (Bug Metarepository for Research and DevelopeRs) about the task or report at hand.
+Leveraging the hook-feature, we can fetch information from our central repository called: {\tt BUMPER}, about the task or report at hand.
 {\tt BUMPER} is a meta-repository that makes reports, tasks and related source code searchable using a structured API.
 {\tt BUMPER} contains several adaptor to fetch new reports and tasks submitted to project management systems.
 It updates itself every night.
 
-When a report is created, {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) will fetch the content of the issue and try to create a scenario to reproduce the on-field crash.
+When a report is created, {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) will fetch the content of the report and try to create a scenario to reproduce the on-field crash.
 {\tt JCHARMING} uses a combination of crash traces and model
 checking to automatically reproduce bugs that caused field crashes.
 In case of success the scenario is stored in {\tt BUMPER}.
 
 Consequently, at branching-time, we can add the scenarios to reproduce the report directly in the source code and recommend similar reports.
 We provide {\it accurate} and {\it contextual} information in a transparent manner for the developer.
-Indeed, the reproduction of a field-crash is binary, reproduced or not.
+Indeed, the reproduction of a field-crash is binary: reproduced or not.
 In addition, this process occurs directly in the  system that the maintainer already uses.
 
 At this point, the maintainers start editing the code and commit their changes to their local branch.
@@ -80,7 +80,7 @@ Once again, we leverage hooks, and more specifically pre-commits hooks to do so.
 For each commit, we are able to prevent the insertion of a clone before it reaches to the central repository and recommend changes based on mining similar co-changes at the block level.
 This is possible because the local branch of the developer contains all the history of the project, from its beginning to the present.
 
-At commit-time, we provide {\tt contextualised} advice directly into the source versioning system to improve the software before the changes reach the central repository.
+At commit-time, we provide {\it contextualised} advice directly into the source versioning system to improve the software before the changes reach the central repository.
 Figure \ref{fig:precinct-intro} presents an output of {\tt PRECINCT}, directly in the source versioning system.
 
 \begin{figure}[h!]
@@ -90,20 +90,20 @@ Figure \ref{fig:precinct-intro} presents an output of {\tt PRECINCT}, directly i
 	\label{fig:precinct-intro}
 \end{figure}
 
-When maintainers are confident enough to share their changes, they will push them to the central repository.
-Using a server-side push hook, we can analyze the source code pushed by the maintainer.
-Our last tool, {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at parse time), analyzes the change pattern performed by the maintainer in order to identify if it this pattern is likely to introduce a default in the application.
-{\tt BIANCA} does this by analyzing every change ultimately led to a report.
+When maintainers are confident enough to share their changes, they will push them to the central repository and open a merge request to merge their code to the main branch.
+Using a server-side merge hook, we can analyze the source code pushed by the maintainer.
+Our last tool, {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at merge time), analyzes the change pattern performed by the maintainer in order to identify if it this pattern is likely to introduce a default in the application.
+{\tt BIANCA} does this by analyzing every changes that ultimately led to a report.
 In case of a match, {\tt BIANCA} displays the matching source code to the maintainer.
 The matching source code that led to a report and its subsequent modifications to fix that report are actionable messages.
-Indeed, the maintainers are informed their modifications raised a warning and they can see how to transform their code, based on the provided example, if they decide to take action.
+Indeed, maintainers are informed that their modifications raised a warning and they can see how to transform their code, based on the past history, if they decide to take action.
 Futhermore, the reasoning behind {\tt BIANCA}'s warning is obvious: the submitted modification matches modification known to have introduced a defect.
 At push-time, the response time of any analysis shall be as short as possible: maintainer is waiting for their modification synchronized with the central repository.
 Hence, {\tt BIANCA} only checks for matches inside the current project history.
 At merge-time, however, we can compute more expensive operation.
 Indeed, the maintainer submits the modification for integration into the mainline and the modification will be reviewed by other developers in code reviews.
 Consequently, {\tt BIANCA} checks for matching example, in all known projects.
-{\tt BIANCA} uses the code normalizations and text-based clone detection technics \cite{Cordy2006,ROY2009,Cordy2011}.
+{\tt BIANCA} uses the same code normalizations and text-based clone detection technics as {\tt PRECINCT} \cite{Cordy2006,ROY2009,Cordy2011}.
 
 All these approaches have been designed with the aim to reduce known barriers of adoption, namely, actionable messages, obvious reasoning, scaling and contextualization\cite{Johnson2013, Hovemeyer2004, Lopez2011, Lewis2013}.
 
@@ -135,14 +135,13 @@ In the following chapters, we describe each part of our framework in details.
 \chapter{Aggregating Version Control and Project Management Systems\label{chap:aggreating}}
 
 In this chapter, we present two approaches: {\tt BUMPER} and {\tt JCHARMING}.
-{\tt BUMPER} is the keystone of our proposed framework for programmatic software maintenance.
-The role of {\tt BUMPER} is to aggregate information belonging to versioning systems and project management systems.
+{\tt BUMPER} is the keystone of our proposed framework for pragmatic software maintenance.
+The role of {\tt BUMPER} is to aggregate information belonging to the version control and project management systems.
 {\tt BUMPER} acts as our consolidated dataset.
 
-{\tt JCHARMING} is an approach to reproduce field-failure.
+{\tt JCHARMING} is an approach to reproduce field-crash.
 Every time a bug report is submitted to a project management system and aggregated by {\tt BUMPER}, {\tt JCHARMING} will try to reproduce it.
 In case of success, the steps to reproduce the bug are saved in {\tt BUMPER}.
-
 The materials presented in this chapter are based on the following publications:
 
 \begin{itemize}
@@ -160,7 +159,7 @@ The materials presented in this chapter are based on the following publications:
 The adoption of tools and processes that aim to support human maintainers during maintenance is relatively low \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Lopez2011}.
 Human maintainers agree that such tools are beneficial, but, in addition of disrupting their workflow, these tools tend to have a high false positive rate.
 Also, the way in which the warnings are presented, among other things, are barriers to use\cite{Johnson2013}.
-When asked for their opinions, human maintainers agree to the following characteristics for maintenance-oriented tools\cite{Hovemeyer2004, Lopez2011, Lewis2013}:
+When asked for their opinions, human maintainers agree to the following characteristics for maintenance-oriented tools\cite{Hovemeyer2004, Lopez2011, Lewis2013} we described in the introduction:
 
 \begin{itemize}
 	\item Actionable messages. Presenting a warning about bug-proneness of a given line is not enough.
@@ -176,13 +175,13 @@ When asked for their opinions, human maintainers agree to the following characte
 	Maintenance-oriented tools should fit in the existing ecosystem rather than complexifying the deployment process.
 \end{itemize}
 
-In this chapter, we present approaches that have the characteristics described by human maintainer and integrate them seamlessly into a task branching environment.
+In this chapter, we present approaches that have the characteristics described by human maintainer and integrate themselves seamlessly into a task branching environment.
 
 \section{Software Maintenance at Branching-Time}
 
-Software maintenance at a branching-time allows human maintainers to obtain, in an automatic fashion, the steps to reproduce the root cause of a bug or crash report.
+Software maintenance at branching-time allows human maintainers to obtain, in an automatic fashion, the steps to reproduce the root cause of a bug or crash report.
 
-As an example, if a maintainer is assigned to fix the root cause of bug report $\#38622$ of the Ant project, related to parsing exception, he will create a branch named $38622\_fix\_parsing$ with the command: $git~checkout~-b~38622\_fix\_parsing$ for Git.
+As an example, if a maintainer is assigned to fix the root cause of bug report $\#38622$ of the Ant project\footnote{https://ant.apache.org/}, related to parsing exception, he will create a branch named $38622\_fix\_parsing$ with the command: $git~checkout~-b~38622\_fix\_parsing$ for Git.
 
 Before the checkout, our pre-checkout hook triggers.
 As a reminder, a hook is a bash script that can be executed before or after any versioning operation.
@@ -211,19 +210,6 @@ This information can be used to ease the maintenance process.
 \section{Software Maintenance at Commit-Time}
 
 Software maintenance at commit-time allows developers to receive recommendation and improvements in commit-time using code clone detection techniques.
-
-Code clones appear when developers reuse code with little to no modification to the original code.
-Studies have shown  that clones can account for about 7\% to 50\% of code in a given software system\cite{Baker, StephaneDucasse}.
-Developers often reuse code (and create clones) in their software on purpose\cite{Kim2005}.
-Nevertheless, clones are considered a bad practice in software development since they can introduce new bugs in the code\cite{Kapser2006,Juergens2009,Li2006}.
-If a  bug is discovered in one segment of the code that has been copied and pasted several times, then the developers will have to remember the places where this segment has been reused in order to fix the bug in each place.
-
-In the last two decades, there have been many studies and tools that aim at detecting clones. They can be grouped into three categories.
-The first category includes techniques that treat the source code as text and use transformation and normalization methods to compare various codes fragments\cite{Johnson1994,Johnson1993, Cordy2011, Roy2008}.
-The second category includes methods that
-use lexical analysis, where the source code is sliced into sequences of tokens, similar to the way a compiler operates\cite{Baker,Bakera,Baker2002,Kamiya2002,Li2006}.
-The tokens are used to compare code fragments.
-Finally, syntactic analysis has also been performed where the source code is converted into trees, more particularly abstract syntax tree (AST), and then the clone detection is performed using tree matching algorithms\cite{Baxter1998, Komondoor2000, Tairas2006, Falke2008}.
 
 Many taxonomies have been published in an attempt to classify clones into types. \cite{Mayrand1996,Balazinska1999,Koschke2006,Bellon2007,Kontogiannis,Kapser}.
 Despite the particularities of each proposed taxonomy, researchers agree on the following classification.

@@ -50,21 +50,21 @@ Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristi
 \end{itemize}
 
 Modern version control systems also support branching.
-A branch is a derivation in the evolution that contain a duplication of the source code so that both versions can be modified in parallel.
+A branch is a derivation in the evolution that contains a duplication of the source code so that both versions can be modified in parallel.
 Branches can be reconciled with a merge operation that merge modification of the two branches.
 This operation is completely automated at the exception of merging conflicts that arise when both branches contain modification of the same line.
 Such conflicts cannot be reconciled automatically and have to be dealt with by the developer.
-This allows for a greater agility among developers as changes one branch do not affect other developers of other branches.
+This allows for a greater agility among developers as changes on one branch do not affect other developers of other branches.
 
 Branching have been used for more than testing hazardous refactoring or testing framework upgrades.
-Indeed, task branching is an agile branching strategy where a new branch is created for each task\cite{MartinFowler2009}.
-It is common to see branch names {\tt 123\_implement\_X} where {\tt 123} is the {\tt \#id} of tasks {\tt X} given by the project tracking systems.
-Project tracking systems are presented in Section\ref{sec:issue-tracking}.
+Indeed, task branching is an agile branching strategy where a new branch is created for each task \cite{MartinFowler2009}.
+It is common to see branch named {\tt 123\_implement\_X} where {\tt 123} is the {\tt \#id} of task {\tt X} given by the project tracking system.
+Project tracking systems are presented in Section \ref{sec:issue-tracking}.
 
-In modern versioning systems, when maintainers make modifications to the source code and their modification versionned, they have to do commit.
+In modern versioning systems, when maintainers make modifications to the source code want to version it, they have to do commit.
 The commit operation will version the modifications applied to one or many files.
 
-Figure \ref{fig:branching} presents the data structure used to store a modification or commit.
+Figure \ref{fig:branching} presents the data structure used to store a commit.
 Each commit is represented as a tree.
 The root leaf (green) contains the commit, tree and parent hashes as same as the author and the description associated with the commit.
 The second leaf (blue) contains the leaf hash and the hashes of the files of the project.
@@ -76,10 +76,10 @@ The second leaf (blue) contains the leaf hash and the hashes of the files of the
     \label{fig:branching}}
 \end{figure}
 
-In this example, we can see that author ``Mathieu'' has created the file $file1.java$ with the message project into''.
+In this example, we can see that author ``Mathieu'' has created the file $file1.java$ with the message ``project init''.
 Figure \ref{fig:two-commits} represents an ulterior modification.
 In this second example, $file1. java$ is modified while $file2.java$ is created.
-The second commits $98ca9$ have $34ac2$ as a parent.
+The second commit $98ca9$ have $34ac2$ as a parent.
 
 \begin{figure}[h!]
   \centering
@@ -413,6 +413,10 @@ This is mainly due to the lack of actionable message, i.e. messages that provide
 
 \section{Clone Detection}
 \label{sec:rel-clones}
+
+Some of our contributions rely on code clone detection to perform their functionalities.
+Consequently, we reviewed the litterature of the field.
+These section describes major works in clone detection.
 
 Code clones appear when developers reuse code with little to no modification to the original code.
 Studies have shown  that clones can account for about 7\% to 50\% of code in a given software system\cite{Baker, StephaneDucasse}.
