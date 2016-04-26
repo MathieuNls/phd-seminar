@@ -6,8 +6,6 @@
 Many tools exist to prevent a developer to ship {\it bad} code \cite{Dangel2000,Hovemeyer2007,Moha2010} or to identify {\it bad} code after executions (e.g in test or production environment) \cite{Nayrolles,Nayrolles2013a}.
 However, these tools rely on metrics and rules to statically and/or dynamically identify sub-optimum code.
 
-\subsubsection{The {\tt BIANCA} approach\label{sec:bianca-approach}}
-
 {\tt BIANCA} is different than the approaches presented in the previous sections  because it mines and analyzes the change patterns in commits and matches it against past commits known to have introduced a defect in the code (or that have just been replaced by better implementation).
 Also, {\tt BIANCA} is an offline approach that is triggered by a merge request.
 When a maitainers estimate that their work are ready to be integrated with the main branch, they open a merge request\footnote{Also known as pull request}.
@@ -50,7 +48,7 @@ We believe that the warning, alongside the previously mined change patterns and 
 Thus, {\tt BIANCA} could succeed, where other tools failed, at being used in industrial environment	\cite{Lewis2013}.
 
 
-\subsubsection{Early experiments}
+\section{Early experiments}
 
 We have experimented the efficiency of {\tt BIANCA} with the same datasets we used to build our bug taxonomy proposed in section \ref{chap:taxonomy}.
 

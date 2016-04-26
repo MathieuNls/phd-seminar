@@ -1,6 +1,5 @@
 %!TEX root = ../research_proposal.tex
 
-\section{JCHARMING - Java CrasH Automatic Reproduction by directed Model checkING\label{sec:JCHARMING}}
 
 Field failures are challenging to reproduce because
 the data provided by the end users is often scarce. A survey
@@ -31,7 +30,7 @@ Moreover, JCHARMING offers better results than approaches described in Section \
 To assess the efficiency of {\tt JCHARMING} we try to reproduce bug reports contained in {\tt BUMPER} and uur approach is able to reproduce 80\% (24/30) of bugs.
 Moreover, it outperforms STAR (54.6\%) \cite{Chen2013} and BugRedux (37.5\%) \cite{Jin2012}.
 
-\subsection{Preliminaries}
+\section{Preliminaries}
 
 Model checking (also known as property checking) will, given a system (that could be software \cite{Visser2003} or hardware based \cite{kropf1999introduction}), check if the system meets a specification Spec by testing exhaustively all the states of the system under test (SUT), which can be represented by a Kripke \cite{Kripke1963} structure:
 
@@ -84,7 +83,7 @@ Software testing depends on how well the tester understands the SUT in order to 
 
 Model checking, on the other hand, explores each and every state of the program (Figure \ref{fig:checking-toy}), which makes it complete, but impractical for real-world and large systems. To overcome the state explosion problem of model checking, directed (or guided) model checking has been introduced \cite{Rungta2009}. Directed model checking use insights—generally heuristics—about the SUT in order to reduce the number of states that need to be examined. Figure \ref{fig:dchecking-toy} explores only the states that may lead to a specific location, in our case, the location of the fault. The challenge, however, is to design techniques that can guide the model checking engine. As we will describe in the next section, we use crash traces and program slicing to overcome this challenge.
 
-\subsection{The JCHARMING Approach}
+\section{The JCHARMING Approach}
 
 Figure \ref{fig:jcarming-approach} shows an overview of JCHARMING. The first step
 consists of collecting crash traces, which contain raw lines
@@ -112,7 +111,7 @@ reproduce the bug in a deterministic way.
     \label{fig:jcarming-approach}}
 \end{figure}
 
-\subsubsection{Collecting Crash Traces}
+\subsection{Collecting Crash Traces}
 
 The first step of JCHARMING is to collect the crash trace
 caused by an uncaught exception. Crash traces are usually included in crash reports and can therefore be automatically
@@ -165,7 +164,7 @@ We are likely to find shortened traces in bug repositories as
 they are what the user sees without any possibility to expand
 their content.
 
-\subsubsection{Preprocessing}
+\subsection{Preprocessing}
 
 In the preprocessing step, we first reconstruct and reorganize
 the crash trace in order to address the problem of nested
@@ -180,7 +179,7 @@ field JDK. If this is the case, we will not be able to reproduce
 the crash. Note that removing these unneeded frames will also
 reduce the search space of the model checker.
 
-\subsubsection{Building the Backward Static Slice}
+\subsection{Building the Backward Static Slice}
 
 For large systems, a crash trace does not necessary contain all
 the methods that have been executed starting from the entry
@@ -299,7 +298,7 @@ the model checking engine. Consequently, the only frame that
 need to be untouched for the backward static slice to be
 meaningful is $f_0$.
 
-\subsubsection{Directed Model Checking}
+\subsection{Directed Model Checking}
 
 The model checking engine we use in this section is called JPF
 (Java PathFinder) \cite{Visser2004}, which is an extensible JVM for Java
@@ -325,7 +324,7 @@ the states in $\bigcup_{i=0}^{entry} bslice_{[f_{i+1} \leftarrow f_i]}  \subset 
 transition $x$ to pass from the current state $s_i$ to $s_{i+1}$ are in
 $\bigcup_{i=0}^{entry} bslice_{[f_{i+1} \leftarrow f_i]}  \subset SUT$ and $x.\bigcup_{i=0}^{entry} bslice_{[f_{i+1} \leftarrow f_i]}  \subset x.SUT$.
 
-\subsubsection{Validation}
+\subsection{Validation}
 
 To validate the result of directed model checking, we modify
 the {\it check properties} step that checks if the current sequence
@@ -347,7 +346,7 @@ checker matches the original crash trace by a factor of $t$, where
 $t$ is a threshold specified by the user. $t$ is the percentage of
 identical frames between both crash traces.
 
-\subsubsection{Generating Test Cases for Bug Reproduction}
+\subsection{Generating Test Cases for Bug Reproduction}
 
 To help software developers reproduce the crash in a lab
 environment we automatically produce the JUnit test cases
@@ -373,7 +372,7 @@ performs too many operations modifying the property of a
 given object. In such case, we serialize the last state of the
 object.
 
-\subsection{Case studies}
+\section{Case studies}
 
 In this section, we show the effectiveness of JCHARMING to
 reproduce bugs in seven open source systems\footnote{The bug reports used in this study and the result of the model checker are
@@ -383,7 +382,7 @@ case study is to answer the following question: {\it Can we use
 crash traces and directed model checking to reproduce on-
 field bugs in a reasonable amount of time?}
 
-\subsubsection{Targeted Systems}
+\subsection{Targeted Systems}
 
 Table \ref{tab:jacharming-systems} shows the systems and their characteristics in terms of
 Kilo Line of Code (KLoC) and Number of Classes (NoC).
@@ -450,7 +449,7 @@ Software Foundation since 2009 and was created in 2008.
 PDFBox allows the creation of new PDF documents and the
 manipulation of existing documents.
 
-\subsubsection{Bug Selection and Crash Traces}
+\subsection{Bug Selection and Crash Traces}
 
 In this study, we have selected the reproduced bugs randomly
 in order to avoid the introduction of any bias. We selected a
@@ -459,7 +458,7 @@ containing the word ``exception'' and where the description of
 the bug contains a match a regular expression designed to find the pattern of a
 Java exception.
 
-\subsection{Results}
+\section{Results}
 
 Table \ref{tab:jcharming-results} shows the results of JCHARMING in terms of Bug
 \#ID, reproduction status, and execution time (in minutes) of
@@ -525,7 +524,7 @@ one bug (chosen randomly) for each category (successfully
 reproduced, partially reproduced, and not reproduced) for
 further analysis.
 
-\subsubsection{Successfully reproduced}
+\subsection{Successfully reproduced}
 
 The first bug we describe in this discussion is the bug \#311
 belonging to ArgoUML. This bug was submitted in an earlier
@@ -600,7 +599,7 @@ specifically, the model checker identifies that the method
 {\tt setTargetInternal(Object o)} could receive a null object that
 will result in a {\tt Null} pointer exception.
 
-\subsubsection{Partially reproduced}
+\subsection{Partially reproduced}
 
 As an example of a partially reproduced bug, we explore the
 bug \#664 of the Jfreechart program. The description provided
@@ -639,7 +638,7 @@ differences between the crash trace generated from the model
 checker and the original crash trace (after preprocessing)
 consists of few lines only.
 
-\subsubsection{Not Reproduced}
+\subsection{Not Reproduced}
 
 To conclude the discussion on the case study, we present a
 case where JCHARMING was unable to reproduce the failure.
@@ -685,5 +684,3 @@ next steps. It is noteworthy that the bug is marked as duplicate
 of the bug \#46271 which contains a proper crash trace. We
 believe that JCHARMING could have successfully
 reproduced the crash, if it was applied to the original bug. \\
-
-While JCHARMING is effective at reproducing on-field failures in lab environment, we want to reduce their number in the coming year. To do so, we built {\tt RESSEMBLE} and {\tt BIANCA} that we present in the next two sections.
