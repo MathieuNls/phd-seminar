@@ -1,7 +1,5 @@
 %!TEX root = ../research_proposal.tex
 
-\section{BUMPER - Bug Meta-repository For Developers \& Researchers\label{sec:BUMPER}}
-
 With the goal to support the research towards analyzing relationships between bugs and their fixes we constructed a dataset of 380 projects, more than 100,000 resolved/fixed and with 60,000 changesets that were involved in fixing them from Netbeans and The Apache Software foundation's software that is (1) searchable in natural language at https://bumper-app.com, (2) contains clear relationships between the bug report and the code involved to fix it, (3) supports complex queries such as parent-child relationships, unions or disjunctions and (4) provide easy exports in json, csv and xml format.
 
 In what follows, we will present the projects we selected. Then, we present the features related to the bugs and their fixes we integrate in BUMPER (BUg Metarepository for dEvelopers and Researchers) and how we construct our dataset. Then, we present the API, based on Apache Solr \cite{Nayrolles2014b}, which allows the NLP search with practical examples before providing research opportunities based on our dataset.
@@ -9,8 +7,7 @@ In what follows, we will present the projects we selected. Then, we present the 
 
 However, to the best of our knowledge, no attempt has been made towards building a unified and online dataset where all the information related to a bug, or a fix can be easily accessed by researchers and engineers.
 
-\subsection{Data collection}
-
+\section{Data collection}
 
 Figure \ref{fig:bumper-approach} illustrates our data collection and analysis process that we present here and discuss in more detail in the following subsections. First, we extract the raw data from the two bug report management systems used in this study (Bugzilla\footnote{https://netbeans.org/bugzilla/} and Jira\footnote{https://issues.apache.org/jira/issues/?jql=}). The extracted data is consolidated in one database called BUMPER where we associate each bug report with its fix. The fixes are mined from different type of source versioning system. Indeed, Netbeans is based on mercurial\footnote{ http://mercurial.selenic.com/} while we used the git\footnote{http://git-scm.com/} mirrors\footnote{https://github.com/apache} for the Apache Foundation software.
 
@@ -24,7 +21,7 @@ Figure \ref{fig:bumper-approach} illustrates our data collection and analysis pr
 We used the same datasets presented earlier in Table \ref{table:datasets}.
 We choose to use the same ones as these two datasets because they exposed a great diversity in programming languages, teams, localization, utility and maturity. Moreover, the used different tools, i.e. Bugzilla, JIRA, Git and Mercurial, and therefore, BUMPER is ready to host any other datasets that used any composition of these tools.
 
-\subsection{Architecture}
+\section{Architecture}
 
 {\tt BUMPER} rely on a highly scalable architecture composed of two distinct servers as depicted in Figure \ref{fig:bumper-arch}. The first server, on the left, handles the web requests and runs three distinct components:
 
@@ -57,7 +54,7 @@ They also provide an extra level of caching and security.
 
 To give the reader a glimpse about the performances that this unusual architecture can yield; we are able to request and display the result of a specific request in less than 100 ms while our two servers are, in fact, two virtual machines sharing an AMD Opteron (tm) Processor 6386 SE (1 core @ 2,000 MHz) and 1 GB of RAM.
 
-\subsection{UML Metamodel}
+\section{UML Metamodel}
 
 Figure \ref{fig:bumper-approach} presents the simplified {\tt BUMPER} metamodel that we designed according to our bug taxonomy presented in section \ref{fig:bug-taxo} and according to our future needs for {\tt JCHARMING}, {\tt RESSEMBLE} and {\tt BIANCA}.
 
@@ -74,11 +71,11 @@ Also, {\it issues} ({\it tasks}) belong to {\it project} that are in {\it reposi
 {\it Users} can modify an {\it issue} ({\it task})  during {\it life cycle events} which impact the {\it type}, the {\it resolution}, the {\it platform}, the {\it OS} and the {\it status}. {\it Issues} ({\it tasks}) are resolved (implemented) by {\it changeset} that are composed of {\it hunks}. {\it Hunks} contain the actual changes to a {\it file} at a given revision, which are versions of the {\it file} entity that belongs to a {\it Project}.
 
 
-\subsection{Features}
+\section{Features}
 
 In this section, we present the features of bug report and their fixes in details.
 
-\subsubsection{Bug Report}
+\subsection{Bug Report}
 
 A bug report is characterized by the following features:
 
@@ -113,7 +110,7 @@ A bug report is characterized by the following features:
 
 We selected this set of features for bug report as they are the ones that are analyzed in many past and recent studies. In addition, bugs can contain 0 or many .
 
-\subsubsection{Changesets}
+\subsection{Changesets}
 
 In this section, we present the features that characterize changeset entities in BUMPER.
 
@@ -135,7 +132,7 @@ In this section, we present the features that characterize changeset entities in
 
 In addition, changesets contain one or many hunks.
 
-\subsubsection{Hunks}
+\subsection{Hunks}
 A hunks are a set of consecutive lines changed in a file in order. A set of hunks form a fix that can be scattered across one or many files. Knowing how many hunks a fixed required and what are the changes in each of them is useful, as explained by [2] to understand how many places developers have to go to fix a bug.
 
 Hunks are composed of:
@@ -150,7 +147,7 @@ Hunks are composed of:
 \item Change: One line that have been added or removed. A Hunk can contain one or many changes.
 \end{itemize}
 
-\subsection{Application Program Interface (API)\label{sec:bumper-api}}
+\section{Application Program Interface (API)\label{sec:bumper-api}}
 
 BUMPER is available for engineers and researchers at {\bf https://bumper-app.com} and take the form of a regular search engine. Bumper supports (1) natural language query, (2) parent-child relationships, query, (3) disjunctions and union between complex queries and (4) a straight forward export of query results in XML, CSV or JSON format.
 
@@ -182,4 +179,4 @@ Moreover, BUMPER supports AND, OR, NOR operators and provide results in order of
 
 As we said before, BUMPER is based on Apache Solr which have an incredibly rich API that is available online\footnote{ http://lucene.apache.org/solr/resources.html}.
 
-{\tt BUMPER} serves as data repositories for the upcoming approaches presented in the next sections.
+{\tt BUMPER} serves as data repositories for the upcoming approaches presented in the chapters.
