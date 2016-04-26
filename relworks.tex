@@ -460,3 +460,11 @@ Most modern IDEs provide the \textit{extract method} feature that transforms a p
 More advanced techniques (see Codelink\cite{Toomim} and\cite{Duala-Ekoko2007}) involve analysing the output of CCFinder\cite{Kamiya2002a,Livieri2007} or program dependencies graphs\cite{higo2004refactoring} to automatically suggest a method that would go through the \textit{extract method} process.
 
 The aforementioned  techniques, however, focus on detecting clones after they are inserted in the code. Only a few studies focus on preventing the insertion of clones. Lague et al. \cite{Lague} conducted a very large empirical study with 10,000 developers over 3 years, where developers where asked to use clone detection tools during the development process of a very large telecom system. The authors found that while clones are being removed over time, using clone detection tools help improving the quality of the system as it prevents defects to reach the customers. Duala et al. \cite{Duala-Ekoko2007,Duala-Ekoko2010} proposed to create clone region descriptors (CRDs), which describe clone regions within methods in a robust way that is independent from the exact text of the clone region or its location in a file. Then, using CRDs, clone insertion can be prevented.
+
+Finally, many taxonomies have been published in an attempt to classify clones into types. \cite{Mayrand1996,Balazinska1999,Koschke2006,Bellon2007,Kontogiannis,Kapser}.
+Despite the particularities of each proposed taxonomy, researchers agree on the following classification.
+Type 1 clones are copy-pasted blocks of code that only differ from each other in terms of non-code artifacts such as indentation, whitespaces, comments and so on.
+Type 2 clones are blocks of code that are syntactically identical at the exception of literals, identifiers and types that can be modified.
+In addition, Type 2 clones share the particularities of Type 1 about indentation, whitespaces and comments.
+Type 3 clones are similar to Type 2 clones in terms of modification of literals, identifiers, types, indentation, whitespaces and comments but also contain added or deleted code statements.
+Finally, Type 4 are code blocks that perform the same tasks, but using a completely different implementation.

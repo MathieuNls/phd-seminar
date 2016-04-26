@@ -106,18 +106,11 @@ We can  reuse the reproduction of an already fixed bug to reproduce an incoming 
 In this section, we present our research contributions that are listed here and developed in more detail in the next subsections.
 
 \begin{itemize}
+	\item An aggregate bug  repository for  developers  and  Researchers.
 	\item A bug reproduction technique based on a combination of crash traces and model checking.
-    \item An aggregate bug  repository for  developers  and  Researchers
 	\item An incremental approach for preventing clone insertion at commit time
 	\item A new taxonomy of bugs based on the location of the corrections --- an empirical Study
 \end{itemize}
-
-\subsection{A bug reproduction technique based on a combination of crash traces and model checking.}
-
-In this work, we propose an approach, called JCHARMING (Java CrasH Automatic Reproduction by directed Model checkING) that uses a combination of crash traces and model checking to automatically reproduce bugs that caused field failures.
-Unlike existing techniques, JCHARMING does not require instrumentation of the code.
-It does not need access to the content of the heap either.
-Instead, JCHARMING uses a list of functions output when an uncaught exception in Java occurs (i.e., the crash trace) to guide a model checking engine to uncover the statements that caused the crash.
 
 \subsection{An aggregate bug  repository for  developers  and  Researchers}
 We introduce BUMPER (BUg Metarepository for  dEvelopers  and  Researchers),  a  web-based  infrastructure
@@ -127,6 +120,13 @@ We  created  a  common  schema that represents data, stored in various bug track
 BUMPER uses a web-based interface to allow users to search the aggregated database by expressing queries through a single point of access.
 This way, users can focus on the analysis itself and not on the way the data is represented or located.
 BUMPER supports many features including: (1) the ability to use multiple bug tracking and control version systems, (2) the  ability  to  search  very  efficiently  large  data  repositories using both natural language and a specialized query language, (3)  the  mapping  between  the  bug  reports  and  the  fixes,  and (4)  the  ability  to  export  the  search  results  in  Json,  CSV  and XML formats.
+
+\subsection{A bug reproduction technique based on a combination of crash traces and model checking.}
+
+In this work, we propose an approach, called JCHARMING (Java CrasH Automatic Reproduction by directed Model checkING) that uses a combination of crash traces and model checking to automatically reproduce bugs that caused field failures.
+Unlike existing techniques, JCHARMING does not require instrumentation of the code.
+It does not need access to the content of the heap either.
+Instead, JCHARMING uses a list of functions output when an uncaught exception in Java occurs (i.e., the crash trace) to guide a model checking engine to uncover the statements that caused the crash.
 
 \subsection{An incremental approach for preventing bug and clone insertion at commit time}
 In this research, we present PRECINCT (PREventing Clones INsertion at Commit Time) that focuses on preventing the
@@ -144,7 +144,7 @@ Moreover, the detected clones are presented using a classical ‘diff’ output 
 PRECINCT is also well
 integrated with the workflow of the developers since it is used in conjunction with a source code version control systems such as Git.
 
-\subsection{A new taxonomy of bugs based on the location of the correction - an empirical Study}
+\subsection{A new taxonomy of bugs based on the location of the correction --- an empirical Study}
 
 We investigate the relationship between bugs by examining their locations of the fixes.
 By a fix, we mean a modification (adding or deleting lines of code) to an exiting file that is used to solve the bug.We argue that bugs can be classified into four types:
@@ -164,12 +164,17 @@ The remaining chapters of this proposal are:
 \begin{itemize}
 	\item Chapter \ref{chap:relwork} - {\it Background \& Related work}.
 	In this chapter, we present the major studies related to our research field, namely, crash reproduction, aggregating bug repositories for mining purposes, and clone detection.
-	\item Chapter \ref{chap:aggreating} - {\it Aggregating Version Control and Project Management Systems}.
+	\item Chapter \ref{chap:bumper} - {\it An Aggregate Bug Repository for Developers and Researchers}.
+	In this chapter, we present {\tt BUMPER} (BUg Metarepository for  dEvelopers  and  Researchers), our bug meta-repository. {\tt BUMPER} acts as our datatasource for our different contributions.
+
+	\item Chapter \ref{chap:jcharming} - {\it JCHARMING: Java CrasH Automatic Reproduction by directed Model checkING}.
 	In this chapter we discuss the components of JCHARMING, the bug reproduction approach we propose.
-  \item Chapter \ref{chap:bumper} - {\it BUMPER: Bug Meta-repository For Developers & Researchers}.
-	In this chapter, we discuss our framework and supporting tool for aggregating bug repositories into a uniform infrastructure.
-	\item Chapter \ref{chap:clone-detection-pragmatic} {\it An Incremental Approach for Preventing Clone Insertion at Commit Time} 	This chapter describes three approaches to prevent the insertion of clones at commit time.
-	\item Chapter \ref{chap:taxonomy} {\it A bug classification approach based on the locations of the corrections - an empirical study}.
+
+	\item Chapter \ref{chap:clone-detection-pragmatic} {\it Preventing Clone Insertion}. This chapter describes one approach to  to prevent the insertion of clones at commit time.
+
+	\item Chapter \ref{chap:bianca} {\it Preventing Bug Insertion Using Clone Detection}. In this chapter, we present an approach named {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at merge time) which uses clone detection to prevent bug insertion.
+
+	\item Chapter \ref{chap:taxonomy} {\it A Bug Classification Approach Based on the Locations of the Corrections --- An Empirical Study}.
 	In this chapter, we present an empirical study in which we classify bugs based on the locations of the corrections.
 
 	\item Chapter \ref{chap:plan} {\it Remaining Work to Complete the Thesis} presents  the remaining work and a publication plan.

@@ -3,31 +3,51 @@
 \chapter{Remaining Work to Complete the Thesis\label{chap:plan}}
 
 In this chapter, we summarize the state of the research and the work that needs to be completed in order to finalize the thesis.
-We proceed according to the contributions listed on Section\ref{sec:objective-thesis}.
+We proceed according to the contributions listed on Section \ref{sec:objective-thesis}.
 
 
-\section{An analysis of Existing Techniques Aiming to Support Software Maintenance}
+\section{An aggregate bug  repository for  developers  and  Researchers}
 
-We need to create a classification for the tools and technics we observed to clearly show how they differ and why they were not adopted by industry.
+We introduced {\tt BUMPER} (BUg Metarepository for  dEvelopers  and  Researchers),  a  web-based  infrastructure
+that  can  be  used  by  software  developers  and  researchers  to access  data  from  diverse  repositories  using  natural  language queries in a transparent manner, regardless of where the data was originally created and hosted.
+{\tt BUMPER} have been showcased in the following publications:
 
-\section{Pragamatic Software Maintenance}
+\begin{itemize}
+	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: A Tool to Cope with Natural Language Search of Millions Bugs and Fixes. In Proceeding of the International Conference on Software Analysis, Evolution, and Reengineering (SANER'16) - Tool Track, pages 649-652, 2016.
+	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: Bug Metarepository Search Engine for Developers and Researchers. Consortium for Software Engineering Research Fall, 2015.
+\end{itemize}
 
-We measured the efficiency for 60\% of our proposed framework for pragmatic software maintenance (three components out of five).
-Our work for this contribution has already been featured in the following publications:
+We consider this contribution to be 100\% complete.
+
+\section{A bug reproduction technique based on a combination of crash traces and model checking.}
+
+In this work, we proposed an approach, called {\tt JCHARMING} (Java CrasH Automatic Reproduction by directed Model checkING) that uses a combination of crash traces and model checking to automatically reproduce bugs that caused field failures.
+{\tt JCHARMING} have been showcased in the following publications:
 
 \begin{itemize}
 	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. (2016). A Bug Reproduction Approach Based on Directed Model Checking and Crash Traces. Journal of Software: Evolution and Process. Wiley. 2016. (Accepted).
-	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: A Tool to Cope with Natural Language Search of Millions Bugs and Fixes. In Proceeding of the International Conference on Software Analysis, Evolution, and Reengineering (SANER'16) - Tool Track, pages 649-652, 2016.
-	\item Nayrolles, M. \& Hamou-Lhadj, W. BUMPER: Bug Metarepository Search Engine for Developers and Researchers. Consortium for Software Engineering Research Fall, 2015.
 	\item Nayrolles, M. , Hamou-Lhadj, W., Tahar, S. & Larsson, A. JCHARMING : A Bug Reproduction Approach Using Crash Traces and Directed Model Checking. In Proceeding of the International Conference on Software Analysis, Evolution, and Reengineering (SANER'15), pages 101-110, 2015. (Best Paper Award).
 \end{itemize}
 
-We need to conduct additional experiments to measure the effiency of the two remaining components: {\tt RESEMBLE} and {\tt BIANCA}.
+We consider this contribution to be 100\% complete.
 
-\section{A Taxonomy to Classify the Research on Software Maintenance}
+\section{An incremental approach for preventing bug and clone insertion at commit time}
 
-We need to refine our statistical analysis for our taxonomy.
+We presented {\tt PRECCINT} (PREventing Clones INsertion at Commit Time), {\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) and {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at merge time) in chapters \ref{chap:clone-detection-pragmatic} and \ref{chap:bianca}.
+
+The efficiency of {\tt PRECCINT} have been accessed.
+Early experiments have been conducted for {\tt BIANCA}.
+However, we need to conduct additional experiments to measure the effiency {\tt RESEMBLE} and {\tt BIANCA}.
+
+We consider this contribution to be 40\% complete.
+
+\section{A new taxonomy of bugs based on the location of the correction --- an empirical Study}
+
+We investigated the relationship between bugs by examining their locations of the fixes in chapter \ref{chap:taxonomy}.
+We still need to refine our statistical analysis for our taxonomy.
 More specifically, we need to compare each bug type one by one in addition to the comparison we have already done.
+
+We consider this contribution to be 60\% complete.
 
 \section{Publication Plan\label{sec:publication-plan}}
 
