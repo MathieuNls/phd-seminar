@@ -6,77 +6,68 @@
 \chapter{Introduction}
 
 % Section that introduces the field and motivates the necessity to conduct studies in this field
-Software maintenance activities such as debugging are known to be challenging and costly \cite{Pressman2005}.
+Software maintenance activities such as debugging, refactoring, and feature enhancement are known to be challenging and costly \cite{Pressman2005}.
 Studies have shown that the cost of software maintenance can reach up to 70\% of the overall cost of the software development life cycle \cite{HealthSocial2002}.
-Much of this is attributable to several factors including the increase in software complexity, the lack of traceability between the various phases of the software development process, the lack of proper documentation,  and the unavailability of the original developers of the systems.
+Much of this is attributable to several factors including the increase in software complexity, the lack of traceability between the various artefacts of the software development process, the lack of proper documentation,  and the unavailability of the original developers of the systems.
 
-Research in software maintenance has evolved over the years to include areas like mining bug repositories, bug analysis, prevention and reproduction.
-The ultimate goal is to investigate techniques and tools to help software developers detect, correct, and prevent bugs in an effective and efficient manner.
+Research in software maintenance has evolved over the years to include areas like mining bug repositories, bug analysis, prevention and reproduction. The ultimate goal is to develop techniques and tools to help software developers detect, correct, and prevent bugs in an effective and efficient manner. Several tools have developed 
 
-Despite the recent the advances in the field, our survey of the literature shows that several research challenges remain unaddressed.
-This may explain, in our opinion, the lack of adoption of existing research tools by industry \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Hovemeyer2004, Lopez2011}.
-
-We focus in this research on the following practical issues.
-We discuss our proposed solutions in the next section.
+Despite the recent advances in the field,  the literature shows that many existing software maintenance tools have yet to be adopted by industry \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Hovemeyer2004, Lopez2011}. This is caused by the following factors:
 \begin{itemize}
-	\item The lack of effective bug reproduction techniques.
-	\item The lack of homogeneity of existing bug repositories.
-	\item The lack of on-line (and usable) clone insertion prevention techniques.
-	\item The need for a new bug classification based on the locations of the corrections.
+	\item Work flow integration: Most of these tools are not integrated well with the work flow of software developers. To use these tools, a software developer will need to 
+	\item Actionable outcome: The outcome of these tools tend do not lead to actionable items. Most of these tools return several results that are hard to interpret. Take for example, VVV, a bug detection tools...... [COMPLETE THIS]
+	\item Leverage of historical data: These tools do not leverage a large body of knowledge that already exist in open source systems. [EXAMPLE]
+    \item: End-to-end perspective: The proposed tools work in silos. To complete a task, one needs to download and use multiple tools. For example, ..... [PLEASE COMPLETE THIS]
 \end{itemize}
 
+In this thesis, we propose to address the above-mentioned issues by focusing on developing techniques and tools that help software developers at commit-time. [You can add a paragraph here why commit-time should fix the above problems]
+
+More precisely, we propose the following contributions:
+\begin{itemize}
+	\item An aggregated bug repository system.
+	\item A new bug classification based on the locations of the corrections.
+	\item A clone prevention technique at commit-time.
+	\item A bug prevention technique at commit-time 
+	\item A bug reproduction technique based on directed model checking and crash traces
+\end{itemize}
+
+% Section that motivates the need for BUMPER and the bug taxonomy
+When facing a new bug, one might want to leverage decades of open source software history to find a suitable solution.
+The chances are that a similar bug has already been fixed somewhere  in  another  open  source  project.
+The  problem  is that each open source project hosts its data in a different data repository,  using  different  bug  tracking  and  version  control systems. Moreover,  these  systems  have  different  interfaces to  access  data.
+The  data  is  not  represented  in  a  uniform way  either.
+This  is  further  complicated  by  the  fact  that  bug tracking tools and version control systems are not necessarily connected. The  former  follows  the  life  of  the  bug,  while  the latter  manages  the  fixes.
+As  a  result,  one  would  have  to search the version control system repository to find candidate solutions.
+Moreover,  developers  mainly  use  classical  search  engines that  index  specialized  sites  such  as  StackOverflow.
+These sites  are  organized  in  the  form  of  question-response  where a developer submits a problem and receives answers from the community. While the answers are often accurate and precise, they do not leverage the history of open source software that has been shown to provide useful insights to help with many maintenance activities such as bug fixing \cite{Saha2014}, bug reproduction \cite{Nayrolles2015}, fault analysis \cite{Nessa2008}, etc.
+
+
 % Section that motivates the need to study the problem of bug reproduction
-When a system crashes, software developers need to reproduce the crash (usually in a lab environment) in order to provide corrective measures.
-A survey conducted with developers of major open source software systems such as Apache, Mozilla and Eclipse reveals that one of the most valuable piece of information that can help locate and fix the cause of a crash is the one that can help reproduce it \cite{Bettenburg2008}.
-Crash reproduction is  an expensive task because the data provided by end users is often scarce \cite{Artzi2008,Jin2012,Chen2013}.
-It is therefore important to invest in techniques and tools for automatic bug reproduction to ease the maintenance process and accelerate the rate of bug fixes and patches.
+When a system crashes, software developers need to reproduce the crash (usually in a lab environment) so as to provide corrective measures. A survey conducted with the developers of major open source software systems such as Apache, Mozilla and Eclipse revealed that one of the most valuable piece of information that can help locate and fix the cause of a crash is the one that can help reproduce it \cite{Bettenburg2008}. Crash reproduction is  an expensive task because the data provided by end users is often scarce \cite{Artzi2008,Jin2012,Chen2013}. It is therefore important to invest in techniques and tools for automatic bug reproduction to ease the maintenance process and accelerate the rate of bug fixes and patches.
 Existing techniques can be divided into two categories: (a) On-field record and in-house replay \cite{Steven2000,Narayanasamy2005,Artzi2008,Roehm2015}, and (b) In-house crash explanation \cite{Jin2012,Jin2013,Zuddas2014,Chen2013a,Nayrolles2015}.
+
+
 The first category relies on instrumenting the system in order to capture objects and other system components at run-time.
-When a faulty behavior occurs in the field, the stored objects as well as the entire heap are sent to the developers along with the faulty methods to reproduce the crash.
+When a faulty behaviour occurs in the field, the stored objects as well as the entire heap are sent to the developers along with the faulty methods to reproduce the crash.
 These techniques tend to be simple to implement and yield good results, but they suffer from two main limitations.
 First, code instrumentation comes with a non-negligible overhead on the system.
 The second limitation is that the collected objects may contain sensitive information causing customer privacy issues.
 The second category is composed of tools leveraging proprietary data in order to provide hints on potential causes.
 While these techniques are efficient in improving our comprehension of the bugs, they are not designed with the purpose of reproducing them.
 
-% Section that motivates the need for BUMPER and the bug taxonomy
-When facing a new bug, one might want to leverage decades of open source software history to find a suitable solution.
-The chances are that a similar bug or crash has already been fixed somewhere  in  another  open  source  project.
-The  problem  is that each open source project hosts its data in a different data repository,  using  different  bug  tracking  and  version  control systems.
-Moreover,  these  systems  have  different  interfaces to  access  data.
-The  data  is  not  represented  in  a  uniform way  either.
-This  is  further  complicated  by  the  fact  that  bug tracking tools and version control systems are not necessarily connected.
-The  former  follows  the  life  of  the  bug,  while  the latter  manages  the  fixes.
-As  a  result,  one  would  have  to search the version control system repository to find candidate solutions.
-Moreover,  developers  mainly  use  classical  search  engines that  index  specialized  sites  such  as  StackOverflow.
-These sites  are  organized  in  the  form  of  question-response  where a developer submits a problem and receives answers from the community.
-While the answers are often accurate and precise, they do not leverage the history of open source software that has been shown to provide useful insights to help with many maintenance activities such as bug fixing \cite{Saha2014}, bug reproduction \cite{Nayrolles2015}, fault analysis \cite{Nessa2008}, etc.
 
 % Section that motivates the need for PRECINT (for preventing bug and clone insertion)
 Code clones appear when developers reuse code with little to no modification to the original code.
-Studies have shown that clones can account for about 7\% to 50\% of code in a given software system \cite{Baker, StephaneDucasse}.
-Developers often reuse code (and
-create clones) in their software on purpose \cite{Kim2005}.
-Nevertheless, clones are considered a bad practice in software development since they can introduce new bugs in the code \cite{Kapser2006,Juergens2009,Li2006}.
-If a bug is discovered in one segment of the code that has been copied and pasted several times, then the developers will have to remember the places where this segment has been reused in order to fix the bug in each place.
-In the last two decades, there have been many studies and tools that aim at detecting clones.
-They can be grouped into three categories.
-Although these techniques and tools have been shown to
-be useful in detecting clones, they operate in an off-line fashion (i.e., after the clones have been inserted).
-Software developers might be reluctant to use these tools on a day-today basis (i.e., as part of the continuous development process), unless they are involved in a major refactoring effort.
-This problem is somehow similar to the problem of adopting bug identification tools. Johnson et al. \cite{Johnson2013} showed that these tools are challenging to use because they do not integrate well with the day-to-day workflow of a developer.
-Also they output a large amount of data when applied to the entire system, making it hard to understand and analyse their results.
-
+Studies have shown that clones can account for about 7\% to 50\% of code in a given software system \cite{Baker, StephaneDucasse}. Developers often reuse code (and create clones) in their software on purpose \cite{Kim2005}.
+Nevertheless, clones are considered a bad practice in software development since they can introduce new bugs in the code \cite{Kapser2006,Juergens2009,Li2006}. If a bug is discovered in one segment of the code that has been copied and pasted several times, then the developers will have to remember the places where this segment has been reused in order to fix the bug in each place. In the last two decades, there have been many studies and tools that aim at detecting clones.
+They can be grouped into three categories. Although these techniques and tools have been shown to be useful in detecting clones, they operate in an off-line fashion (i.e., after the clones have been inserted). Software developers might be reluctant to use these tools on a day-today basis (i.e., as part of the continuous development process), unless they are involved in a major refactoring effort. This problem is somehow similar to the problem of adopting bug identification tools. Johnson et al. \cite{Johnson2013} showed that these tools are challenging to use because they do not integrate well with the day-to-day workflow of a developer. Also they output a large amount of data when applied to the entire system, making it hard to understand and analyse their results.
 
 % Section that motivates the need for a taxonomy of bugs based on the location of the corrections.
 There have been several studies (e.g., \cite{Weiß2007, Zhang2013}) that study of the factors that influence the bug fixing time.
-These studies   empirically investigate the relationship between bug report attributes (description, severity, etc.) and the fixing time.
-Other studies take bug analysis to another level by investigating techniques and tools for bug prediction and reproduction (e.g., \cite{Chen2013, Kim2007a, Nayrolles2015}).
-These studies, however, treat all bugs as the same.
-For example, a bug that requires only one fix is analyzed the same way as a bug that necessitates multiple fixes.
-Similarly, if multiple bugs are fixed by modifying the exact same locations in the code, then we should investigate how these bugs are related in order to predict them in the future.
-Note here that we do not refer to duplicate bugs.
-Duplicate bugs are marked as duplicate (and not fixed) and only the master bug is fixed.
+These studies   empirically investigate the relationship between bug report attributes (description, severity, etc.) and the fixing time. Other studies take bug analysis to another level by investigating techniques and tools for bug prediction and reproduction (e.g., \cite{Chen2013, Kim2007a, Nayrolles2015}). These studies, however, treat all bugs as the same.
+For example, a bug that requires only one fix is analysed the same way as a bug that necessitates multiple fixes.
+Similarly, if multiple bugs are fixed by modifying the exact same locations in the code, then we should investigate how these bugs are related in order to predict them in the future. Note here that we do not refer to duplicate bugs. Duplicate bugs are marked as duplicate (and not fixed) and only the master bug is fixed.
+
 As a motivating example, consider Bugs \#AMQ-5066 and \#AMQ-5092 from the Apache Software Foundation bug report management system (used to build one of the datasets in this paper).
 Bug \#AMQ-5066 was reported on February 19, 2014 and solved with a patch provided by the reporter.
 The solution involves a relatively complex patch that modifies {\tt MQTTProtocolConverter.java}, {\tt MQTTSubscription.java} and {\tt MQTTTest.java} files.
@@ -88,9 +79,9 @@ A few months later, another bug, Bug \#AMQ-5092 was reported:
 \\ \\
 {\it MQTT protocol converters does not correctly generate unique packet ids for retained and non-retained publish messages sent to clients.
 [...] Although retained messages published on creation of client subscriptions are copies of retained messages, they must carry a unique packet id when dispatched to clients.
-ActiveMQ re-uses the retained message's packet id, which makes it difficult to  acknowledge these messages when wildcard topics are used.
+ActiveMQ re-uses the retained message's packet id, which makes it difficult to  acknowledge these messages when wild card topics are used.
 ActiveMQ also sends the same non-retained message multiple times for every matching subscription for overlapping subscriptions.
-These messages also re-use the publisher's message id as the packet id, which breaks client acknowledgment.}
+These messages also re-use the publisher's message id as the packet id, which breaks client acknowledgement.}
 \\ \\
 This bug was assigned and fixed by a different person than the one who fixed bug \#AMQ-5066.
 The fix consists of modifying slightly the same lines of the code in the exact files used to fix Bug \#AMQ-5066.
@@ -112,7 +103,7 @@ In this section, we present our research contributions that are listed here and 
 	\item A new taxonomy of bugs based on the location of the corrections --- an empirical Study
 \end{itemize}
 
-\subsection{An aggregate bug  repository for  developers  and  Researchers}
+\subsection{An aggregate bug  repository for  developers  and  researchers}
 We introduce BUMPER (BUg Metarepository for  dEvelopers  and  Researchers),  a  web-based  infrastructure
 that  can  be  used  by  software  developers  and  researchers  to access  data  from  diverse  repositories  using  natural  language queries in a transparent manner, regardless of where the data was originally created and hosted.
 The  idea  behind  BUMPER  is  that  it  can  connect  to  any bug  tracking  and  version  control  systems  and  download  the data  into  a  single  database.
@@ -121,7 +112,7 @@ BUMPER uses a web-based interface to allow users to search the aggregated databa
 This way, users can focus on the analysis itself and not on the way the data is represented or located.
 BUMPER supports many features including: (1) the ability to use multiple bug tracking and control version systems, (2) the  ability  to  search  very  efficiently  large  data  repositories using both natural language and a specialized query language, (3)  the  mapping  between  the  bug  reports  and  the  fixes,  and (4)  the  ability  to  export  the  search  results  in  Json,  CSV  and XML formats.
 
-\subsection{A bug reproduction technique based on a combination of crash traces and model checking.}
+\subsection{A bug reproduction technique based on a combination of crash traces and model checking}
 
 In this work, we propose an approach, called JCHARMING (Java CrasH Automatic Reproduction by directed Model checkING) that uses a combination of crash traces and model checking to automatically reproduce bugs that caused field failures.
 Unlike existing techniques, JCHARMING does not require instrumentation of the code.
@@ -164,13 +155,14 @@ The remaining chapters of this proposal are:
 \begin{itemize}
 	\item Chapter \ref{chap:relwork} - {\it Background \& Related work}.
 	In this chapter, we present the major studies related to our research field, namely, crash reproduction, aggregating bug repositories for mining purposes, and clone detection.
+	
 	\item Chapter \ref{chap:bumper} - {\it An Aggregate Bug Repository for Developers and Researchers}.
-	In this chapter, we present {\tt BUMPER} (BUg Metarepository for  dEvelopers  and  Researchers), our bug meta-repository. {\tt BUMPER} acts as our datatasource for our different contributions.
+	In this chapter, we present {\tt BUMPER} (BUg Metarepository for  dEvelopers  and  Researchers), our bug meta-repository. {\tt BUMPER} acts as our data source for the different contributions.
 
 	\item Chapter \ref{chap:jcharming} - {\it JCHARMING: Java CrasH Automatic Reproduction by directed Model checkING}.
 	In this chapter we discuss the components of JCHARMING, the bug reproduction approach we propose.
 
-	\item Chapter \ref{chap:clone-detection-pragmatic} {\it Preventing Clone Insertion}. This chapter describes one approach to  to prevent the insertion of clones at commit time.
+	\item Chapter \ref{chap:clone-detection-pragmatic} {\it Preventing Clone Insertion}. This chapter describes one approach to     prevent the insertion of clones at commit time.
 
 	\item Chapter \ref{chap:bianca} {\it Preventing Bug Insertion Using Clone Detection}. In this chapter, we present an approach named {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at merge time) which uses clone detection to prevent bug insertion.
 
