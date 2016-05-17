@@ -10,24 +10,41 @@ Software maintenance activities such as debugging, refactoring, and feature enha
 Studies have shown that the cost of software maintenance can reach up to 70\% of the overall cost of the software development life cycle \cite{HealthSocial2002}.
 Much of this is attributable to several factors including the increase in software complexity, the lack of traceability between the various artefacts of the software development process, the lack of proper documentation,  and the unavailability of the original developers of the systems.
 
-Research in software maintenance has evolved over the years to include areas like mining bug repositories, bug analysis, prevention and reproduction. The ultimate goal is to develop techniques and tools to help software developers detect, correct, and prevent bugs in an effective and efficient manner. Several tools have developed 
+Research in software maintenance has evolved over the years to include areas like mining bug repositories, bug analysis, prevention and reproduction. The ultimate goal is to develop techniques and tools to help software developers detect, correct, and prevent bugs in an effective and efficient manner. Several tools have developed
 
 Despite the recent advances in the field,  the literature shows that many existing software maintenance tools have yet to be adopted by industry \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Hovemeyer2004, Lopez2011}. This is caused by the following factors:
 \begin{itemize}
-	\item Work flow integration: Most of these tools are not integrated well with the work flow of software developers. To use these tools, a software developer will need to 
-	\item Actionable outcome: The outcome of these tools tend do not lead to actionable items. Most of these tools return several results that are hard to interpret. Take for example, VVV, a bug detection tools...... [COMPLETE THIS]
-	\item Leverage of historical data: These tools do not leverage a large body of knowledge that already exist in open source systems. [EXAMPLE]
-    \item: End-to-end perspective: The proposed tools work in silos. To complete a task, one needs to download and use multiple tools. For example, ..... [PLEASE COMPLETE THIS]
+	\item Work flow integration: Most of these tools (\cite{Rutar,Hovemeyer2004a,Kim2006a,Ayewah2008b, Findbugs2015,Moha2010,Palma,Nayrolles2013d,Nayrolles,Nayrolles2013a, Nayrolles2015a} are some noticeable examples) are not integrated well with the work flow of software developers (i.e. coding, testing, debugging, committing).
+	Indeed, developers are constantly switching from one workspace to another for different tasks (i.e. feature location with a command line tool, development and testing  code with an IDE, development and testing front end code with another IDE and a browser,...) \cite{Gonzalez2004,Ko2006a,Layman2009a,Murphy-Hill2012a} and these tools further interrupt this already fragmented process 	\cite{Robertson2004,Robertson2006,Beckwith2006}.
+	Furthermore, these tools do not follow developers across workspace; they are bound to one workspace (i.e. an Eclipse plugin \cite{Verbaere2007}).
+	Hence, developers have to download, install and understand many tools to achieve any given task.
+
+	\item Actionable outcome: The outcome of these tools tend do not lead to actionable items.
+	Most of these tools return several results that are hard to interpret.
+	Take for example, FindBugs \cite{Hovemeyer2004}, a well-known bug detection tool.
+	This tool detects 424 bug signatures and reports them using abbreviated code such as {\tt CO\_COMPARETO\_INCORRECT \_FLOATING}.
+	Using this code, developers can browse FindBug's dictionary and find the following definition {\it ``This method compares double or float values using pattern like this: $val1 > val2~?~1 : val1 < val2~?~-1 : 0$. This pattern works incorrectly for -0.0 and NaN [...]''}\cite{Findbugs2015}.
+	While the detection of this bug pattern and the definition are accurate, there is no actionable actions for developers to adjust their code accordingly.
+	Moreover, these tools' output is so verbose that developers tend to simply ignore them \cite{Arai2014, Kim2007b, Kim2007c} or use, in addition, filtering and ranking tools \cite{Ayewah2010, Shen2011}.
+
+	\item Leverage of historical data: These tools do not leverage a large body of knowledge that already exist in open source systems.
+	In API usage recommendation, researchers built tools that leverage open-source data of multiple projects to recommend how to use a given API \cite{Rahman2013,Kim2013d,Montandon2013}.
+	For defect prevention, however, the state-of-the-art approaches consist in adapting statistical models built for a project to another \cite{Lo2013,Nam2013}.
+	As argued by Lewis {\it et al.} \cite{Lewis2013} and Johnson {\it et al.} \cite{Johnson2013}, approaches based solely on statistical models are perceived as black boxes by developers.
+	Consequently, they are less likely to trust the output of the tool and therefore, use it.
 \end{itemize}
 
-In this thesis, we propose to address the above-mentioned issues by focusing on developing techniques and tools that help software developers at commit-time. [You can add a paragraph here why commit-time should fix the above problems]
+In this thesis, we propose to address the above-mentioned issues by focusing on developing techniques and tools that help software developers at commit-time.
+In developers's workflow, the commit marks the end of a given task or subtasks as the developer is ready to version the source code.
+Consequently, actionning historical data, real-world examples in a clear and concise way at commit-time will prevent additional interuptions.
+Moreover, any real-world project uses a version control system and distilling advices at during the versionning operations, such as commit, will provide an unique experience for developers as they will be able to use the same tool across their different workspaces and projects.
 
 More precisely, we propose the following contributions:
 \begin{itemize}
 	\item An aggregated bug repository system.
 	\item A new bug classification based on the locations of the corrections.
 	\item A clone prevention technique at commit-time.
-	\item A bug prevention technique at commit-time 
+	\item A bug prevention technique at commit-time
 	\item A bug reproduction technique based on directed model checking and crash traces
 \end{itemize}
 
@@ -155,7 +172,7 @@ The remaining chapters of this proposal are:
 \begin{itemize}
 	\item Chapter \ref{chap:relwork} - {\it Background \& Related work}.
 	In this chapter, we present the major studies related to our research field, namely, crash reproduction, aggregating bug repositories for mining purposes, and clone detection.
-	
+
 	\item Chapter \ref{chap:bumper} - {\it An Aggregate Bug Repository for Developers and Researchers}.
 	In this chapter, we present {\tt BUMPER} (BUg Metarepository for  dEvelopers  and  Researchers), our bug meta-repository. {\tt BUMPER} acts as our data source for the different contributions.
 
@@ -165,9 +182,6 @@ The remaining chapters of this proposal are:
 	\item Chapter \ref{chap:clone-detection-pragmatic} {\it Preventing Clone Insertion}. This chapter describes one approach to     prevent the insertion of clones at commit time.
 
 	\item Chapter \ref{chap:bianca} {\it Preventing Bug Insertion Using Clone Detection}. In this chapter, we present an approach named {\tt BIANCA} (Bug Insertion ANticipation by Clone Analysis at merge time) which uses clone detection to prevent bug insertion.
-
-	\item Chapter \ref{chap:taxonomy} {\it A Bug Classification Approach Based on the Locations of the Corrections --- An Empirical Study}.
-	In this chapter, we present an empirical study in which we classify bugs based on the locations of the corrections.
 
 	\item Chapter \ref{chap:plan} {\it Remaining Work to Complete the Thesis} presents  the remaining work and a publication plan.
 \end{itemize}
