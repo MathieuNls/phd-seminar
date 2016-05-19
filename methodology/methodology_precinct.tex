@@ -1,6 +1,6 @@
 %!TEX root = ../research_proposal.tex
 
-\section{PRECINCT: PREventing Clones INsertion at Commit Time}
+% \section{PRECINCT: PREventing Clones INsertion at Commit Time}
 
 In this section, we present PRECINCT (PREventing Clones INsertion at Commit Time) that focuses on preventing the insertion of clones at commit time, i.e., before they reach the central code repository. PRECINCT is an online clone detection technique that relies on the use of pre-commit hooks capabilities of modern source code version control systems.
 PRECINCT intercepts this modification and analyses its  content to see whether a suspicious clone has been introduced or not.
@@ -20,7 +20,7 @@ Our approach operates at commit time, notifying software developers of possible 
 
 We evaluated the effectiveness of PRECINCT using precision and recall on three systems, developed independently and written in both C and Java. The results show that PRECINCT prevents Type 3 clones to reach the final source code repository with an average accuracy of 97.7\%.
 
-\subsection{The PRECINCT Approach}
+\section{The PRECINCT Approach}
 \label{sec:The PRECINCT Approach}
 
 \begin{figure*}
@@ -37,7 +37,7 @@ The pre-commit hook has access to the changes in terms of files that have been m
 Finally, the output of NICAD is further refined and presented to the user for decision.
 These steps are discussed in more detail in the following subsections.
 
-\subsection{PRECINCT Pre-Commit Hook}
+\section{PRECINCT Pre-Commit Hook}
 \label{sub:Pre-Commit Hook}
 
 Depending on the exit status of the hook, the commit will be aborted and not pushed to the central repository.
@@ -60,7 +60,7 @@ For PRECINCT to work, we just have to add the call to our script suite instead o
 \end{minipage}
 
 
-\subsection{Extract and Save Blocks}
+\section{Extract and Save Blocks}
 \label{sub:Extract and Save Blocks}
 
 A block is a set of consecutive lines of code that will be compared to all other blocks in order to identify clones.
@@ -108,7 +108,7 @@ This feature is deactivated by default.
 In summary, this step receives the files and lines, modified by the latest changes made by the developer and produces an up to date block representation of the system at hand in an incremental way.
 The blocks are analysed in the next step to discover potential clones.
 
-\subsection{Compare Extracted Blocks}
+\section{Compare Extracted Blocks}
 \label{sub:Compare Extracted Blocks}
 
 In order to compare the extracted blocks and detect potential clones, we can only resort to text-based techniques.
@@ -140,7 +140,7 @@ As a summary, this step receives potentially expanded and balanced blocks from t
 Then, the blocks are pretty-printed, normalized, filtered and fed to an LCS algorithm in order to detect potential clones.
 Moreover, the clone detection in PRECINCT is less intensive than NICAD because we only compare the latest changes with the rest of the program instead of comparing all the blocks with each other.
 
-\subsection{Output and Decision}
+\section{Output and Decision}
 \label{sub:Output and Decision}
 
 In this final step, we report the result of the clone detection at commit time with respect to the latest changes made by the developer. The process is straightforward. Every change made by the developer goes through the previous steps and is checked for the introduction of potential clones. For each file that is suspected to contain a clone, one line is printed to the command line with the following options: (I) Inspect, (D) Disregard, (R) Remove from the commit as shown by Figure \ref{fig:hook}. In comparison to this simple and interactive output, NICAD outputs each and every detail of the detection result such as the total number of potential clones, the total number of lines, the total number of unique line text chars, the total number of unique lines, and so on. We think that so many details might make it hard for developers to react to these results. A problem that was also raised by Johnson et al. \cite{Johnson2013} when examining bug detection tools.
@@ -158,7 +158,7 @@ Also, if the user types an option key twice, e.g., II, DD or RR, then the option
 For instance, if the developer types DD at any point, the PRECINCT's results will be disregarded and the commit will be allowed to go through. We believe that this simple mechanism will encourage developers to use PRECINCT like they would use any other feature of Git (or any other version control system).
 
 
-\subsection{Case Study}
+\section{Case Study}
 \label{sec:Experimentations}
 
 In this section, we show the effectiveness of PRECINCT for
@@ -198,7 +198,7 @@ This tool can be used for queries, zone transfers, and dynamic updates.
 It is not as large as the other two, but it still makes an interesting case subject because it has been well maintained for the past decade. Also, this tool is used in many other popular tools such as Aspirin, Muffin and
 Scarab. Dnsjava is composed of 1637 revisions, 233 files, the latest revision contains 47 KLoC.
 
-\subsection{Process}
+\section{Process}
 \label{sub:Process}
 
 
@@ -238,7 +238,7 @@ F_1-measure = 2 * \frac{precision * recall}{precision + recall}
 
 \input{methodology/plot-result}
 
-\subsection{Results}
+\section{Results}
 \label{sub:Results}
 
 Figures~\ref{fig:r1},~\ref{fig:r2},~\ref{fig:r3} show the results of our study in terms of clone pairs that are detected per revision for our three subject systems: Monit, JHotDraw and Dnsjava. We used as baseline for comparison the clone pairs detected by NICAD. The blue line shows the clone detection performed by NICAD. The red line shows the clone pairs detected by PRECINCT. The brown line shows the clone pairs that have been missed by PRECINCT. As we can quickly see, the blue and red lines almost overlap, which indicates a good accuracy of the PRECINCT approach.
