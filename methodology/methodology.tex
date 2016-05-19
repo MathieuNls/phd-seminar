@@ -33,39 +33,6 @@ The materials presented in this chapter are based on the following publications:
 
 \chapter{Preventing Clone Insertion\label{chap:clone-detection-pragmatic}}
 
-The adoption of tools and processes that aim to support human maintainers during maintenance is relatively low \cite{Lewis2013,Foss2015,Layman2007,Ayewah2007,Ayewah2008,Johnson2013,Norman2013, Lopez2011}.
-Human maintainers agree that such tools are beneficial, but, in addition of disrupting their workflow, these tools tend to have a high false positive rate.
-Also, the way in which the warnings are presented, among other things, are barriers to use\cite{Johnson2013}.
-When asked for their opinions, human maintainers agree to the following characteristics for maintenance-oriented tools\cite{Hovemeyer2004, Lopez2011, Lewis2013}:
-
-\begin{itemize}
-	\item Actionable messages. Presenting a warning about bug-proneness of a given line is not enough.
-	Clear actions to improve the source code should be provided
-	\item Obvious reasoning. The conditions that led to a given warning should be understandable by the maintainer.
-	If the conditions are hidden in complex statistical models, then maintainers cannot review them and will find it difficult to trust the tool.
-	\item Scaling. Industrial sized project contains thousand files and dependencies which can be updated many times a day.
-	Maintenance-oriented tools should not hinder the productivity of maintainers.
-	\item Contextualization. Warnings and messages should always be contextualized with respect to the project at hand and not generic rules.
-	\item Integration. Developers and maintainers are overwhelmed by the amount of existing tools.
-	Yet, their daily use three different kinds of tools.
-	An integrated development environment, a versioning system and a project tracking system to produce, version and manage their software, respectively.
-	Maintenance-oriented tools should fit in the existing ecosystem rather than complexifying the deployment process.
-\end{itemize}
-
-In this chapter, we present {\tt PRECCINT} (PREventing Clones INsertion at Commit Time) and {\tt RESEMBLE} (REcommendation System based on cochangE Mining at Block LEvel) that have the characteristics described by human maintainer.
-
-\input{methodology/methodology_precinct}
-
-\\
-Using the block extracted by {\tt PRECINCT}, we can recommend actions to the developer.
-To do so, we plan to build {\tt RESEMBLE}.
-{\tt RESEMBLE} is presented in the next section.
-
-
-\input{methodology/methodology_ressemble}
-
-In summary, using {\tt PRECINCT} and {\tt RESSEMBLE} we are able to provide contextualized and accurate information in a non-intrusive manner.
-
 \chapter{Preventing Bug Insertion Using Clone Detection\label{chap:bianca}}
 
 \input{methodology/methodology_bianca}

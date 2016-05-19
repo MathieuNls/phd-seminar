@@ -2,67 +2,52 @@
 
 \chapter{Background \& Related Work\label{chap:relwork}}
 
-In this chapter we present preliminaries in Section \ref{sec:preliminaries}.
-These preliminaries describe the set of definitions we are using as same as project and versioning systems.
-Then, we present related works for crash reproduction, crash prediction, linking report and source code modifications and clone detection.
+In this chapter we present background  in Section \ref{sec:preliminaries}. We define key concepts using throughout this proposal.
+Then, we present related work for bug reproduction, bug prediction, and clone detection.
 
 \section{Preliminaries\label{sec:preliminaries}}
 
-Software maintenance, comprehension, evolution, specifications and testing are research areas overlapping each other in terms of terminology.
-
-In this proposal, we will use a precise set of definitions.
-We do not claim ownership of these definitions, they have been established using various resources \cite{Avizienis2004,Pratt2001,Burnstein2006,Radatz1990,Whittaker2012}.
-
-We limit software maintenance to the following three artifacts:
+\subsection{Definitions{sec:version-control}}
+In this proposal, we use the following definitions \cite{Avizienis2004,Pratt2001,Burnstein2006,Radatz1990,Whittaker2012}.
 
 \begin{itemize}
-	\item Bug report: A bug report describes a behavior observed in the field and considered abnormal by the reporter. Bug reports are submitted manually to bug report systems (bugzilla/jira). There is no mandatory format to report a bug, nevertheless, it should have: Version of the software / OS / Platform used, steps to reproduce, screen shots, stack trace and anything that could help a developer to assess the internal state of the software system.
-	\item Crash report: A crash report is the last action a software system does before crashing. Crash reports are automatic (they have to be implemented into the software system by developer) and contain data (that can be proprietary) to help developers understand the crash (e.g. memory dump,...).
-	\item Tasks: A task is a new feature, or the improvement of an existing feature, to be implemented in a future release of the software.
-\end{itemize}
-
-These artifacts are produced in response to the following phenomena:
-
-\begin{itemize}
-	\item Software Bug: A software bug is an error, flaw, failure, defect or fault in a computer program or system that causes it to violate at least one of its functional or nonfunctional requirements.
+	\item Software bug: A software bug is an error, flaw, failure, defect or fault in a computer program or system that causes it to violate at least one of its functional or non-functional requirement.
 	\item Error: An error is a mistake, misconception, or misunderstanding on the part of a software developer.
-	\item Fault/defect: A fault (defect) is defined as an abnormal condition or defect at the component, equipment, or subsystem level which may lead to a failure. A fault (defect) is not final (the system still works) and does not prevent a given feature to be accomplished.  A fault (defect) is a deviation (anomaly) of the healthy system that can be caused by an error or external factors (hardware, third parties, ...).
+	\item Fault/defect: A fault (defect) is defined as an abnormal condition or defect at the component, equipment, or subsystem level which may lead to a failure. A fault (defect) is not final (the system still works) and does not prevent a given feature to be accomplished.  A fault (defect) is a deviation (anomaly) of the healthy system that can be caused by an error or external factors (hardware, third parties, etc.).
 	\item Failure: The inability of a software system or component to perform its required functions within specified requirements.
-	\item Crash: The software system encountered a fault (defect) that triggered a fatal failure from which the system could not recover from/overcome. As a result,  the system stopped.
+	\item Crash: The software system encountered a fault (defect) that triggered a fatal failure from which the system could not recover from/overcome. As a result, the system stops.
+	\item Bug report: A bug report describes a behaviour observed in the field and considered abnormal by the reporter. Bug reports are submitted manually to bug report systems (bugzilla/jira). There is no mandatory format to report a bug. Nevertheless, a bug report should have: the version of the software system, OS, and platform, steps to reproduce the bug, screen shots, stack trace and anything that could help a developer assess the internal state of the software system.
+	\item Crash report: A crash report is issued as the last thing that a software system does before crashing. Crash reports are usually reported automatically (crash reporting systems are implemented as part of the software). A crash report contains data (that can be proprietary) to help developers understand the causes of the crash (e.g., memory dump,...).
+
 \end{itemize}
 
 In the remaining of this section, we introduce the two types of software repositories: version control and project tracking system.
 
 \subsection{Version control systems\label{sec:version-control}}
 
-Version control consists of maintaining the versions of files --- such as source code and other software artifacts \cite{Zeller1997}.
-This activity is a complex task and cannot be performed manually on real world project.
-Consequently, numerous tools have been created to help practitioners manage the version of their software artifacts.
-Each evolution of a software is a version (or revision) and each version (revision) is linked to the one before through modifications of software artifacts.
-These modifications consist of updating, adding or deleting software artifacts.
-They can be referred as \texttt{diff}, {\tt patch} or {\tt commit}\footnote{These names are not to be used interchangeably as difference exists.}.
-Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristics:
+Version control consists of maintaining the versions of various artefacts  such as source code files \cite{Zeller1997}.
+This activity is a complex task and cannot be performed manually in real world projects. To this end, there exist several tools that have been created to help practitioners manage the version of their software artefacts.
+Each evolution of a software system is considered as  a version (also called revision) and each version is linked to the one before through modifications of software artefacts. These modifications consist of updating, adding or deleting software artefacts. They can be referred as \texttt{diff}, {\tt patch} or {\tt commit}\footnote{These names are not to be used interchangeably as difference exists.}.
+A \texttt{diff}, {\tt patch} or {\tt commit} has the following characteristics:
 
 \begin{itemize}
-\item Number of Files: The number of software files that have been modified, added or deleted.
-\item Number of Hunks: The number of consecutive code blocks of modified, added or deleted lines in textual files. Hunks are used to determine, in each file, how many different places the developer has modified.
-\item Number of Churns:  The number of lines modified. However, the churn value for a line change should be at least two as the line has to be deleted first and then added back with the modifications.
+\item Number of files: The number of software files that have been modified, added or deleted.
+\item Number of hunks: The number of consecutive code blocks of modified, added or deleted lines in textual files. Hunks are used to determine, in each file, how many different places the developer has modified.
+\item Number of churns:  The number of  modified lines. However, the churn value for a line change should be at least two as the line has to be deleted first and then added back with the modifications.
 \end{itemize}
 
 Modern version control systems also support branching.
 A branch is a derivation in the evolution that contains a duplication of the source code so that both versions can be modified in parallel.
-Branches can be reconciled with a merge operation that merge modification of the two branches.
-This operation is completely automated at the exception of merging conflicts that arise when both branches contain modification of the same line.
-Such conflicts cannot be reconciled automatically and have to be dealt with by the developer.
-This allows for a greater agility among developers as changes on one branch do not affect other developers of other branches.
+Branches can be reconciled with a merge operation that merge modifications of  two or more branches.
+This operation is completely automated at the exception of merging conflicts that arise when both branches contain modifications of the same line.
+Such conflicts cannot be reconciled automatically and have to be dealt with by the developers.
+This allows for a greater agility among developers as changes in one branch do not affect the work of the developers that is on  other branches.
 
-Branching have been used for more than testing hazardous refactoring or testing framework upgrades.
-Indeed, task branching is an agile branching strategy where a new branch is created for each task \cite{MartinFowler2009}.
-It is common to see branch named {\tt 123\_implement\_X} where {\tt 123} is the {\tt \#id} of task {\tt X} given by the project tracking system.
-Project tracking systems are presented in Section \ref{sec:issue-tracking}.
+Branching has been used for more than testing hazardous refactoring or testing framework upgrades.
+Task branching is an agile branching strategy where a new branch is created for each task \cite{MartinFowler2009}.
+It is common to see a branch named {\tt 123\_implement\_X} where {\tt 123} is the {\tt \#id} of task {\tt X} given by the project tracking system. Project tracking systems are presented in Section \ref{sec:issue-tracking}.
 
-In modern versioning systems, when maintainers make modifications to the source code want to version it, they have to do commit.
-The commit operation will version the modifications applied to one or many files.
+In modern versioning systems, when maintainers make modifications to the source code,  they have to  commit their changes for the modifications to be effective. The commit operation versions the modifications applied to one or many files.
 
 Figure \ref{fig:branching} presents the data structure used to store a commit.
 Each commit is represented as a tree.
@@ -77,7 +62,7 @@ The second leaf (blue) contains the leaf hash and the hashes of the files of the
 \end{figure}
 
 In this example, we can see that author ``Mathieu'' has created the file $file1.java$ with the message ``project init''.
-Figure \ref{fig:two-commits} represents an ulterior modification.
+Figure \ref{fig:two-commits} represents an external modification.
 In this second example, $file1. java$ is modified while $file2.java$ is created.
 The second commit $98ca9$ have $34ac2$ as a parent.
 
@@ -101,7 +86,7 @@ In figure \ref{fig:two-branches}, the $master$ branch and the $1\_fix\_overflow$
 \end{figure}
 
 Both branches can evolve separately and be merged together when the task branch is ready.
-In figure \ref{fig:merge}, the $master$ branch points on $a13ab2$ while the $1\_fix\_overflow$ points on $ahj23k$.
+In Figure \ref{fig:merge}, the $master$ branch points on $a13ab2$ while the $1\_fix\_overflow$ points on $ahj23k$.
 
 \begin{figure}[h!]
   \centering
@@ -114,16 +99,16 @@ In figure \ref{fig:merge}, the $master$ branch points on $a13ab2$ while the $1\_
 \subsubsection{Providers\label{sec:revision-provider}}
 
 In this proposal, we mainly refer to three version control systems: {\tt Svn}, {\tt Git} and, to a lesser extent, {\tt Mercurial}.
-{\tt SVN} is distributed by the Apache foundation and is a centralized concurrent version system that can handle conflict in the different versions of different developers and it is widely used.
+{\tt SVN} is distributed by the Apache Foundation and is a centralized concurrent version system that can handle conflicts in the different versions of different developers. SVN  is widely used in industry.
 At the opposite, {\tt Git} is a distributed revision control system --- originally developed by Linus Torvald --- where revisions can be kept locally for a while and then shared with the rest of the team.
-Finally {\tt Mercurial} is also a distributed revision system, but share a lot of concepts with {\tt Svn}.
-Consequently, it will be easier for people used to {\tt Svn} to switch to a distributed revision system if they use {\tt Mercurial}.
+Finally, {\tt Mercurial} is also a distributed revision system, but shares a lot of concepts with {\tt SVN}.
+It will be easier for people who are used to {\tt SVN} to switch to a distributed revision system if they use {\tt Mercurial}.
 
 \subsection{Project Tracking Systems\label{sec:issue-tracking}}
 
-Project tracking systems allow end users to create bug reports (BRs) to report unexpected system behavior,
-manager can create tasks to drive the evolution forward and crash report (CRs) can be automatically created.
-These systems are also used by development teams to keep track of the modification induced by bug and to crash reports, and keep track of the fixes.
+Project tracking systems allow end users to create bug reports (BRs) to report unexpected system behaviour,
+managers can create tasks to drive the evolution forward and crash report (CRs) can be automatically created.
+These systems are also used by development teams to keep track of the modifications induced by bug and to crash reports, and keep track of the fixes.
 
 
 \begin{figure}[h!]
@@ -161,8 +146,8 @@ When a task is complete, it will not go to the {\tt RESOLVED} state, but to the 
 Bug and crash reports are considered as problems to eradicate in the program.
 Tasks are considered as new features or amelioration to include in the program.
 
-Reports and tasks can have a severity\cite{Bettenburg2008}.
-The severity is a classification to indicate the degree of  impact on the software.
+Reports and tasks can have a severity associated to them\cite{Bettenburg2008}.
+The severity indicates the degree of impact on the software system.
 The possible severities are:
 
 \begin{itemize}
@@ -175,21 +160,21 @@ The possible severities are:
 	\item trivial: cosmetic problems like misspelled words or misaligned text.
 \end{itemize}
 
-The relationship between an report or a task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}).
-This reason is that they are in two different systems: the version control system and the project tracking system.
+The relationship between a report or a task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}).
+The reason is that they are in two different systems: the version control system and the project tracking system.
 While it is considered a good practice to link each report with the versioning system by indicating the report $\#id$ on the modification message, more than half of the reports are not linked to a modification\cite{Wu2011}.
 
 \subsubsection{Providers\label{sec:bug-provider}}
 
-We have collected and plan to collect data from four different project tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$.
+We have collected data from four different project tracking systems: $Bugzilla$, $Jira$, $Github$ and $Sourceforge$.
  $Bugzilla$ belongs to the Mozilla foundation and has first been released in 1998.
  $Jira$, provided by Altassian, has been released 14 years ago, in 2002.
- $Bugzilla$ is 100\% open source and it's difficult to estimate how many project uses it.
- However, we can, without any risks envision that it owns a great share of the market as major organizations such as Mozilla, Eclipse and the Apache Software Foundation uses it.
- $Jira$, in the other hand, is a commercial software --- with a freemium business model --- and Altassian claims that they have 25,000 customers over the world.
+ $Bugzilla$ is 100\% open source and it is difficult to estimate how many projects use it.
+ However, we can envision that it owns a great share of the market as major organizations such as Mozilla, Eclipse and the Apache Software Foundation use it.
+ $Jira$, on the other hand, is a commercial software tool --- with a freemium business model --- and Altassian claims that they have 25,000 customers over the world.
 
-$Github$ and $Sourceforge$ are different from $Bugzilla$ and $Jira$ in a sense that they were created as source code revision system and evolve, later on, to add project tracking capabilities to their softwares.
-This common particularity have the advantage to ease the link between reports and source code.
+$Github$ and $Sourceforge$ are different from $Bugzilla$ and $Jira$ in a sense that they were created as source code revision systems and evolved, later on, to add project tracking capabilities to their software tools.
+This common particularity has the advantage to ease the link between bug reports and the source code.
 
 \section{Crash reproduction\label{sec:rel-reproduction}}
 

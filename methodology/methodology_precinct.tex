@@ -269,33 +269,3 @@ The difference in execution time between NICAD and PRECINCT stems from the fact 
 The difference in precision between NICAD and PRECINCT (2.3\%)  can be explained by the fact that sometimes developers commit code that does not compile.
 Such commits will still count as a revision, but TXL fails to extract blocks that do not comply with the target language syntax.
 While NICAD also fails in such a case, the disadvantage of PRECINCT comes from the fact that the failed block is saved and used as reference until it is changed by a correct one in another commit.
-
-\subsection{Threats to Validity}
-\label{sec:Threats to Validity}
-
-The selection of target systems is one of the common threats to validity for approaches aiming to improve the analysis of software systems.
-It is possible that the selected programs share common properties that we are not aware of and therefore, invalidate our results.
-However, the systems analysed by PRECINCT are the same as the ones used in similar studies.
-Moreover, the systems  vary in terms of purpose, size and history.
-
-In addition, we see a threat to validity that stems from the fact that we only used open source systems. The results may not be generalizable to industrial systems. We intend to undertake these studies in future work.
-
-The programs we used in this study are all based on the Java, C and Python programming languages. This can limit the generalization of the results. However, similar to Java, C, Python, if one writes a TXL grammar for a new language --- which can be a relatively hard work --- then PRECINCT can work since PRECINT relies on TXL.
-
-Finally, we use NICAD as the code comparison engine. The accuracy of NICAD affects the accuracy of PRECINCT. This said, since NICAD has been tested on large systems, we are confident that it is a suitable engine for comparing code using TXL. Also, there is nothing that prevents us from using other code comparisons engines, if need be.
-
-In conclusion, internal and external validity have both been minimized by choosing a set of three different systems, using input data that can be found in any programming languages and version systems (commit and changesets).
-
-
-\subsection{Conclusion}
-\label{sec:Conclusion}
-
-PRECINCT (PREventing Clones INsertion at Commit Time) is an incremental approach for preventing clone insertion at commit time that combines efficient block extraction and clone detection and integrate itself seamlessly in the day-to-day workflow of developers.
-PRECINCT takes advantage of TXL and NICAD to create a clone detection tool approach that runs automatically before each commit in 1.2 second with a 97.7\% precision and a 100\% recall (when using NICAD results as a baseline).
-
-Our approach also assesses two major factors that contribute to the slow adoption of clone detection tools: large number of data output by clone detection methods,  and  smooth integration with the task flow of the developers.
-PRECINCT is able to reduce the number of lines output by a classical clone detection tool such as NICAD by 83.4\% while keeping all the necessary information that allow developers to decide whether the detect clone is in fact a clone.
-Also, our approach is seamlessly integrated with the developers' workflow by means of pre-commit hooks, which are part any version control systems.
-
-To build on this work, we need to experiment with additional (and larger) systems with the dual aim to (a) improve and fine-tune the approach, and (b) assess the scalability of our approach when applied to even larger (and proprietary) systems.
-Also, we want to improve PRECINCT to support Type 4 clones.
