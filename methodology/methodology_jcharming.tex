@@ -65,8 +65,7 @@ The first step of JCHARMING is to collect the crash trace
 caused by an uncaught exception. Crash traces are usually included in crash reports and can therefore be automatically
 retrieved using a simple regular expression.
 Figure \ref{fig:jcarming-traces} shows an example of a crash trace that contains the
-exception thrown when executing the program depicted in
-Figures \ref{fig:testing-toy} to \ref{fig:dchecking-toy}. The crash trace contains a call to the Bar.foo()
+exception thrown when executing a toy-program. The crash trace contains a call to the Bar.foo()
 method—the crash location point—and calls to Java standard
 library functions (in this case, GUI methods because the
 program was launched using a GUI).
@@ -224,8 +223,7 @@ slice with the newly computed slice.
 \caption{High level algorithm computing the union of the slices\label{alg:jcharming-slice}}
 \end{algorithm}
 
-Using backward slicing, the search space of the model checker
-that processes the example of Figures \ref{fig:testing-toy} to \ref{fig:dchecking-toy} is given by the
+Using backward slicing, the search space of the model checker is given by the
 following expression:
 
 \begin{equation}
@@ -467,4 +465,4 @@ This result demonstrates the effectiveness of our approach,
 more particularly, the use of backward slicing to create a
 manageable search space that guides adequately the model
 checking engine. We also believe that our approach is usable
-in practice since it is also time efficient. 
+in practice since it is also time efficient.

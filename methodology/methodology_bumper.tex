@@ -7,7 +7,7 @@ In what follows, we will present the projects we selected. Then, we present the 
 
 However, to the best of our knowledge, no attempt has been made towards building a unified and online dataset where all the information related to a bug, or a fix can be easily accessed by researchers and engineers.
 
-\section{Data collection}
+\section{Data collection\label{sec:data-collection}}
 
 Figure \ref{fig:bumper-approach} illustrates our data collection and analysis process that we present here and discuss in more detail in the following subsections. First, we extract the raw data from the two bug report management systems used in this study (Bugzilla\footnote{https://netbeans.org/bugzilla/} and Jira\footnote{https://issues.apache.org/jira/issues/?jql=}). The extracted data is consolidated in one database called BUMPER where we associate each bug report with its fix. The fixes are mined from different type of source versioning system. Indeed, Netbeans is based on mercurial\footnote{ http://mercurial.selenic.com/} while we used the git\footnote{http://git-scm.com/} mirrors\footnote{https://github.com/apache} for the Apache Foundation software.
 
@@ -18,8 +18,43 @@ Figure \ref{fig:bumper-approach} illustrates our data collection and analysis pr
     \label{fig:bumper-approach}}
 \end{figure}
 
-We used the same datasets presented earlier in Table \ref{table:datasets}.
-We choose to use the same ones as these two datasets because they exposed a great diversity in programming languages, teams, localization, utility and maturity. Moreover, the used different tools, i.e. Bugzilla, JIRA, Git and Mercurial, and therefore, BUMPER is ready to host any other datasets that used any composition of these tools.
+
+In this study, we used two distinct datasets: Netbeans and
+the Apache Software Foundation projects. Netbeans is an
+integrated development environment (IDE) for developing
+with many languages including Java, PHP, and C/C++. The
+very first version of Netbeans, then known as Xelfi, appeared
+in 1996. The Apache Software Foundation is a U.S non-profit
+organization supporting Apache software projects such as the
+popular Apache web server since 1999. The characteristics of
+the Netbeans and Apache Software Foundation are presented in Table \ref{table:datasets}.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{@{}c|c|c|c|c@{}}
+\textbf{Dataset} & \textbf{R/F BR} & \textbf{CS} & \textbf{Files} & \textbf{Projects} \\ \hline \hline
+Netbeans         & 53,258          & 122,632     & 30,595         & 39                \\
+Apache           & 49,449          & 106,366     & 38,111         & 349               \\
+Total            & 102,707         & 229,153     & 68,809         & 388               \\ \hline \hline
+
+\end{tabular}
+\end{center}
+
+\caption{Datasets\label{table:datasets}}
+\end{table}
+
+Cumulatively, these datasets span from 2001 to 2014. In
+summary, our consolidated dataset contains 102,707 bugs,
+229,153 changesets, 68,809 files that have been modified to
+fix the bugs, 462,848 comments, and 388 distinct systems.
+We also collected 221 million lines of code modified to fix
+the bugs, identified 3,284 sub-projects, and 17,984 unique
+contributors to these bug report and source code version
+management systems. Finally, the cumulated opening time for
+all the bugs reaches 10,661 working years (3,891,618
+working days).
+
+We choose to use these two datasets because they exposed a great diversity in programming languages, teams, localization, utility and maturity. Moreover, the used different tools, i.e. Bugzilla, JIRA, Git and Mercurial, and therefore, BUMPER is ready to host any other datasets that used any composition of these tools.
 
 \section{Architecture}
 
