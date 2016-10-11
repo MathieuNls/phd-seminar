@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper, cuthesis]{report}
 % \documentstyle{}
-
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{rotating}
 \usepackage{pgfgantt}
 \usepackage[square]{natbib}
@@ -9,7 +10,9 @@
 \usepackage{graphicx}
 \usepackage{amsmath}%
 \usepackage{multirow}
+\usepackage{longtable}
 \usepackage{algorithm2e}
+\usepackage{booktabs}
 \usepackage{tikz}
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
 % \usepackage{xcolor}  % Coloured text etc.

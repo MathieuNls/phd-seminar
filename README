@@ -1,2 +1,3 @@
-# phd-seminar
-A research seminar report in The Department of Electrical &amp; Computer Engineering, Presented in Partial Fulfillment of the Requirements For the Degree of Doctor of Philosophy Concordia University, Quebec, Canada
+
+## Build command
+cat *.md | pandoc --read=markdown -s -S --filter pandoc-citeproc --number-sections --listings --csl="config/ieee.csl" --template="config/default.latex" -o oo.pdf 

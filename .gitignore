@@ -15,6 +15,9 @@
 # *.eps
 # *.pdf
 
+##Sublime build
+tex2pdf.*
+
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
