@@ -1,0 +1,426 @@
+<tbody><tr bgcolor="#b9b9fe"><th>Description</th><th>Category</th></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS">BC: Equals method should not assume anything about the type of its argument</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BIT_SIGNED_CHECK">BIT: Check for sign of bitwise operation</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#CN_IDIOM">CN: Class implements Cloneable but does not define or use clone method</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#CN_IDIOM_NO_SUPER_CALL">CN: clone method does not call super.clone()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE">CN: Class defines clone() but doesn't implement Cloneable</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#CNT_ROUGH_CONSTANT_VALUE">CNT: Rough value of known constant found</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#CO_ABSTRACT_SELF">Co: Abstract class defines covariant compareTo() method</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#CO_COMPARETO_INCORRECT_FLOATING">Co: compareTo()/compare() incorrectly handles float or double value</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#CO_COMPARETO_RESULTS_MIN_VALUE">Co: compareTo()/compare() returns Integer.MIN_VALUE</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#CO_SELF_NO_OBJECT">Co: Covariant compareTo() method defined</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DE_MIGHT_DROP">DE: Method might drop exception</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DE_MIGHT_IGNORE">DE: Method might ignore exception</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_ENTRY_SETS_MAY_REUSE_ENTRY_OBJECTS">DMI: Adding elements of an entry set may fail due to reuse of Entry objects</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_RANDOM_USED_ONLY_ONCE">DMI: Random object created and used only once</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION">DMI: Don't use removeAll to clear a collection</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_EXIT">Dm: Method invokes System.exit(...)</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_RUN_FINALIZERS_ON_EXIT">Dm: Method invokes dangerous method runFinalizersOnExit</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ES_COMPARING_PARAMETER_STRING_WITH_EQ">ES: Comparison of String parameter using == or !=</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ES_COMPARING_STRINGS_WITH_EQ">ES: Comparison of String objects using == or !=</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_ABSTRACT_SELF">Eq: Abstract class defines covariant equals() method</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EQ_CHECK_FOR_OPERAND_NOT_COMPATIBLE_WITH_THIS">Eq: Equals checks for incompatible operand</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_COMPARETO_USE_OBJECT_EQUALS">Eq: Class defines compareTo(...) and uses Object.equals()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EQ_GETCLASS_AND_CLASS_CONSTANT">Eq: equals method fails for subtypes</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_SELF_NO_OBJECT">Eq: Covariant equals() method defined</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#FI_EMPTY">FI: Empty finalizer should be deleted</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#FI_EXPLICIT_INVOCATION">FI: Explicit invocation of finalizer</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#FI_FINALIZER_NULLS_FIELDS">FI: Finalizer nulls fields</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#FI_FINALIZER_ONLY_NULLS_FIELDS">FI: Finalizer only nulls fields</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#FI_MISSING_SUPER_CALL">FI: Finalizer does not call superclass finalizer</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#FI_NULLIFY_SUPER">FI: Finalizer nullifies superclass finalizer</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#FI_USELESS">FI: Finalizer does nothing but call superclass finalizer</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VA_FORMAT_STRING_USES_NEWLINE">FS: Format string should use %n rather than \n</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#GC_UNCHECKED_TYPE_IN_GENERIC_CALL">GC: Unchecked type in generic call</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#HE_EQUALS_NO_HASHCODE">HE: Class defines equals() but not hashCode()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#HE_EQUALS_USE_HASHCODE">HE: Class defines equals() and uses Object.hashCode()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#HE_HASHCODE_NO_EQUALS">HE: Class defines hashCode() but not equals()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#HE_HASHCODE_USE_OBJECT_EQUALS">HE: Class defines hashCode() and uses Object.equals()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#HE_INHERITS_EQUALS_USE_HASHCODE">HE: Class inherits equals() and uses Object.hashCode()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IC_SUPERCLASS_USES_SUBCLASS_DURING_INITIALIZATION">IC: Superclass uses subclass during initialization</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IMSE_DONT_CATCH_IMSE">IMSE: Dubious catching of IllegalMonitorStateException</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ISC_INSTANTIATE_STATIC_CLASS">ISC: Needless instantiation of class that only supplies static methods</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IT_NO_SUCH_ELEMENT">It: Iterator next() method can't throw NoSuchElementException</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#J2EE_STORE_OF_NON_SERIALIZABLE_OBJECT_INTO_SESSION">J2EE: Store of non serializable object into HttpSession</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS">JCIP: Fields of immutable classes should be final</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ME_ENUM_FIELD_SETTER">ME: Public enum method unconditionally sets its field</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ME_MUTABLE_ENUM_FIELD">ME: Enum field is public and mutable</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_BOOLEAN_RETURN_NULL">NP: Method with Boolean return type returns explicit null</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_CLONE_COULD_RETURN_NULL">NP: Clone method may return null</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT">NP: equals() method does not check for null argument</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_TOSTRING_COULD_RETURN_NULL">NP: toString method may return null</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_CLASS_NAMING_CONVENTION">Nm: Class names should start with an upper case letter</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_CLASS_NOT_EXCEPTION">Nm: Class is not derived from an Exception, even though it is named as such</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_CONFUSING">Nm: Confusing method names</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_FIELD_NAMING_CONVENTION">Nm: Field names should start with a lower case letter</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_FUTURE_KEYWORD_USED_AS_IDENTIFIER">Nm: Use of identifier that is a keyword in later versions of Java</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_FUTURE_KEYWORD_USED_AS_MEMBER_IDENTIFIER">Nm: Use of identifier that is a keyword in later versions of Java</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_METHOD_NAMING_CONVENTION">Nm: Method names should start with a lower case letter</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_SAME_SIMPLE_NAME_AS_INTERFACE">Nm: Class names shouldn't shadow simple name of implemented interface</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_SAME_SIMPLE_NAME_AS_SUPERCLASS">Nm: Class names shouldn't shadow simple name of superclass</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_VERY_CONFUSING_INTENTIONAL">Nm: Very confusing method names (but perhaps intentional)</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_WRONG_PACKAGE_INTENTIONAL">Nm: Method doesn't override method in superclass due to wrong package for parameter</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ODR_OPEN_DATABASE_RESOURCE">ODR: Method may fail to close database resource</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ODR_OPEN_DATABASE_RESOURCE_EXCEPTION_PATH">ODR: Method may fail to close database resource on exception</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#OS_OPEN_STREAM">OS: Method may fail to close stream</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#OS_OPEN_STREAM_EXCEPTION_PATH">OS: Method may fail to close stream on exception</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#PZ_DONT_REUSE_ENTRY_OBJECTS_IN_ITERATORS">PZ: Don't reuse entry objects in iterators</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RC_REF_COMPARISON_BAD_PRACTICE">RC: Suspicious reference comparison to constant</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RC_REF_COMPARISON_BAD_PRACTICE_BOOLEAN">RC: Suspicious reference comparison of Boolean values</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RR_NOT_CHECKED">RR: Method ignores results of InputStream.read()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SR_NOT_CHECKED">RR: Method ignores results of InputStream.skip()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RV_NEGATING_RESULT_OF_COMPARETO">RV: Negating the result of compareTo()/compare()</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">RV: Method ignores exceptional return value</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SI_INSTANCE_BEFORE_FINALS_ASSIGNED">SI: Static initializer creates instance before all static final fields assigned</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD">SW: Certain swing methods needs to be invoked in Swing thread</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_BAD_FIELD">Se: Non-transient non-serializable instance field in serializable class</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_BAD_FIELD_INNER_CLASS">Se: Non-serializable class has a serializable inner class</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_BAD_FIELD_STORE">Se: Non-serializable value stored into instance field of a serializable class</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">Se: Comparator doesn't implement Serializable</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_INNER_CLASS">Se: Serializable inner class</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_NONFINAL_SERIALVERSIONID">Se: serialVersionUID isn't final</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_NONLONG_SERIALVERSIONID">Se: serialVersionUID isn't long</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_NONSTATIC_SERIALVERSIONID">Se: serialVersionUID isn't static</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_NO_SUITABLE_CONSTRUCTOR">Se: Class is Serializable but its superclass doesn't define a void constructor</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_NO_SUITABLE_CONSTRUCTOR_FOR_EXTERNALIZATION">Se: Class is Externalizable but doesn't define a void constructor</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_READ_RESOLVE_MUST_RETURN_OBJECT">Se: The readResolve method must be declared with a return type of Object. </a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Se: Transient field that isn't set by deserialization. </a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_NO_SERIALVERSIONID">SnVI: Class is Serializable, but doesn't define serialVersionUID</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UI_INHERITANCE_UNSAFE_GETRESOURCE">UI: Usage of GetResource may be unsafe if class is extended</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BC_IMPOSSIBLE_CAST">BC: Impossible cast</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BC_IMPOSSIBLE_DOWNCAST">BC: Impossible downcast</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BC_IMPOSSIBLE_DOWNCAST_OF_TOARRAY">BC: Impossible downcast of toArray() result</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BC_IMPOSSIBLE_INSTANCEOF">BC: instanceof will always return false</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BIT_ADD_OF_SIGNED_BYTE">BIT: Bitwise add of signed byte value</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BIT_AND">BIT: Incompatible bit masks</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BIT_AND_ZZ">BIT: Check to see if ((...) &amp; 0) == 0</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BIT_IOR">BIT: Incompatible bit masks</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BIT_IOR_OF_SIGNED_BYTE">BIT: Bitwise OR of signed byte value</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BIT_SIGNED_CHECK_HIGH_BIT">BIT: Check for sign of bitwise operation</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BOA_BADLY_OVERRIDDEN_ADAPTER">BOA: Class overrides a method implemented in super class Adapter wrongly</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BSHIFT_WRONG_ADD_PRIORITY">BSHIFT: Possible bad parsing of shift operation</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ICAST_BAD_SHIFT_AMOUNT">BSHIFT: 32 bit int shifted by an amount not in the range -31..31</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DLS_DEAD_LOCAL_INCREMENT_IN_RETURN">DLS: Useless increment in return statement</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DLS_DEAD_STORE_OF_CLASS_LITERAL">DLS: Dead store of class literal</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DLS_OVERWRITTEN_INCREMENT">DLS: Overwritten increment</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_ARGUMENTS_WRONG_ORDER">DMI: Reversed method arguments</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_BAD_MONTH">DMI: Bad constant value for month</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_BIGDECIMAL_CONSTRUCTED_FROM_DOUBLE">DMI: BigDecimal constructed from double that isn't represented precisely</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_CALLING_NEXT_FROM_HASNEXT">DMI: hasNext method invokes next</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_COLLECTIONS_SHOULD_NOT_CONTAIN_THEMSELVES">DMI: Collections should not contain themselves</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_DOH">DMI: D'oh! A nonsensical method invocation</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_INVOKING_HASHCODE_ON_ARRAY">DMI: Invocation of hashCode on an array</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_LONG_BITS_TO_DOUBLE_INVOKED_ON_INT">DMI: Double.longBitsToDouble invoked on an int</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_VACUOUS_SELF_COLLECTION_CALL">DMI: Vacuous call to collections</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_ANNOTATION_IS_NOT_VISIBLE_TO_REFLECTION">Dm: Can't use reflection to check for presence of annotation without runtime retention</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_FUTILE_ATTEMPT_TO_CHANGE_MAXPOOL_SIZE_OF_SCHEDULED_THREAD_POOL_EXECUTOR">Dm: Futile attempt to change max pool size of ScheduledThreadPoolExecutor</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_SCHEDULED_THREAD_POOL_EXECUTOR_WITH_ZERO_CORE_THREADS">Dm: Creation of ScheduledThreadPoolExecutor with zero core threads</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_VACUOUS_CALL_TO_EASYMOCK_METHOD">Dm: Useless/vacuous call to EasyMock method</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_INVALID_MIN_MAX">Dm: Incorrect combination of Math.max and Math.min</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EC_ARRAY_AND_NONARRAY">EC: equals() used to compare array and nonarray</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EC_BAD_ARRAY_COMPARE">EC: Invocation of equals() on an array, which is equivalent to ==</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EC_INCOMPATIBLE_ARRAY_COMPARE">EC: equals(...) used to compare incompatible arrays</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EC_NULL_ARG">EC: Call to equals(null)</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EC_UNRELATED_CLASS_AND_INTERFACE">EC: Call to equals() comparing unrelated class and interface</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EC_UNRELATED_INTERFACES">EC: Call to equals() comparing different interface types</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EC_UNRELATED_TYPES">EC: Call to equals() comparing different types</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EC_UNRELATED_TYPES_USING_POINTER_EQUALITY">EC: Using pointer equality to compare different types</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EQ_ALWAYS_FALSE">Eq: equals method always returns false</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_ALWAYS_TRUE">Eq: equals method always returns true</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EQ_COMPARING_CLASS_NAMES">Eq: equals method compares class names rather than class objects</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_DONT_DEFINE_EQUALS_FOR_ENUM">Eq: Covariant equals() method defined for enum</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EQ_OTHER_NO_OBJECT">Eq: equals() method defined that doesn't override equals(Object)</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_OTHER_USE_OBJECT">Eq: equals() method defined that doesn't override Object.equals(Object)</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EQ_OVERRIDING_EQUALS_NOT_SYMMETRIC">Eq: equals method overrides equals in superclass and may not be symmetric</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_SELF_USE_OBJECT">Eq: Covariant equals() method defined, Object.equals(Object) inherited</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#FE_TEST_IF_EQUAL_TO_NOT_A_NUMBER">FE: Doomed test for equality to NaN</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VA_FORMAT_STRING_BAD_ARGUMENT">FS: Format string placeholder incompatible with passed argument</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#VA_FORMAT_STRING_BAD_CONVERSION">FS: The type of a supplied argument doesn't match format specifier</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VA_FORMAT_STRING_EXPECTED_MESSAGE_FORMAT_SUPPLIED">FS: MessageFormat supplied where printf style format expected</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#VA_FORMAT_STRING_EXTRA_ARGUMENTS_PASSED">FS: More arguments are passed than are actually used in the format string</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VA_FORMAT_STRING_ILLEGAL">FS: Illegal format string</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#VA_FORMAT_STRING_MISSING_ARGUMENT">FS: Format string references missing argument</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VA_FORMAT_STRING_NO_PREVIOUS_ARGUMENT">FS: No previous argument for format string</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#GC_UNRELATED_TYPES">GC: No relationship between generic parameter and method argument</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#HE_SIGNATURE_DECLARES_HASHING_OF_UNHASHABLE_CLASS">HE: Signature declares use of unhashable class in hashed construct</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#HE_USE_OF_UNHASHABLE_CLASS">HE: Use of class without a hashCode() method in a hashed data structure</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ICAST_INT_2_LONG_AS_INSTANT">ICAST: int value converted to long and used as absolute time</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ICAST_INT_CAST_TO_DOUBLE_PASSED_TO_CEIL">ICAST: Integral value cast to double and then passed to Math.ceil</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ICAST_INT_CAST_TO_FLOAT_PASSED_TO_ROUND">ICAST: int value cast to float and then passed to Math.round</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IJU_ASSERT_METHOD_INVOKED_FROM_RUN_METHOD">IJU: JUnit assertion in run method will not be noticed by JUnit</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IJU_BAD_SUITE_METHOD">IJU: TestCase declares a bad suite method </a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IJU_NO_TESTS">IJU: TestCase has no tests</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IJU_SETUP_NO_SUPER">IJU: TestCase defines setUp that doesn't call super.setUp()</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IJU_SUITE_NOT_STATIC">IJU: TestCase implements a non-static suite method </a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IJU_TEARDOWN_NO_SUPER">IJU: TestCase defines tearDown that doesn't call super.tearDown()</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IL_CONTAINER_ADDED_TO_ITSELF">IL: A collection is added to itself</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IL_INFINITE_LOOP">IL: An apparent infinite loop</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IL_INFINITE_RECURSIVE_LOOP">IL: An apparent infinite recursive loop</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IM_MULTIPLYING_RESULT_OF_IREM">IM: Integer multiply of result of integer remainder</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#INT_BAD_COMPARISON_WITH_INT_VALUE">INT: Bad comparison of int value with long constant</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT: Bad comparison of nonnegative value with negative constant or zero</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#INT_BAD_COMPARISON_WITH_SIGNED_BYTE">INT: Bad comparison of signed byte</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IO_APPENDING_TO_OBJECT_OUTPUT_STREAM">IO: Doomed attempt to append to an object output stream</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IP_PARAMETER_IS_DEAD_BUT_OVERWRITTEN">IP: A parameter is dead upon entry to a method but overwritten</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MF_CLASS_MASKS_FIELD">MF: Class defines field that masks a superclass field</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MF_METHOD_MASKS_FIELD">MF: Method defines a variable that obscures a field</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_ALWAYS_NULL">NP: Null pointer dereference</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_ALWAYS_NULL_EXCEPTION">NP: Null pointer dereference in method on exception path</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_ARGUMENT_MIGHT_BE_NULL">NP: Method does not check for null argument</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_CLOSING_NULL">NP: close() invoked on a value that is always null</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_GUARANTEED_DEREF">NP: Null value is guaranteed to be dereferenced</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH">NP: Value is null and guaranteed to be dereferenced on exception path</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR">NP: Non-null field is not initialized</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_NONNULL_PARAM_VIOLATION">NP: Method call passes null to a non-null parameter </a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_NONNULL_RETURN_VIOLATION">NP: Method may return null, but is declared @Nonnull</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_NULL_INSTANCEOF">NP: A known null value is checked to see if it is an instance of a type</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_NULL_ON_SOME_PATH">NP: Possible null pointer dereference</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_NULL_ON_SOME_PATH_EXCEPTION">NP: Possible null pointer dereference in method on exception path</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_NULL_PARAM_DEREF">NP: Method call passes null for non-null parameter</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_NULL_PARAM_DEREF_ALL_TARGETS_DANGEROUS">NP: Method call passes null for non-null parameter</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">NP: Non-virtual method call passes null for non-null parameter</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_OPTIONAL_RETURN_NULL">NP: Method with Optional return type returns explicit null</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_STORE_INTO_NONNULL_FIELD">NP: Store of null value into field annotated @Nonnull</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_UNWRITTEN_FIELD">NP: Read of unwritten field</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_BAD_EQUAL">Nm: Class defines equal(Object); should it be equals(Object)?</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_LCASE_HASHCODE">Nm: Class defines hashcode(); should it be hashCode()?</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_LCASE_TOSTRING">Nm: Class defines tostring(); should it be toString()?</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_METHOD_CONSTRUCTOR_CONFUSION">Nm: Apparent method/constructor confusion</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NM_VERY_CONFUSING">Nm: Very confusing method names</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_WRONG_PACKAGE">Nm: Method doesn't override method in superclass due to wrong package for parameter</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#QBA_QUESTIONABLE_BOOLEAN_ASSIGNMENT">QBA: Method assigns boolean literal in boolean expression</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RANGE_ARRAY_INDEX">RANGE: Array index is out of bounds</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RANGE_ARRAY_LENGTH">RANGE: Array length is out of bounds</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RANGE_ARRAY_OFFSET">RANGE: Array offset is out of bounds</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RANGE_STRING_INDEX">RANGE: String index is out of bounds</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RC_REF_COMPARISON">RC: Suspicious reference comparison</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE">RCN: Nullcheck of value previously dereferenced</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RE_BAD_SYNTAX_FOR_REGULAR_EXPRESSION">RE: Invalid syntax for regular expression</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RE_CANT_USE_FILE_SEPARATOR_AS_REGULAR_EXPRESSION">RE: File.separator used for regular expression</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RE_POSSIBLE_UNINTENDED_PATTERN">RE: "." or "|" used for regular expression</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_01_TO_INT">RV: Random value from 0 to 1 is coerced to the integer 0</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RV_ABSOLUTE_VALUE_OF_HASHCODE">RV: Bad attempt to compute absolute value of signed 32-bit hashcode </a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_ABSOLUTE_VALUE_OF_RANDOM_INT">RV: Bad attempt to compute absolute value of signed random integer</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RV_CHECK_COMPARETO_FOR_SPECIFIC_RETURN_VALUE">RV: Code checks for specific values returned by compareTo</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_EXCEPTION_NOT_THROWN">RV: Exception created and dropped rather than thrown</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RV_RETURN_VALUE_IGNORED">RV: Method ignores return value</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RpC_REPEATED_CONDITIONAL_TEST">RpC: Repeated conditional tests</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SA_FIELD_SELF_ASSIGNMENT">SA: Self assignment of field</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SA_FIELD_SELF_COMPARISON">SA: Self comparison of field with itself</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SA_FIELD_SELF_COMPUTATION">SA: Nonsensical self computation involving a field (e.g., x &amp; x)</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SA_LOCAL_SELF_ASSIGNMENT_INSTEAD_OF_FIELD">SA: Self assignment of local rather than assignment to field</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SA_LOCAL_SELF_COMPARISON">SA: Self comparison of value with itself</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SA_LOCAL_SELF_COMPUTATION">SA: Nonsensical self computation involving a variable (e.g., x &amp; x)</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SF_DEAD_STORE_DUE_TO_SWITCH_FALLTHROUGH">SF: Dead store due to switch statement fall through</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SF_DEAD_STORE_DUE_TO_SWITCH_FALLTHROUGH_TO_THROW">SF: Dead store due to switch statement fall through to throw</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SIC_THREADLOCAL_DEADLY_EMBRACE">SIC: Deadly embrace of non-static inner class and thread local</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SIO_SUPERFLUOUS_INSTANCEOF">SIO: Unnecessary type check done using instanceof operator</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SQL_BAD_PREPARED_STATEMENT_ACCESS">SQL: Method attempts to access a prepared statement parameter with index 0</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SQL_BAD_RESULTSET_ACCESS">SQL: Method attempts to access a result set field with index 0</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#STI_INTERRUPTED_ON_CURRENTTHREAD">STI: Unneeded use of currentThread() call, to call interrupted() </a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#STI_INTERRUPTED_ON_UNKNOWNTHREAD">STI: Static Thread.interrupted() method invoked on thread instance</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_METHOD_MUST_BE_PRIVATE">Se: Method must be private in order for serialization to work</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_READ_RESOLVE_IS_STATIC">Se: The readResolve method must not be declared as a static method.  </a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#TQ_ALWAYS_VALUE_USED_WHERE_NEVER_REQUIRED">TQ: Value annotated as carrying a type qualifier used where a value that must not carry that qualifier is required</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#TQ_COMPARING_VALUES_WITH_INCOMPATIBLE_TYPE_QUALIFIERS">TQ: Comparing values with incompatible type qualifiers</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#TQ_MAYBE_SOURCE_VALUE_REACHES_ALWAYS_SINK">TQ: Value that might not carry a type qualifier is always used in a way requires that type qualifier</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#TQ_MAYBE_SOURCE_VALUE_REACHES_NEVER_SINK">TQ: Value that might carry a type qualifier is always used in a way prohibits it from having that type qualifier</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#TQ_NEVER_VALUE_USED_WHERE_ALWAYS_REQUIRED">TQ: Value annotated as never carrying a type qualifier used where value carrying that qualifier is required</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#TQ_UNKNOWN_VALUE_USED_WHERE_ALWAYS_STRICTLY_REQUIRED">TQ: Value without a type qualifier used where a value is required to have that qualifier</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS">UMAC: Uncallable method defined in anonymous class</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UR_UNINIT_READ">UR: Uninitialized read of field in constructor</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UR_UNINIT_READ_CALLED_FROM_SUPER_CONSTRUCTOR">UR: Uninitialized read of field method called from constructor of superclass</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_INVOKING_TOSTRING_ON_ANONYMOUS_ARRAY">USELESS_STRING: Invocation of toString on an unnamed array</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_INVOKING_TOSTRING_ON_ARRAY">USELESS_STRING: Invocation of toString on an array</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VA_FORMAT_STRING_BAD_CONVERSION_FROM_ARRAY">USELESS_STRING: Array formatted in useless way using format string</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UWF_NULL_FIELD">UwF: Field only ever set to null</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UWF_UNWRITTEN_FIELD">UwF: Unwritten field</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#VA_PRIMITIVE_ARRAY_PASSED_TO_OBJECT_VARARG">VA: Primitive array passed to function expecting a variable number of object arguments</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#LG_LOST_LOGGER_DUE_TO_WEAK_REFERENCE">LG: Potential lost logger changes due to weak reference in OpenJDK</a></td><td>Experimental</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#OBL_UNSATISFIED_OBLIGATION">OBL: Method may fail to clean up stream or resource</a></td><td>Experimental</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">OBL: Method may fail to clean up stream or resource on checked exception</a></td><td>Experimental</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_CONVERT_CASE">Dm: Consider using Locale parameterized version of invoked method</a></td><td>Internationalization</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_DEFAULT_ENCODING">Dm: Reliance on default encoding</a></td><td>Internationalization</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED">DP: Classloaders should only be created inside doPrivileged block</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DP_DO_INSIDE_DO_PRIVILEGED">DP: Method invoked that should be only be invoked inside a doPrivileged block</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EI_EXPOSE_REP">EI: May expose internal representation by returning reference to mutable object</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EI_EXPOSE_REP2">EI2: May expose internal representation by incorporating reference to mutable object</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#FI_PUBLIC_SHOULD_BE_PROTECTED">FI: Finalizer should be protected, not public</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EI_EXPOSE_STATIC_REP2">MS: May expose internal static state by storing a mutable object into a static field</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_CANNOT_BE_FINAL">MS: Field isn't final and can't be protected from malicious code</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MS_EXPOSE_REP">MS: Public static method may expose internal representation by returning array</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_FINAL_PKGPROTECT">MS: Field should be both final and package protected</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MS_MUTABLE_ARRAY">MS: Field is a mutable array</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_MUTABLE_COLLECTION">MS: Field is a mutable collection</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MS_MUTABLE_COLLECTION_PKGPROTECT">MS: Field is a mutable collection which should be package protected</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_MUTABLE_HASHTABLE">MS: Field is a mutable Hashtable</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MS_OOI_PKGPROTECT">MS: Field should be moved out of an interface and made package protected</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_PKGPROTECT">MS: Field should be package protected</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MS_SHOULD_BE_FINAL">MS: Field isn't final but should be</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_SHOULD_BE_REFACTORED_TO_BE_FINAL">MS: Field isn't final but should be refactored to be so</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#AT_OPERATION_SEQUENCE_ON_CONCURRENT_ABSTRACTION">AT: Sequence of calls to concurrent abstraction may not be atomic</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DC_DOUBLECHECK">DC: Possible double check of field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DC_PARTIALLY_CONSTRUCTED">DC: Possible exposure of partially initialized object</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DL_SYNCHRONIZATION_ON_BOOLEAN">DL: Synchronization on Boolean</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DL_SYNCHRONIZATION_ON_BOXED_PRIMITIVE">DL: Synchronization on boxed primitive</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DL_SYNCHRONIZATION_ON_SHARED_CONSTANT">DL: Synchronization on interned String </a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DL_SYNCHRONIZATION_ON_UNSHARED_BOXED_PRIMITIVE">DL: Synchronization on boxed primitive values</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_MONITOR_WAIT_ON_CONDITION">Dm: Monitor wait() called on Condition</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_USELESS_THREAD">Dm: A thread was created using the default empty run method</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ESync_EMPTY_SYNC">ESync: Empty synchronized block</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IS2_INCONSISTENT_SYNC">IS: Inconsistent synchronization</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IS_FIELD_NOT_GUARDED">IS: Field not guarded against concurrent access</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#JLM_JSR166_LOCK_MONITORENTER">JLM: Synchronization performed on Lock</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">JLM: Synchronization performed on util.concurrent instance</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#JML_JSR166_CALLING_WAIT_RATHER_THAN_AWAIT">JLM: Using monitor style wait methods on util.concurrent abstraction</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#LI_LAZY_INIT_STATIC">LI: Incorrect lazy initialization of static field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#LI_LAZY_INIT_UPDATE_STATIC">LI: Incorrect lazy initialization and update of static field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ML_SYNC_ON_FIELD_TO_GUARD_CHANGING_THAT_FIELD">ML: Synchronization on field in futile attempt to guard that field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ML_SYNC_ON_UPDATED_FIELD">ML: Method synchronizes on an updated field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MSF_MUTABLE_SERVLET_FIELD">MSF: Mutable servlet field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MWN_MISMATCHED_NOTIFY">MWN: Mismatched notify()</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MWN_MISMATCHED_WAIT">MWN: Mismatched wait()</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NN_NAKED_NOTIFY">NN: Naked notify</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_SYNC_AND_NULL_CHECK_FIELD">NP: Synchronize and null check on the same field.</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NO_NOTIFY_NOT_NOTIFYALL">No: Using notify() rather than notifyAll()</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RS_READOBJECT_SYNC">RS: Class's readObject() method is synchronized</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED">RV: Return value of putIfAbsent ignored, value passed to putIfAbsent reused</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RU_INVOKE_RUN">Ru: Invokes run on a thread (did you mean to start it instead?)</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SC_START_IN_CTOR">SC: Constructor invokes Thread.start()</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SP_SPIN_ON_FIELD">SP: Method spins on field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#STCAL_INVOKE_ON_STATIC_CALENDAR_INSTANCE">STCAL: Call to static Calendar</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#STCAL_INVOKE_ON_STATIC_DATE_FORMAT_INSTANCE">STCAL: Call to static DateFormat</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#STCAL_STATIC_CALENDAR_INSTANCE">STCAL: Static Calendar field</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE">STCAL: Static DateFormat</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SWL_SLEEP_WITH_LOCK_HELD">SWL: Method calls Thread.sleep() with a lock held</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#TLW_TWO_LOCK_WAIT">TLW: Wait with two locks held</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UG_SYNC_SET_UNSYNC_GET">UG: Unsynchronized get method, synchronized set method</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UL_UNRELEASED_LOCK">UL: Method does not release lock on all paths</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UL_UNRELEASED_LOCK_EXCEPTION_PATH">UL: Method does not release lock on all exception paths</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UW_UNCOND_WAIT">UW: Unconditional wait</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VO_VOLATILE_INCREMENT">VO: An increment to a volatile field isn't atomic</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#VO_VOLATILE_REFERENCE_TO_ARRAY">VO: A volatile reference to an array doesn't treat the array elements as volatile</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#WL_USING_GETCLASS_RATHER_THAN_CLASS_LITERAL">WL: Synchronization on getClass rather than class literal</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#WS_WRITEOBJECT_SYNC">WS: Class's writeObject() method is synchronized but nothing else is</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#WA_AWAIT_NOT_IN_LOOP">Wa: Condition.await() not in loop </a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#WA_NOT_IN_LOOP">Wa: Wait not in loop </a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BX_BOXING_IMMEDIATELY_UNBOXED">Bx: Primitive value is boxed and then immediately unboxed</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BX_BOXING_IMMEDIATELY_UNBOXED_TO_PERFORM_COERCION">Bx: Primitive value is boxed then unboxed to perform primitive coercion</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR">Bx: Primitive value is unboxed and coerced for ternary operator</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BX_UNBOXING_IMMEDIATELY_REBOXED">Bx: Boxed value is unboxed and then immediately reboxed</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_BOXED_PRIMITIVE_FOR_COMPARE">Bx: Boxing a primitive to compare</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_BOXED_PRIMITIVE_FOR_PARSING">Bx: Boxing/unboxing to parse a primitive</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_BOXED_PRIMITIVE_TOSTRING">Bx: Method allocates a boxed primitive just to call toString</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_FP_NUMBER_CTOR">Bx: Method invokes inefficient floating-point Number constructor; use static valueOf instead</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_NUMBER_CTOR">Bx: Method invokes inefficient Number constructor; use static valueOf instead</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_BLOCKING_METHODS_ON_URL">Dm: The equals and hashCode methods of URL are blocking</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_COLLECTION_OF_URLS">Dm: Maps and sets of URLs can be performance hogs</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_BOOLEAN_CTOR">Dm: Method invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_GC">Dm: Explicit garbage collection; extremely dubious except in benchmarking code</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_NEW_FOR_GETCLASS">Dm: Method allocates an object, only to get the class object</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_NEXTINT_VIA_NEXTDOUBLE">Dm: Use the nextInt method of Random rather than nextDouble to generate a random integer</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_STRING_CTOR">Dm: Method invokes inefficient new String(String) constructor</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_STRING_TOSTRING">Dm: Method invokes toString() method on a String</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_STRING_VOID_CTOR">Dm: Method invokes inefficient new String() constructor</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#HSC_HUGE_SHARED_STRING_CONSTANT">HSC: Huge string constants is duplicated across multiple class files</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC: Method concatenates strings using + in a loop</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SIC_INNER_SHOULD_BE_STATIC">SIC: Should be a static inner class</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SIC_INNER_SHOULD_BE_STATIC_ANON">SIC: Could be refactored into a named static inner class</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS">SIC: Could be refactored into a static inner class</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SS_SHOULD_BE_STATIC">SS: Unread field: should this field be static?</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UM_UNNECESSARY_MATH">UM: Method calls static Math class method on a constant value</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UPM_UNCALLED_PRIVATE_METHOD">UPM: Private method is never called</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#URF_UNREAD_FIELD">UrF: Unread field</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UUF_UNUSED_FIELD">UuF: Unused field</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#WMI_WRONG_MAP_ITERATOR">WMI: Inefficient use of keySet iterator instead of entrySet iterator</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_CONSTANT_DB_PASSWORD">Dm: Hardcoded constant database password</a></td><td>Security</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_EMPTY_DB_PASSWORD">Dm: Empty database password</a></td><td>Security</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#HRS_REQUEST_PARAMETER_TO_COOKIE">HRS: HTTP cookie formed from untrusted input</a></td><td>Security</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#HRS_REQUEST_PARAMETER_TO_HTTP_HEADER">HRS: HTTP Response splitting vulnerability</a></td><td>Security</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#PT_ABSOLUTE_PATH_TRAVERSAL">PT: Absolute path traversal in servlet</a></td><td>Security</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#PT_RELATIVE_PATH_TRAVERSAL">PT: Relative path traversal in servlet</a></td><td>Security</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE">SQL: Nonconstant string passed to execute or addBatch method on an SQL statement</a></td><td>Security</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING">SQL: A prepared statement is generated from a nonconstant String</a></td><td>Security</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#XSS_REQUEST_PARAMETER_TO_JSP_WRITER">XSS: JSP reflected cross site scripting vulnerability</a></td><td>Security</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#XSS_REQUEST_PARAMETER_TO_SEND_ERROR">XSS: Servlet reflected cross site scripting vulnerability in error page</a></td><td>Security</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER">XSS: Servlet reflected cross site scripting vulnerability</a></td><td>Security</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">BC: Questionable cast to abstract collection </a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BC_BAD_CAST_TO_CONCRETE_COLLECTION">BC: Questionable cast to concrete collection</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BC_UNCONFIRMED_CAST">BC: Unchecked/unconfirmed cast</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BC_UNCONFIRMED_CAST_OF_RETURN_VALUE">BC: Unchecked/unconfirmed cast of return value from method</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BC_VACUOUS_INSTANCEOF">BC: instanceof will always return true</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ICAST_QUESTIONABLE_UNSIGNED_RIGHT_SHIFT">BSHIFT: Unsigned right shift cast to short/byte</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#CI_CONFUSED_INHERITANCE">CI: Class is final but declares protected field</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DB_DUPLICATE_BRANCHES">DB: Method uses the same code for two branches</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DB_DUPLICATE_SWITCH_CLAUSES">DB: Method uses the same code for two switch clauses</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DLS_DEAD_LOCAL_STORE">DLS: Dead store to local variable</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DLS_DEAD_LOCAL_STORE_IN_RETURN">DLS: Useless assignment in return statement</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DLS_DEAD_LOCAL_STORE_OF_NULL">DLS: Dead store of null to local variable</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DLS_DEAD_LOCAL_STORE_SHADOWS_FIELD">DLS: Dead store to local variable that shadows field</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_HARDCODED_ABSOLUTE_FILENAME">DMI: Code contains a hard coded reference to an absolute pathname</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_NONSERIALIZABLE_OBJECT_WRITTEN">DMI: Non serializable object written to ObjectOutput</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_USELESS_SUBSTRING">DMI: Invocation of substring(0), which returns the original value</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_THREAD_PASSED_WHERE_RUNNABLE_EXPECTED">Dm: Thread passed where Runnable expected</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#EQ_DOESNT_OVERRIDE_EQUALS">Eq: Class doesn't override equals in superclass</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#EQ_UNUSUAL">Eq: Unusual equals method </a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#FE_FLOATING_POINT_EQUALITY">FE: Test for floating point equality</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VA_FORMAT_STRING_BAD_CONVERSION_TO_BOOLEAN">FS: Non-Boolean argument formatted using %b format specifier</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">IA: Potentially ambiguous invocation of either an inherited or outer method</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IC_INIT_CIRCULARITY">IC: Initialization circularity</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ICAST_IDIV_CAST_TO_DOUBLE">ICAST: Integral division result cast to double or float</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ICAST_INTEGER_MULTIPLY_CAST_TO_LONG">ICAST: Result of integer multiplication cast to long</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IM_AVERAGE_COMPUTATION_COULD_OVERFLOW">IM: Computation of average could overflow</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IM_BAD_CHECK_FOR_ODD">IM: Check for oddness that won't work for negative numbers </a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#INT_BAD_REM_BY_1">INT: Integer remainder modulo 1</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#INT_VACUOUS_BIT_OPERATION">INT: Vacuous bit mask operation on integer value</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#INT_VACUOUS_COMPARISON">INT: Vacuous comparison of integer value</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MTIA_SUSPECT_SERVLET_INSTANCE_FIELD">MTIA: Class extends Servlet class and uses instance variables</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MTIA_SUSPECT_STRUTS_INSTANCE_FIELD">MTIA: Class extends Struts Action class and uses instance variables</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_DEREFERENCE_OF_READLINE_VALUE">NP: Dereference of the result of readLine() without nullcheck</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_IMMEDIATE_DEREFERENCE_OF_READLINE">NP: Immediate dereference of the result of readLine()</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">NP: Load of known null value</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_METHOD_PARAMETER_TIGHTENS_ANNOTATION">NP: Method tightens nullness annotation on parameter</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_METHOD_RETURN_RELAXING_ANNOTATION">NP: Method relaxes nullness annotation on return value</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">NP: Possible null pointer dereference due to return value of called method</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_NULL_ON_SOME_PATH_MIGHT_BE_INFEASIBLE">NP: Possible null pointer dereference on branch that might be infeasible</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">NP: Parameter must be non-null but is marked as nullable</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">NP: Read of unwritten public or protected field</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NS_DANGEROUS_NON_SHORT_CIRCUIT">NS: Potentially dangerous use of non-short-circuit logic</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NS_NON_SHORT_CIRCUIT">NS: Questionable use of non-short-circuit logic</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#PZLA_PREFER_ZERO_LENGTH_ARRAYS">PZLA: Consider returning a zero length array rather than null</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#QF_QUESTIONABLE_FOR_LOOP">QF: Complicated, subtle or wrong increment in for-loop </a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RCN_REDUNDANT_COMPARISON_OF_NULL_AND_NONNULL_VALUE">RCN: Redundant comparison of non-null value to null</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RCN_REDUNDANT_COMPARISON_TWO_NULL_VALUES">RCN: Redundant comparison of two null values</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN: Redundant nullcheck of value known to be non-null</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE">RCN: Redundant nullcheck of value known to be null</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#REC_CATCH_EXCEPTION">REC: Exception is caught when Exception is not thrown</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RI_REDUNDANT_INTERFACES">RI: Class implements same interface as superclass</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RV_CHECK_FOR_POSITIVE_INDEXOF">RV: Method checks to see if result of String.indexOf is positive</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_DONT_JUST_NULL_CHECK_READLINE">RV: Method discards result of readLine after checking if it is non-null</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RV_REM_OF_HASHCODE">RV: Remainder of hashCode could be negative</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_REM_OF_RANDOM_INT">RV: Remainder of 32-bit signed random integer</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RV_RETURN_VALUE_IGNORED_INFERRED">RV: Method ignores return value, is this OK?</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV: Return value of method without side effect is ignored</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SA_FIELD_DOUBLE_ASSIGNMENT">SA: Double assignment of field</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SA_LOCAL_DOUBLE_ASSIGNMENT">SA: Double assignment of local variable </a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SA_LOCAL_SELF_ASSIGNMENT">SA: Self assignment of local variable</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SF_SWITCH_FALLTHROUGH">SF: Switch statement found where one case falls through to the next case</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SF_SWITCH_NO_DEFAULT">SF: Switch statement found where default case is missing</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST: Write to static field from instance method</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_PRIVATE_READ_RESOLVE_NOT_INHERITED">Se: Private readResolve method not inherited by subclasses</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_TRANSIENT_FIELD_OF_NONSERIALIZABLE_CLASS">Se: Transient field of class that isn't Serializable. </a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_ALWAYS_SINK">TQ: Value required to have type qualifier, but marked as unknown</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_NEVER_SINK">TQ: Value required to not have type qualifier, but marked as unknown</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UC_USELESS_CONDITION">UC: Condition has no effect</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UC_USELESS_CONDITION_TYPE">UC: Condition has no effect due to the variable type</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UC_USELESS_OBJECT">UC: Useless object created</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UC_USELESS_OBJECT_STACK">UC: Useless object created on stack</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UC_USELESS_VOID_METHOD">UC: Useless non-empty void method</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UCF_USELESS_CONTROL_FLOW">UCF: Useless control flow</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UCF_USELESS_CONTROL_FLOW_NEXT_LINE">UCF: Useless control flow to next line</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">UrF: Unread public/protected field</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">UuF: Unused public or protected field</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR">UwF: Field not initialized in constructor but dereferenced without null check</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">UwF: Unwritten public or protected field</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#XFB_XML_FACTORY_BYPASS">XFB: Method directly allocates a specific implementation of xml interfaces</a></td><td>Dodgy code</td></tr>
+</tbody>

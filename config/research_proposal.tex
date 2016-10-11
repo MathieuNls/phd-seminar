@@ -1,0 +1,72 @@
+\documentclass[11pt,a4paper, cuthesis]{report}
+% \documentstyle{}
+
+\usepackage{rotating}
+\usepackage{pgfgantt}
+\usepackage[square]{natbib}
+\usepackage{cuthesis}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}%
+\usepackage{multirow}
+\usepackage{algorithm2e}
+\usepackage{tikz}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+% \usepackage{xcolor}  % Coloured text etc.
+\usepackage{xcolor,colortbl}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{listings}
+\tikzset{
+    vgrid 0/.style={draw,gray!25},
+    vgrid 1/.style={draw,gray},
+    vgrid 2/.style={draw,thin},
+    vgrid 3/.style={draw,thick}
+}
+\pgfplotsset{grid style={dashed,gray}}
+\lstset{
+    frame=single,
+    breaklines=true,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}
+}
+\definecolor{bblue}{HTML}{4F81BD}
+\definecolor{rred}{HTML}{C0504D}
+\definecolor{ggreen}{HTML}{9BBB59}
+\definecolor{ppurple}{HTML}{9F4C7C}
+
+\usepackage{todonotes}
+
+\author{Mathieu Nayrolles}
+\title{Software Maintenance at Commit Time}
+
+\titleOfPhDAuthor{Mr.}          % or Ms., Mrs., Miss, etc. (only for PhD's)
+\PhD                            % Masters by default
+\dept{Electrical \& Computer Engineering}        %   default is Comp.Sci.
+%\cosupervisor                   % if you also have a co-supervisor
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+  \titlep
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Body of Thesis goes here.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{introduction}
+\include{relworks}
+\include{methodology/methodology}
+\include{plan}
+
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{library, russel}  %place your .bib files here
+\bibliographystyle{alpha}                   %the bibliography style to use
+
+\end{document}
