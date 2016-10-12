@@ -1,3 +1,1 @@
-
-## Build command
-cat *.md | pandoc --read=markdown -s -S --filter pandoc-citeproc --number-sections --listings --csl="config/ieee.csl" --template="config/default.latex" -o oo.pdf 
+"cat *.md | pandoc --read=markdown -s -S --filter pandoc-citeproc --number-sections --listings --chapters --csl="config/ieee.csl" --template="config/default.latex" -o oo.pdf"  

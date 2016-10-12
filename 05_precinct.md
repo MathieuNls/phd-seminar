@@ -1,3 +1,6 @@
+
+# Preventing Clone Insertion {#chap:clone-detection-pragmatic}
+
 In this section, we present PRECINCT (PREventing Clones INsertion at
 Commit Time) that focuses on preventing the insertion of clones at
 commit time, i.e., before they reach the central code repository.
@@ -34,8 +37,7 @@ three systems, developed independently and written in both C and Java.
 The results show that PRECINCT prevents Type 3 clones to reach the final
 source code repository with an average accuracy of 97.7%.
 
-The PRECINCT Approach {#sec:The PRECINCT Approach}
-=====================
+## The PRECINCT Approach {#sec:The PRECINCT Approach}
 
 ![image](media/approach.png){width="\textwidth"}
 
@@ -58,8 +60,7 @@ for comparing code fragments. Finally, the output of NICAD is further
 refined and presented to the user for decision. These steps are
 discussed in more detail in the following subsections.
 
-PRECINCT Pre-Commit Hook {#sub:Pre-Commit Hook}
-========================
+## PRECINCT Pre-Commit Hook {#sub:Pre-Commit Hook}
 
 Depending on the exit status of the hook, the commit will be aborted and
 not pushed to the central repository. Also, developers can choose to
@@ -88,8 +89,8 @@ instead or in addition of the whitespace check.
 
 <span>0.90</span>
 
-Extract and Save Blocks {#sub:Extract and Save Blocks}
-=======================
+## Extract and Save Blocks {#sub:Extract and Save Blocks}
+
 
 A block is a set of consecutive lines of code that will be compared to
 all other blocks in order to identify clones. To achieve this critical
@@ -167,8 +168,7 @@ latest changes made by the developer and produces an up to date block
 representation of the system at hand in an incremental way. The blocks
 are analysed in the next step to discover potential clones.
 
-Compare Extracted Blocks {#sub:Compare Extracted Blocks}
-========================
+## Compare Extracted Blocks {#sub:Compare Extracted Blocks}
 
 In order to compare the extracted blocks and detect potential clones, we
 can only resort to text-based techniques. This is because lexical and
@@ -229,8 +229,7 @@ potential clones. Moreover, the clone detection in PRECINCT is less
 intensive than NICAD because we only compare the latest changes with the
 rest of the program instead of comparing all the blocks with each other.
 
-Output and Decision {#sub:Output and Decision}
-===================
+## Output and Decision {#sub:Output and Decision}
 
 In this final step, we report the result of the clone detection at
 commit time with respect to the latest changes made by the developer.
@@ -265,8 +264,7 @@ allowed to go through. We believe that this simple mechanism will
 encourage developers to use PRECINCT like they would use any other
 feature of Git (or any other version control system).
 
-Case Study {#sec:Experimentations}
-==========
+## Case Study {#sec:Experimentations}
 
 In this section, we show the effectiveness of PRECINCT for detecting
 clones at commit time in three open source systems[^3].
@@ -276,7 +274,7 @@ detect clones at commit time, i.e., before they are inserted in the
 final code, if so, what would be the accuracy compared to a traditional
 clone detection tool such as NICAD?*
 
-### Target Systems {#sub:Target Systems}
+#### Target Systems {#sub:Target Systems}
 
 Table \[tab:sut\] shows the systems used in this study and their
 characteristics in terms of the number files they contain and the size
@@ -306,8 +304,8 @@ for the past decade. Also, this tool is used in many other popular tools
 such as Aspirin, Muffin and Scarab. Dnsjava is composed of 1637
 revisions, 233 files, the latest revision contains 47 KLoC.
 
-Process {#sub:Process}
-=======
+## Process {#sub:Process}
+
 
 Figure \[fig:precinct-branching\] shows the process we followed to
 validate the effectiveness of PRECINCT.
@@ -363,8 +361,8 @@ $$recall = \frac{|\{ NICAD_{detection} \} \cap \{ PRECINCT_{detection} \} |}{| \
 
 $$F_1-measure = 2 * \frac{precision * recall}{precision + recall}$$
 
-Results {#sub:Results}
-=======
+## Results {#sub:Results}
+
 
 Figures \[fig:r1\], \[fig:r2\], \[fig:r3\] show the results of our study
 in terms of clone pairs that are detected per revision for our three

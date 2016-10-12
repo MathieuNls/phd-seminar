@@ -1,14 +1,14 @@
-Background & Related Work\[chap:relwork\]
-=========================================
 
-In this chapter we present background in Section \[sec:preliminaries\].
+# Background & Related Work {#chap:relwork}
+
+In this chapter we present background in Section \ref{sec:preliminaries}.
 We define key concepts using throughout this proposal. Then, we present
 related work for bug reproduction, bug prediction, and clone detection.
 
-Preliminaries\[sec:preliminaries\]
+Preliminaries {#sec:preliminaries}
 ----------------------------------
 
-### Definitions\[sec:version-control\]
+### Definitions  {#sec:version-control}
 
 In this proposal, we use the following definitions that are based on
 [@Avizienis2004; @Pratt2001; @Burnstein2006; @Radatz1990; @Whittaker2012].
@@ -53,7 +53,7 @@ In this proposal, we use the following definitions that are based on
 In the remaining of this section, we introduce the two types of software
 repositories: version control and project tracking system.
 
-### Version control systems\[sec:version-control\]
+### Version control systems {#sec:version-control}
 
 Version control consists of maintaining the versions of various
 artefacts such as source code files [@Zeller1997]. This activity is a
@@ -98,47 +98,47 @@ strategy where a new branch is created for each task
 <span>123\_implement\_X</span> where <span>123</span> is the
 <span>\#id</span> of task <span>X</span> given by the project tracking
 system. Project tracking systems are presented in Section
-\[sec:issue-tracking\].
+ \ref{sec:issue-tracking}.
 
 In modern versioning systems, when maintainers make modifications to the
 source code, they have to commit their changes for the modifications to
 be effective. The commit operation versions the modifications applied to
 one or many files.
 
-Figure \[fig:branching\] presents the data structure used to store a
+Figure  \ref{fig:branching} presents the data structure used to store a
 commit. Each commit is represented as a tree. The root leaf (green)
 contains the commit, tree and parent hashes as same as the author and
 the description associated with the commit. The second leaf (blue)
 contains the leaf hash and the hashes of the files of the project.
 
 ![Data structure of a commit.
-\[fig:branching\]](media/commit-datastructure.png)
+ {fig:branching}](media/commit-datastructure.png)
 
 In this example, we can see that author “Mathieu” has created the file
-$file1.java$ with the message “project init”. Figure \[fig:two-commits\]
+$file1.java$ with the message “project init”. Figure  \ref{fig:two-commits}
 represents an external modification. In this second example,
 $file1. java$ is modified while $file2.java$ is created. The second
 commit $98ca9$ have $34ac2$ as a parent.
 
 ![Data structure of two commits.
-\[fig:two-commits\]](media/branching.png)
+ {#fig:two-commits}](media/branching.png)
 
 Branches point to a commit. In a task-branching environment, a branch is
 created via a checkout operation for each task. Tasks can be to fix the
 root cause of a crash or bug report or features to implement. In figure
-\[fig:two-branches\], the $master$ branch and the $1\_fix\_overflow$
+ \ref{fig:two-branches}, the $master$ branch and the $1\_fix\_overflow$
 point on commit $98ca9$.
 
 ![Two branches pointing on one commit.
-\[fig:two-branches\]](media/2branches.png)
+ {#fig:two-branches}](media/2branches.png)
 
 Both branches can evolve separately and be merged together when the task
-branch is ready. In Figure \[fig:merge\], the $master$ branch points on
+branch is ready. In Figure  {fig:merge}, the $master$ branch points on
 $a13ab2$ while the $1\_fix\_overflow$ points on $ahj23k$.
 
-![Two branches pointing on two commits. \[fig:merge\]](media/merge.png)
+![Two branches pointing on two commits.  {#fig:merge}](media/merge.png)
 
-#### Providers\[sec:revision-provider\]
+#### Providers {#sec:revision-provider}
 
 In this proposal, we mainly refer to three version control systems:
 <span>Svn</span>, <span>Git</span> and, to a lesser extent,
@@ -154,7 +154,7 @@ also a distributed revision system, but shares a lot of concepts with
 <span>SVN</span> to switch to a distributed revision system if they use
 <span>Mercurial</span>.
 
-### Project Tracking Systems\[sec:issue-tracking\]
+### Project Tracking Systems {#sec:issue-tracking}
 
 Project tracking systems allow end users to create bug reports (BRs) to
 report unexpected system behaviour, managers can create tasks to drive
@@ -166,7 +166,7 @@ of the fixes.
 ![Lifecyle of a report [@Bugzilla2008]<span
 data-label="fig:bug-lifecyle"></span>](media/bzLifecycle.png)
 
-Figure \[fig:bug-lifecyle\] presents the life cycle of a report. When a
+Figure  \ref{fig:bug-lifecyle} presents the life cycle of a report. When a
 report is submitted by an end-user, it is set to the
 <span>UNCONFIRMED</span> state until it receives enough votes or that a
 user with the proper permissions modifies its status to
@@ -245,7 +245,7 @@ link each report with the versioning system by indicating the report
 $\#id$ on the modification message, more than half of the reports are
 not linked to a modification[@Wu2011].
 
-#### Providers\[sec:bug-provider\]
+#### Providers {#sec:bug-provider}
 
 We have collected data from four different project tracking systems:
 $Bugzilla$, $Jira$, $Github$ and $Sourceforge$. $Bugzilla$ belongs to
@@ -264,7 +264,7 @@ evolved, later on, to add project tracking capabilities to their
 software tools. This common particularity has the advantage to ease the
 link between bug reports and the source code.
 
-Crash reproduction\[sec:rel-reproduction\]
+Crash reproduction {#sec:rel-reproduction}
 ------------------------------------------
 
 The first (and perhaps main) step in understanding the cause of a field
@@ -498,7 +498,7 @@ overhead (1% to 1066%) while running the system. In addition, the data
 generated at run-time using instrumentation may contain sensitive
 information.
 
-Reports and source code relationships\[rel:issue-rela\]
+Reports and source code relationships {#rel:issue-rela}
 -------------------------------------------------------
 
 Mining bug repositories is perhaps one of the most active research
@@ -676,6 +676,28 @@ over the last decade, the developed tools and approaches fail to change
 developer behavior while deployed in industrial environment
 [@Lewis2013]. This is mainly due to the lack of actionable message, i.e.
 messages that provide concrete steps to resolve the problem at hand.
+
+
+## File, Module and Risky Change Prediction
+
+The majority of previous file/module-level prediction work used code or process metrics.
+Approaches using code metrics only use information from the code itself and do not use any historical data. Chidamber and Kemerer published the well-known CK metrics suite [@Chidamber1994] for object oriented designs and inspired Moha *et al.* to publish similar metrics for service-oriented programs [@Moha]. Another famous metric suite for assessing the quality of a given software design is Briand's coupling metrics [@Briand1999a].
+
+The CK and Briand’s metrics suites have been used, for example, by Basili *et al.* [@Basili1996], El Emam *et al.* [@ElEmam2001], Subramanyam *et al.* [@Subramanyam2003] and Gyimothy *et al.* [@Gyimothy2005] for object-oriented designs. 
+Service oriented designs have been far less studied than object oriented design as they are relatively new, but, Nayrolles *et al.* [@Nayrolles; @Nayrolles2013d], Demange *et al.* [@demange2013] and Palma *et al.* [@Palma2013] used Moha *et al.* metric suites to detect software defects.
+All these approaches, proved software metrics to be useful at detecting software fault for object oriented and service oriented designs, respectively. More recently, Nagappan *et al.* [@Nagappan2005; @Nagappan2006] and Zimmerman *et al.* [@Zimmermann2007; @Zimmermann2008] further refined metrics-based detection by using statical analysis and call-graph analysis.
+
+Other approaches use historical development data, often referred to as process metrics. Naggapan and Ball [@Nagappan] studied the feasibility of using relative churn metrics to prediction buggy modules in the Windows Server 2003. Other work by Hassan *et al* and Ostrand *et al* used past changes and defects to predict buggy locations (e.g., [@Hassan2005], [@Ostrand2005]). Hassan and Holt proposed an approach that highlights the top ten most susceptible locations to have a bug using heuristics based on file-level metrics [@Hassan2005]. They find that locations that have been recently modified and fixed locations are the most defect-prone. Similarly, Ostrand *et al.* [@Ostrand2005] predict future crash location by combining the data from changed and past defect locations. They validate their approach on industrial systems at AT&T. They showed that data from prior changes and defects can effectively defect-prone locations for open-source and industrial systems. Kim *et al.* [@Kim2007a] proposed the bug cache approach, which is an improved technique over Hassan and Holt's approach [@Hassan2005]. Rahman and Devanbu found that, in general, process-based metrics perform as good as or better than code-based metrics [@rahman2013].
+
+Other work focused on the prediction of risky changes. Kim et al. proposed the change classification problem, which predicts whether a change is buggy or clean [@SunghunKim2008]. Hassan [@Hassan2009] used the entropy of changes to predict risky changes. They find that the more complex a change is, the more likely it is to introduce a defect. Kamei *et al.* performed a large-scale empirical study on change classification [@Kamei2013]. They aforementioned studies find that size of a change and the history of the files being changed (i.e., how buggy they were in the past) are the best indicators of risky changes.
+
+Our work shares a similar goal to the work on the prediction of risky changes, however, BIANCA takes a different approach in that it leverages dependencies of a project to determine risky changes.
+
+## Automatic Patch Generation
+
+Since BIANCA not only flags risky changes, but also provides developers with fixes that have been applied in the past, automatic patch generation work is also related. Pan *et al.* [@Pan2008] identified 27 bug fixing patterns that can be applied to fix software bugs in Java programs. They showed that between 45.7 - 63.6\% of the bugs can be fixed with their patterns. Later, Kim *et al.* [@Kim2013] generated patches from human-written patches and showed that their tool, PAR, successfully generated patches for 27 of 119 bugs. Tao *et al.* [@tao2014automatically] also showed that automatically generated patches can assist developers in debugging tasks. Other work also focused on determining how to best generate acceptable and high quality patches, e.g. [@Dallmeier; @le2012systematic], and determine what bugs are best fit for automatic patch generation [@le2015should].
+
+Our work differs from the work on automated patch generation in that we do not generate patches, rather we use clone detection to determine the similarity of a change to a previous risky change and suggest to the developer the fixes of the prior risky changes.
 
 Clone Detection {#sec:rel-clones}
 ---------------

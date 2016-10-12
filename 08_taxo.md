@@ -1,3 +1,6 @@
+
+# A Bug Classification Approach Based on the Locations of the Corrections --- An Empirical Study {#chap:taxonomy}
+
 In order to classify the research on the different fields related to
 software maintenance, we can reason about types of bugs at different
 levels. For example, we can group bugs based on the developers that fix
@@ -61,8 +64,7 @@ research questions:
 
 -   RQ3: How fast are these types of bugs fixed?
 
-Study Setup
-===========
+## Study Setup
 
 Figure \[fig:bug-taxo-flow\] illustrates our data collection and
 analysis process that we present here and discuss in more detail in the
@@ -81,8 +83,7 @@ the BR is reopened, number of changesets for BR and the number of files
 changed and lines modified for fixes or patch. Finally, we analyze these
 characteristics to answer the aforementioned research questions (RQ).
 
-Study Design
-============
+## Study Design
 
 We describe the design of our study by first stating the research
 questions, and then explaining the variables, and analysis methods we
@@ -95,8 +96,7 @@ proportion of each type of bugs. The remaining two questions address the
 complexity of the bugs and the bug fixing duration according to the type
 of bugs. 1)
 
-RQ 1: What are the proportions of different types of bugs?
-----------------------------------------------------------
+### RQ 1: What are the proportions of different types of bugs?
 
 The answer to this question provides insight into the distribution of
 bugs according to their type with a focus on Type 2 and 4 bugs. As
@@ -148,8 +148,7 @@ independence test are considered statistically significant at $\alpha$ =
 conclude that the proportion of types 3 and 4 bugs is different from the
 proportion of type 1 and 2 bugs for each system.
 
-RQ 2: How complex is each type of bugs?
----------------------------------------
+### RQ 2: How complex is each type of bugs?
 
 We address the relation between Types 2 and 4 bugs and the complexity of
 the bugs in terms of severity, duplicate and reopened.We analyze whether
@@ -189,8 +188,7 @@ that the bug is more likely to be duplicated (respectively reopened) is
 related to the type of the bug and we reject $H_{02S}$ and conclude that
 the severity level of the bug is related to the bug type.
 
-RQ 3 : How fast are these types of bugs fixed ?
------------------------------------------------
+### RQ 3 : How fast are these types of bugs fixed ?
 
 In this question, we study the relation between the different types of
 bugs and the fixing time. We are interested in evaluating whether
@@ -220,15 +218,13 @@ reject the null hypothesis H 03 and conclude that the average fixing
 time of Types 1 and 3 bugs is significantly different from the average
 fixing time of Types 2 and 4 bugs.
 
-Study result and discussion
-===========================
+## Study result and discussion
 
 In this section, we report on the results of the analyses we performed
 to answer our research questions. We then dedicate a section to
 discussing the results.
 
-RQ 1 : What are the proportions of different types of bugs?
------------------------------------------------------------
+### RQ 1 : What are the proportions of different types of bugs?
 
 Figure \[fig:bug-taxo-rq1\] shows the percentage of the different types
 of bugs. As shown in the figure, we found that 65% of the bugs are from
@@ -265,8 +261,7 @@ Apache & 1968 & 1248 & 3101 & 7422 &\
 & 2744 & 1488 & 11473 & 24788 &\
 & (6.78%) & (3.74%) & (28.33%) & (61.21%) &\
 
-RQ 2 : How complex is each type of bugs?
-----------------------------------------
+### RQ 2 : How complex is each type of bugs?
 
 Figure \[fig:bug-taxo-rq2-prop-apache\] and
 \[fig:bug-taxo-rq2-prop-netbeans\] show the proportion of each bug type
@@ -398,7 +393,7 @@ their bug type by conducting a Mann-Whitney test to assess $H03$.The
 results show that the difference between the fixing time of Types 2 and
 4 and Types 1 and 3 is statistically significant (p-value &lt; 0,005).
 
-### Dicussion
+#### Dicussion
 
 <span>**Repartition of bug types**</span>: One important finding of this
 study is that there is significantly more Types 2 and 4 bugs than Types

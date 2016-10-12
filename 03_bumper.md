@@ -1,3 +1,7 @@
+
+# An Aggregate Bug Repository for Developers and Researchers {#chap:bumper}
+
+
 With the goal to support the research towards analyzing relationships
 between bugs and their fixes we constructed a dataset of 380 projects,
 more than 100,000 resolved/fixed and with 60,000 changesets that were
@@ -19,10 +23,9 @@ However, to the best of our knowledge, no attempt has been made towards
 building a unified and online dataset where all the information related
 to a bug, or a fix can be easily accessed by researchers and engineers.
 
-Data collection\[sec:data-collection\]
-======================================
+## Data collection {#sec:data-collection}
 
-Figure \[fig:bumper-approach\] illustrates our data collection and
+Figure {fig:bumper-approach} illustrates our data collection and
 analysis process that we present here and discuss in more detail in the
 following subsections. First, we extract the raw data from the two bug
 report management systems used in this study (Bugzilla[^1] and
@@ -33,7 +36,7 @@ is based on mercurial[^3] while we used the git[^4] mirrors[^5] for the
 Apache Foundation software.
 
 ![Overview of the bumper database construction.
-\[fig:bumper-approach\]](media/bumper-approach.png)
+{fig:bumper-approach}](media/bumper-approach.png)
 
 In this study, we used two distinct datasets: Netbeans and the Apache
 Software Foundation projects. Netbeans is an integrated development
@@ -42,7 +45,7 @@ PHP, and C/C++. The very first version of Netbeans, then known as Xelfi,
 appeared in 1996. The Apache Software Foundation is a U.S non-profit
 organization supporting Apache software projects such as the popular
 Apache web server since 1999. The characteristics of the Netbeans and
-Apache Software Foundation are presented in Table \[table:datasets\].
+Apache Software Foundation are presented in Table {table:datasets}.
 
 <span>@c|c|c|c|c@</span> **Dataset** & **R/F BR** & **CS** & **Files** &
 **Projects**\
@@ -65,11 +68,11 @@ maturity. Moreover, the used different tools, i.e. Bugzilla, JIRA, Git
 and Mercurial, and therefore, BUMPER is ready to host any other datasets
 that used any composition of these tools.
 
-Architecture
-============
+## Architecture
+
 
 <span>BUMPER</span> rely on a highly scalable architecture composed of
-two distinct servers as depicted in Figure \[fig:bumper-arch\]. The
+two distinct servers as depicted in Figure {fig:bumper-arch}. The
 first server, on the left, handles the web requests and runs three
 distinct components:
 
@@ -104,7 +107,7 @@ following items:
     server has its own embedded engine.
 
 ![Overview of the bumper architecture.
-\[fig:bumper-arch\]](media/bumper-arch.png)
+{fig:bumper-arch}](media/bumper-arch.png)
 
 Request from users to the servers and the communication between our
 servers are going through the CloudFlare network. CloudFlare acts as a
@@ -117,16 +120,15 @@ a specific request in less than 100 ms while our two servers are, in
 fact, two virtual machines sharing an AMD Opteron (tm) Processor 6386 SE
 (1 core @ 2,000 MHz) and 1 GB of RAM.
 
-UML Metamodel
-=============
+## UML Metamodel
 
-Figure \[fig:bumper-approach\] presents the simplified
+Figure {fig:bumper-approach} presents the simplified
 <span>BUMPER</span> metamodel that we designed according to our bug
-taxonomy presented in section \[fig:bug-taxo\] and according to our
+taxonomy presented in section {fig:bug-taxo} and according to our
 future needs for <span>JCHARMING</span>, <span>RESSEMBLE</span> and
 <span>BIANCA</span>.
 
-![Overview of the bumper meta-model. \[fig:bumper-approach\]
+![Overview of the bumper meta-model. {fig:bumper-approach}
 ](media/bumper-model.png)
 
 An <span>*issue*</span> (<span>*task*</span>) is characterized by a
@@ -146,14 +148,13 @@ events*</span> which impact the <span>*type*</span>, the
 at a given revision, which are versions of the <span>*file*</span>
 entity that belongs to a <span>*Project*</span>.
 
-Features
-========
+## Features
+
 
 In this section, we present the features of bug report and their fixes
 in details.
 
-Bug Report
-----------
+### Bug Report
 
 A bug report is characterized by the following features:
 
@@ -222,8 +223,7 @@ We selected this set of features for bug report as they are the ones
 that are analyzed in many past and recent studies. In addition, bugs can
 contain 0 or many .
 
-Changesets
-----------
+### Changesets
 
 In this section, we present the features that characterize changeset
 entities in BUMPER.
@@ -253,13 +253,13 @@ entities in BUMPER.
 
 In addition, changesets contain one or many hunks.
 
-Hunks
------
+### Hunks
+
 
 A hunks are a set of consecutive lines changed in a file in order. A set
 of hunks form a fix that can be scattered across one or many files.
 Knowing how many hunks a fixed required and what are the changes in each
-of them is useful, as explained by \[2\] to understand how many places
+of them is useful, as explained by {2} to understand how many places
 developers have to go to fix a bug.
 
 Hunks are composed of:
@@ -280,8 +280,8 @@ Hunks are composed of:
 -   Change: One line that have been added or removed. A Hunk can contain
     one or many changes.
 
-Application Program Interface (API)\[sec:bumper-api\]
-=====================================================
+## Application Program Interface (API) {#sec:bumper-api}
+
 
 BUMPER is available for engineers and researchers at
 <span>**https://bumper-app.com**</span> and take the form of a regular
@@ -308,7 +308,7 @@ the BUG, an index based on all the fields of changeset and hunk both. As
 a result, we search seamlessly in the bug report and their fixes in
 natural language.
 
-As a more practical example, Figure \[fig:bumper-live\] illustrate a
+As a more practical example, Figure {fig:bumper-live} illustrate a
 query on https://bumper-app.com. The search term is
 “<span>*Exception*</span>” and we can see that 20,285 issues / tasks
 have been found in 25 ms This particular set of issues, displayed on the
@@ -319,7 +319,7 @@ this task). Then on the right side of the screen, the selected issue
 (task) followed by comments and finally, the source code.
 
 ![Screenshot of https://bumper-app.com with “Exception” as research.
-\[fig:bumper-live\]](media/bumper-live.png)
+{fig:bumper-live}](media/bumper-live.png)
 
 Moreover, BUMPER supports AND, OR, NOR operators and provide results in
 order of seconds.

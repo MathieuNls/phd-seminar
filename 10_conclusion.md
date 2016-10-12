@@ -1,5 +1,5 @@
-Conclusion\[chap:conclusion\]
-=============================
+
+# Conclusion {#chap:conclusion}
 
 The maintenance and evolution of complex software systems account for
 more than 70% software’s life cycle. Hundreds of papers have been

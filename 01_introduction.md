@@ -117,8 +117,7 @@ here and discuss in more detail in the next section:
 -   A new classification of bugs based on the locations of
     the corrections.
 
-Research Contributions\[sec:objective-thesis\]
-----------------------------------------------
+## Research Contributions {#sec:objective-thesis}
 
 ### An aggregate bug repository for developers and researchers
 
@@ -290,38 +289,37 @@ exist on detection of duplicates (e.g.,
 for duplicates but for related bugs (bugs that are due to failures of
 different features of the system, caused by the same faults).
 
-Outline\[sec:outline\]
-----------------------
+## Outline {#sec:outline}
 
 The remaining chapters of this proposal are:
 
--   Chapter \[chap:relwork\] - <span>*Background & Related work*</span>.
+-   Chapter \ref{chap:relwork} - <span>*Background & Related work*</span>.
     In this chapter, we present the major studies related to our
     research field, namely, crash reproduction, aggregating bug
     repositories for mining purposes, and clone detection.
 
--   Chapter \[chap:bumper\] - <span>*An Aggregate Bug Repository for
+-   Chapter \ref{chap:bumper} - <span>*An Aggregate Bug Repository for
     Developers and Researchers*</span>. In this chapter, we present
     <span>BUMPER</span> (BUg Metarepository for dEvelopers and
     Researchers), our bug meta-repository. <span>BUMPER</span> acts as
     our data source for the different contributions.
 
--   Chapter \[chap:jcharming\] - <span>*JCHARMING: Java CrasH Automatic
+-   Chapter \ref{chap:jcharming} - <span>*JCHARMING: Java CrasH Automatic
     Reproduction by directed Model checkING*</span>. In this chapter we
     discuss the components of JCHARMING, the bug reproduction approach
     we propose.
 
--   Chapter \[chap:clone-detection-pragmatic\] - <span>*Preventing Clone
+-   Chapter \ref{chap:clone-detection-pragmatic} - <span>*Preventing Clone
     Insertion*</span>. This chapter describes one approach to prevent
     the insertion of clones at commit time.
 
--   Chapter \[chap:bianca\] - <span>*Preventing Bug Insertion Using
+-   Chapter \ref{chap:bianca} - <span>*Preventing Bug Insertion Using
     Clone Detection*</span>. In this chapter, we present an approach
     named <span>BIANCA</span> (Bug Insertion ANticipation by Clone
     Analysis at merge time) which uses clone detection to prevent
     bug insertion.
 
--   Chapter \[chap:plan\] - <span>*Remaining Work*</span> presents the
+-   Chapter \ref{chap:plan} - <span>*Remaining Work*</span> presents the
     remaining work and a publication plan.
 
 
